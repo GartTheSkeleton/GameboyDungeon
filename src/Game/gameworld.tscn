@@ -11,11 +11,26 @@ script = ExtResource("1_j714t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Readout" type="Label" parent="Camera2D"]
-offset_right = 320.0
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Readout" type="Label" parent="Camera2D/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_right = 140.0
 offset_bottom = 64.0
+grow_horizontal = 2
 label_settings = SubResource("LabelSettings_5ejrl")
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("2_hdij2")
+
+[node name="Entities" type="Node2D" parent="."]
