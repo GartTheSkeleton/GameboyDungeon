@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp20g3g4hsbbu"]
+
+[ext_resource type="Script" uid="uid://yux5jnw6ijxl" path="res://src/Map/Tile/tile.gd" id="1_wapfc"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_wapfc")
+
+[node name="LeftPanel" type="Sprite2D" parent="."]
+offset = Vector2(-56, 0)
+
+[node name="CenterPanel" type="Sprite2D" parent="."]
+
+[node name="RightPanel" type="Sprite2D" parent="."]
+offset = Vector2(56, 0)

@@ -1,8 +1,5 @@
-class_name EntityDefinition
+class_name PanelDefinition
 extends Resource
 
 @export_category("Visuals")
 @export var texture: AtlasTexture
-
-@export_category("Mechanics")
-@export var hp: int

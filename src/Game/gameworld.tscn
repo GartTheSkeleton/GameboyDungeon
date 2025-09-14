@@ -1,34 +1,39 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
+[ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/event_handler.gd" id="2_hdij2"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_5ejrl"]
-font_size = 12
 
 [node name="Gameworld" type="Node2D"]
 script = ExtResource("1_j714t")
 
+[node name="Tile" parent="." instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, 0)
+northPanelType = 0
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+
+[node name="Tile2" parent="." instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(1, 0)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 2
+
+[node name="Tile3" parent="." instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, 0)
+northPanelType = 2
+southPanelType = 2
+westPanelType = 2
+
+[node name="Tile4" parent="." instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, -1)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Control" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Readout" type="Label" parent="Camera2D/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -180.0
-offset_right = 140.0
-offset_bottom = 64.0
-grow_horizontal = 2
-label_settings = SubResource("LabelSettings_5ejrl")
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("2_hdij2")

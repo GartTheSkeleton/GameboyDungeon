@@ -10,5 +10,5 @@ region = Rect2(0, 0, 160, 144)
 [resource]
 script = ExtResource("1_iqdy0")
 texture = SubResource("AtlasTexture_phdbn")
-visible = true
+hp = 15
 metadata/_custom_type_script = "uid://duxtebnoobju8"

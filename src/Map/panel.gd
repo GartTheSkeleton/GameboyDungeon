@@ -1,0 +1,14 @@
+class_name BackgroundPanel
+extends Sprite2D
+
+var _definition: PanelDefinition
+
+
+func _init(grid_position: Vector2i, panel_definition: PanelDefinition) -> void:
+	centered = false
+	set_panel_type(panel_definition)
+
+
+func set_panel_type(panel_definition: PanelDefinition) -> void:
+	_definition = panel_definition
+	texture = _definition.texture

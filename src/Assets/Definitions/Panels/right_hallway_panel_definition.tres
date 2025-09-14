@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://cuvplr18xhfh7"]
+
+[ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_yh4e0"]
+[ext_resource type="Texture2D" uid="uid://hkne3xtsjqmx" path="res://src/Assets/TilePanels/hallway_right.png" id="2_ok4r6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdjd4"]
+atlas = ExtResource("2_ok4r6")
+
+[resource]
+script = ExtResource("1_yh4e0")
+texture = SubResource("AtlasTexture_bdjd4")
+metadata/_custom_type_script = "uid://caf1n6uwwk1bq"

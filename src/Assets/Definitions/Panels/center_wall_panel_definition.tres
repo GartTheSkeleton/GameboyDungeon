@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://dq1ergqqub12j"]
+
+[ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_gqyov"]
+[ext_resource type="Texture2D" uid="uid://cvyyocamqxmqp" path="res://src/Assets/TilePanels/wall_center.png" id="2_db8nc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou5d6"]
+atlas = ExtResource("2_db8nc")
+
+[resource]
+script = ExtResource("1_gqyov")
+texture = SubResource("AtlasTexture_ou5d6")
+metadata/_custom_type_script = "uid://caf1n6uwwk1bq"

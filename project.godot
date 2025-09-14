@@ -15,6 +15,10 @@ run/main_scene="res://src/Game/gameworld.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://src/Assets/icon.svg"
 
+[autoload]
+
+SignalBus="*res://src/Utils/signal_bus.gd"
+
 [display]
 
 window/size/viewport_width=160

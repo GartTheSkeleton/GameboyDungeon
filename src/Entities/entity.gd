@@ -13,4 +13,3 @@ func _init(start_position: Vector2i, entity_definition: EntityDefinition) -> voi
 	grid_position = start_position
 	definition = entity_definition
 	texture = definition.texture
-	#visible = definition.visible

@@ -2,6 +2,7 @@ class_name EventHandler
 extends Node
 
 @onready var game: Game = $".."
+
 func get_action() -> Action:
 	var action: Action = null
 	if Input.is_action_just_pressed("Up"):
@@ -13,6 +14,7 @@ func get_action() -> Action:
 	elif Input.is_action_just_pressed("Right"):
 		print('facing: ', game.playerFacing)
 		action = TurnAction.new("Right", game)
+		SignalBus.player_turned.emit(action.playerFacing)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		action = EscapeAction.new()

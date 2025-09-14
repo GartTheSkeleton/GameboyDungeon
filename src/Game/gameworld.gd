@@ -21,8 +21,9 @@ const cyclops_definition: EntityDefinition = preload("res://src/Assets/Definitio
 func _ready() -> void:
 	var player_start_pos: Vector2i = Grid.world_to_grid(get_viewport_rect().size.floor() / 2)
 	player.position = player_start_pos
-	var npc := Entity.new(player_start_pos, cyclops_definition)
-	entities.add_child(npc)
+	#var npc := Entity.new(player_start_pos, cyclops_definition)
+	#entities.add_child(npc)
+	SignalBus.player_turned.emit(playerFacing)
 
 func _process(delta: float) -> void:
 	var action: Action = event_handler.get_action()
@@ -30,10 +31,11 @@ func _process(delta: float) -> void:
 	if action is MovementAction:
 		player_grid_pos += action.offset
 		player.position = Grid.grid_to_world(player_grid_pos)
-		print("Player is in room " + str(player.position) + ", and is facing " + playerFacingString)
+		print("Player is in room " + str(player_grid_pos) + ", and is facing " + playerFacingString)
 	if action is TurnAction:
 		playerFacing = action.playerFacing
 		playerFacingString = directions.find_key(playerFacing)
-		print("Player is in room " + str(player.position) + ", and is facing " + playerFacingString)
+		print("Player is in room " + str(player_grid_pos) + ", and is facing " + playerFacingString)
+		SignalBus.player_turned.emit(playerFacing)
 	elif action is EscapeAction:
 		get_tree().quit()
