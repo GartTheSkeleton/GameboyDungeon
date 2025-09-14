@@ -25,6 +25,10 @@ window/size/viewport_width=160
 window/size/viewport_height=144
 window/stretch/mode="viewport"
 
+[global_group]
+
+room="A room within the dungeon, contains walls, doors, and hallways."
+
 [input]
 
 Up={

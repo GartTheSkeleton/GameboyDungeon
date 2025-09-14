@@ -9,12 +9,12 @@ func get_action() -> Action:
 		var facing = game.playerFacing
 		action = MovementAction.new(facing.x, facing.y)
 	elif Input.is_action_just_pressed("Left"):
-		print('facing: ', game.playerFacing)
 		action = TurnAction.new("Left", game)
 	elif Input.is_action_just_pressed("Right"):
-		print('facing: ', game.playerFacing)
 		action = TurnAction.new("Right", game)
 		SignalBus.player_turned.emit(action.playerFacing)
+	elif Input.is_action_just_pressed("B"):
+		action = AttackAction.new()
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		action = EscapeAction.new()

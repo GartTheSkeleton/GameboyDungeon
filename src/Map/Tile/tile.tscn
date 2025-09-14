@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yux5jnw6ijxl" path="res://src/Map/Tile/tile.gd" id="1_wapfc"]
 
-[node name="Tile" type="Node2D"]
+[node name="Tile" type="Node2D" groups=["room"]]
 script = ExtResource("1_wapfc")
 
 [node name="LeftPanel" type="Sprite2D" parent="."]

@@ -15,27 +15,32 @@ var playerFacingString: String = directions.find_key(playerFacing)
 @onready var player: Camera2D = $Camera2D
 @onready var event_handler: EventHandler = $EventHandler
 @onready var entities: Node2D = $Entities
+@onready var map: Map = $Map
 
-const cyclops_definition: EntityDefinition = preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_cyclops.tres")
+var currentRoom: Tile
+var rng = RandomNumberGenerator.new()
+const entity_types = {
+	"cyclops": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_cyclops.tres")
+}
 
 func _ready() -> void:
+	rng.randomize()
 	var player_start_pos: Vector2i = Grid.world_to_grid(get_viewport_rect().size.floor() / 2)
 	player.position = player_start_pos
-	#var npc := Entity.new(player_start_pos, cyclops_definition)
-	#entities.add_child(npc)
+	var map_data = get_map_data()
+	for room in map_data.tiles:
+		var random_chance = rng.randf_range(0, 10.0)
+		if random_chance > 7.5:
+			var npc := Entity.new(room.gridPosition, entity_types.cyclops)
+			entities.add_child(npc)
+			map_data.entities.append(npc)
 	SignalBus.player_turned.emit(playerFacing)
 
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var action: Action = event_handler.get_action()
-	
-	if action is MovementAction:
-		player_grid_pos += action.offset
-		player.position = Grid.grid_to_world(player_grid_pos)
+	if action:
+		action.perform(self)
 		print("Player is in room " + str(player_grid_pos) + ", and is facing " + playerFacingString)
-	if action is TurnAction:
-		playerFacing = action.playerFacing
-		playerFacingString = directions.find_key(playerFacing)
-		print("Player is in room " + str(player_grid_pos) + ", and is facing " + playerFacingString)
-		SignalBus.player_turned.emit(playerFacing)
-	elif action is EscapeAction:
-		get_tree().quit()
+
+func get_map_data() -> MapData:
+	return map.map_data

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EntityDefinition" load_steps=4 format=3 uid="uid://dhty74h8bhetk"]
 
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_iqdy0"]
-[ext_resource type="Texture2D" uid="uid://by15n0e6mlsq2" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phdbn"]
 atlas = ExtResource("2_phdbn")
@@ -9,6 +9,7 @@ region = Rect2(0, 0, 160, 144)
 
 [resource]
 script = ExtResource("1_iqdy0")
+name = "Cyclops"
 texture = SubResource("AtlasTexture_phdbn")
 hp = 15
 metadata/_custom_type_script = "uid://duxtebnoobju8"

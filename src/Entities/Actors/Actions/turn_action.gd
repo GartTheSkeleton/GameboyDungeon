@@ -2,9 +2,15 @@ class_name TurnAction
 extends Action
 
 var playerFacing: Vector2i
+var direction: String
 
-func _init(direction: String, game: Game) -> void:
+func _init(inputDirection: String, game: Game) -> void:
 	playerFacing = game.playerFacing
+	direction = inputDirection
+	
+
+
+func perform(game: Game) -> void:
 	var directionsKeys = game.directions.keys()
 	var currentKey = game.playerFacingString
 	var currentIndex = directionsKeys.find(currentKey)
@@ -28,3 +34,6 @@ func _init(direction: String, game: Game) -> void:
 			currentIndex += 1
 			nextDirection = directionsKeys[currentIndex]
 			playerFacing = game.directions[nextDirection]
+	game.playerFacing = playerFacing
+	game.playerFacingString = game.directions.find_key(playerFacing)
+	SignalBus.player_turned.emit(playerFacing)
