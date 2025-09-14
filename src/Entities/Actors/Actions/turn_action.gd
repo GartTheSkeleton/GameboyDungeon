@@ -15,6 +15,10 @@ func perform(game: Game) -> void:
 	var currentKey = game.playerFacingString
 	var currentIndex = directionsKeys.find(currentKey)
 	var nextDirection: String
+	var current_grid_position = Grid.world_to_grid(game.player.position)
+	var blocking_enemy = game.get_map_data().get_blocking_entity_at_location(current_grid_position)
+	if blocking_enemy:
+		return
 	if direction == "Left":
 		if game.playerFacing == game.directions.NORTH:
 #			easy solution, just loop back to other side of the dictionary

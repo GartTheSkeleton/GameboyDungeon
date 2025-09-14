@@ -13,6 +13,7 @@ func perform(game: Game) -> void:
 	var destination_tile: Tile = map_data.get_tile(destination)
 	var current_room = map_data.get_tile(current_grid_position)
 	var is_facing_wall: bool = false
+	var blocking_enemy = game.get_map_data().get_blocking_entity_at_location(current_grid_position)
 	
 	match game.playerFacingString:
 		"NORTH":
@@ -27,7 +28,8 @@ func perform(game: Game) -> void:
 		"WEST":
 			if current_room.westPanelType == current_room.panelTypes.WALL:
 				is_facing_wall = true
-	if not destination_tile || is_facing_wall:
+	if not destination_tile || is_facing_wall || blocking_enemy:
+		print("blocking_enemy", blocking_enemy)
 		return
 	game.player_grid_pos = destination
 	game.player.position = Grid.grid_to_world(destination)
