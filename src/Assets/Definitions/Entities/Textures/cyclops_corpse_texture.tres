@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b3j413dkxht06"]
+
+[ext_resource type="Texture2D" uid="uid://dteed26ikb18w" path="res://src/Assets/Entities/nothic_dead.png" id="1_sucd3"]
+
+[resource]
+atlas = ExtResource("1_sucd3")

@@ -24,3 +24,17 @@ func get_blocking_entity_at_location(grid_position: Vector2i) -> Entity:
 		if entity.is_blocking_movement() and entity.grid_position == grid_position:
 			return entity
 	return null
+
+func get_actors() -> Array[Entity]:
+	var actors: Array[Entity] = []
+	for entity in entities:
+		if entity.is_alive():
+			actors.append(entity)
+	return actors
+
+
+func get_actor_at_location(location: Vector2i) -> Entity:
+	for actor in get_actors():
+		if actor.grid_position == location:
+			return actor
+	return null
