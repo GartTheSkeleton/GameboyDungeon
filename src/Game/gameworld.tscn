@@ -1,9 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=17 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/event_handler.gd" id="2_hdij2"]
 [ext_resource type="Script" path="res://src/Map/map.gd" id="2_yssg5"]
+[ext_resource type="Texture2D" uid="uid://da0st4pysge5c" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://djcix3tkx0pgh" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
+[ext_resource type="Texture2D" uid="uid://wsgskn3x1qa0" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://ds3xq2glk673u" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
+[ext_resource type="Texture2D" uid="uid://svmn8m2wftuu" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
+[ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgd45"]
+atlas = ExtResource("4_1nj4o")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d75vc"]
+atlas = ExtResource("4_54q2d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j816e"]
+atlas = ExtResource("5_1nj4o")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s8sg"]
+atlas = ExtResource("6_lgd45")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jf8o"]
+atlas = ExtResource("7_as7lh")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0lof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgd45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d75vc")
+}],
+"loop": false,
+"name": &"EAST",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgd45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j816e")
+}],
+"loop": false,
+"name": &"NORTH",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgd45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s8sg")
+}],
+"loop": false,
+"name": &"SOUTH",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgd45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jf8o")
+}],
+"loop": false,
+"name": &"WEST",
+"speed": 5.0
+}]
 
 [node name="Gameworld" type="Node2D"]
 script = ExtResource("1_j714t")
@@ -52,6 +125,13 @@ southPanelType = 2
 westPanelType = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Compass" type="AnimatedSprite2D" parent="Camera2D"]
+texture_filter = 1
+position = Vector2(56, -48)
+sprite_frames = SubResource("SpriteFrames_k0lof")
+animation = &"EAST"
+script = ExtResource("8_q8503")
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("2_hdij2")
