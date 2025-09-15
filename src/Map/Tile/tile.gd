@@ -19,9 +19,11 @@ var centerWallPanelDefinition = preload("res://src/Assets/Definitions/Panels/cen
 var leftDoorPanelDefinition = preload("res://src/Assets/Definitions/Panels/left_door_panel_definition.tres")
 var leftHallPanelDefinition = preload("res://src/Assets/Definitions/Panels/left_hallway_panel_definition.tres")
 var leftWallPanelDefinition = preload("res://src/Assets/Definitions/Panels/left_wall_panel_definition.tres")
+var leftOpenPanelDefinition = preload("res://src/Assets/Definitions/Panels/left_open_panel_definition.tres")
 var rightDoorPanelDefinition = preload("res://src/Assets/Definitions/Panels/right_door_panel_definition.tres")
 var rightHallPanelDefinition = preload("res://src/Assets/Definitions/Panels/right_hallway_panel_definition.tres")
 var rightWallPanelDefinition = preload("res://src/Assets/Definitions/Panels/right_wall_panel_definition.tres")
+var rightOpenPanelDefinition = preload("res://src/Assets/Definitions/Panels/right_open_panel_definition.tres")
 
 func _ready() -> void:
 	SignalBus.player_turned.connect(update_room_sprites)
@@ -43,14 +45,14 @@ func update_room_sprites(direction: Vector2i) -> void:
 				panelTypes.DOOR:
 					leftSprite.texture = leftDoorPanelDefinition.texture
 				panelTypes.HALL:
-					leftSprite.texture = leftHallPanelDefinition.texture
+					leftSprite.texture = leftOpenPanelDefinition.texture
 				panelTypes.WALL:
 					leftSprite.texture = leftWallPanelDefinition.texture
 			match eastPanelType:
 				panelTypes.DOOR:
 					rightSprite.texture = rightDoorPanelDefinition.texture
 				panelTypes.HALL:
-					rightSprite.texture = rightHallPanelDefinition.texture
+					rightSprite.texture = rightOpenPanelDefinition.texture
 				panelTypes.WALL:
 					rightSprite.texture = rightWallPanelDefinition.texture
 		Vector2i.RIGHT:
@@ -65,14 +67,14 @@ func update_room_sprites(direction: Vector2i) -> void:
 				panelTypes.DOOR:
 					leftSprite.texture = leftDoorPanelDefinition.texture
 				panelTypes.HALL:
-					leftSprite.texture = leftHallPanelDefinition.texture
+					leftSprite.texture = leftOpenPanelDefinition.texture
 				panelTypes.WALL:
 					leftSprite.texture = leftWallPanelDefinition.texture
 			match southPanelType:
 				panelTypes.DOOR:
 					rightSprite.texture = rightDoorPanelDefinition.texture
 				panelTypes.HALL:
-					rightSprite.texture = rightHallPanelDefinition.texture
+					rightSprite.texture = rightOpenPanelDefinition.texture
 				panelTypes.WALL:
 					rightSprite.texture = rightWallPanelDefinition.texture
 		Vector2i.DOWN:
@@ -87,14 +89,14 @@ func update_room_sprites(direction: Vector2i) -> void:
 				panelTypes.DOOR:
 					leftSprite.texture = leftDoorPanelDefinition.texture
 				panelTypes.HALL:
-					leftSprite.texture = leftHallPanelDefinition.texture
+					leftSprite.texture = leftOpenPanelDefinition.texture
 				panelTypes.WALL:
 					leftSprite.texture = leftWallPanelDefinition.texture
 			match westPanelType:
 				panelTypes.DOOR:
 					rightSprite.texture = rightDoorPanelDefinition.texture
 				panelTypes.HALL:
-					rightSprite.texture = rightHallPanelDefinition.texture
+					rightSprite.texture = rightOpenPanelDefinition.texture
 				panelTypes.WALL:
 					rightSprite.texture = rightWallPanelDefinition.texture
 		Vector2i.LEFT:
@@ -109,13 +111,13 @@ func update_room_sprites(direction: Vector2i) -> void:
 				panelTypes.DOOR:
 					leftSprite.texture = leftDoorPanelDefinition.texture
 				panelTypes.HALL:
-					leftSprite.texture = leftHallPanelDefinition.texture
+					leftSprite.texture = leftOpenPanelDefinition.texture
 				panelTypes.WALL:
 					leftSprite.texture = leftWallPanelDefinition.texture
 			match northPanelType:
 				panelTypes.DOOR:
 					rightSprite.texture = rightDoorPanelDefinition.texture
 				panelTypes.HALL:
-					rightSprite.texture = rightHallPanelDefinition.texture
+					rightSprite.texture = rightOpenPanelDefinition.texture
 				panelTypes.WALL:
 					rightSprite.texture = rightWallPanelDefinition.texture

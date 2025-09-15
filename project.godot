@@ -25,6 +25,10 @@ window/size/viewport_width=160
 window/size/viewport_height=144
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/gmhob/Documents/gameboydungeon/Clips/clip.avi"
+
 [global_group]
 
 room="A room within the dungeon, contains walls, doors, and hallways."

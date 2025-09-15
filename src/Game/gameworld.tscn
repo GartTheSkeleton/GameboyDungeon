@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/event_handler.gd" id="2_hdij2"]
-[ext_resource type="Script" uid="uid://cymdwb2cngxtt" path="res://src/Map/map.gd" id="2_yssg5"]
+[ext_resource type="Script" path="res://src/Map/map.gd" id="2_yssg5"]
 
 [node name="Gameworld" type="Node2D"]
 script = ExtResource("1_j714t")
@@ -23,10 +23,12 @@ gridPosition = Vector2i(1, 0)
 northPanelType = 2
 eastPanelType = 2
 southPanelType = 2
+westPanelType = 1
 
 [node name="Tile3" parent="Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(-1, 0)
 northPanelType = 2
+eastPanelType = 1
 southPanelType = 2
 westPanelType = 2
 
