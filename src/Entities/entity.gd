@@ -1,30 +1,43 @@
 class_name Entity
-extends Sprite2D
+extends Node2D
 
 var definition: EntityDefinition
+var map_data: MapData
 var fighter_component: FighterComponent
+var entity_name: String
 var blocks_movement: bool
+var sprite: Sprite2D
+var texture: Texture:
+	set(value):
+		if sprite:
+			sprite.texture = value
 
 var grid_position: Vector2i:
 	set(value):
 		grid_position = value
 		position = Grid.grid_to_world(grid_position)
 
-func _init(start_position: Vector2i, entity_definition: EntityDefinition) -> void:
-	centered = true
+func _init(start_position: Vector2i, entity_definition: EntityDefinition, game_map_data: MapData) -> void:
+	if entity_definition.texture:
+		sprite = Sprite2D.new()
+		sprite.centered = true
+		add_child(sprite)
+	map_data = game_map_data
 	grid_position = start_position
 	set_entity_type(entity_definition)
 
 func set_entity_type(entity_definition: EntityDefinition) -> void:
 	definition = entity_definition
+	entity_name = definition.name
 	blocks_movement = definition.is_blocking_movement
-	texture = entity_definition.texture
+	if entity_definition.texture:
+		texture = entity_definition.texture
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)
 
 func get_entity_name() -> String:
-	return definition.name
+	return entity_name
 
 func is_blocking_movement() -> bool:
 	return blocks_movement

@@ -6,9 +6,7 @@ extends Resource
 @export var texture: AtlasTexture
 
 @export_category("Mechanics")
-@export var hp: int
 @export var is_blocking_movement: bool = true
-
 
 @export_category("Components")
 @export var fighter_definition: FighterComponentDefinition

@@ -10,6 +10,8 @@ script = ExtResource("1_j714t")
 
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("2_yssg5")
+map_width = null
+map_height = null
 
 [node name="Tile" parent="Map" instance=ExtResource("2_5ixr1")]
 eastPanelType = 1

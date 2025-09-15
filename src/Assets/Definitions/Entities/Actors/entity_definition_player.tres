@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=4 format=3 uid="uid://sny5p3jfumm0"]
+
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_eyv76"]
+[ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_t5i0r"]
+
+[sub_resource type="Resource" id="Resource_xu0na"]
+script = ExtResource("2_t5i0r")
+max_hp = 5
+power = 4
+luck = -3
+ammo = 6
+charms = 0
+metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
+
+[resource]
+script = ExtResource("1_eyv76")
+name = "Player"
+is_blocking_movement = false
+fighter_definition = SubResource("Resource_xu0na")
+metadata/_custom_type_script = "uid://duxtebnoobju8"

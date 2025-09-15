@@ -9,7 +9,9 @@
 script = ExtResource("2_mlrns")
 max_hp = 5
 power = 2
-defense = 1
+luck = 0
+ammo = 0
+charms = 0
 death_texture = ExtResource("1_pkaoo")
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 
@@ -21,7 +23,6 @@ region = Rect2(0, 0, 160, 144)
 script = ExtResource("1_iqdy0")
 name = "Cyclops"
 texture = SubResource("AtlasTexture_phdbn")
-hp = 15
 is_blocking_movement = true
 fighter_definition = SubResource("Resource_avv7w")
 metadata/_custom_type_script = "uid://duxtebnoobju8"

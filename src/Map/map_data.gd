@@ -6,6 +6,7 @@ var width: int
 var height: int
 var tiles: Array[Node]
 var entities: Array[Entity]
+var player: Entity
 
 func _init(map_width: int, map_height: int, all_tiles: Array[Node]) -> void:
 	width = map_width

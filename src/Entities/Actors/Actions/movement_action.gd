@@ -6,8 +6,8 @@ var offset: Vector2i
 func _init(dx: int, dy: int) -> void:
 	offset = Vector2i(dx, dy)
 
-func perform(game: Game) -> void:
-	var current_grid_position = Grid.world_to_grid(game.player.position)
+func perform(game: Game, entity: Entity) -> void:
+	var current_grid_position = entity.grid_position
 	var destination: Vector2i = current_grid_position + offset
 	var map_data: MapData = game.get_map_data()
 	var destination_tile: Tile = map_data.get_tile(destination)
@@ -31,5 +31,4 @@ func perform(game: Game) -> void:
 	if not destination_tile || is_facing_wall || blocking_enemy:
 		print("blocking_enemy", blocking_enemy)
 		return
-	game.player_grid_pos = destination
-	game.player.position = Grid.grid_to_world(destination)
+	entity.grid_position = destination

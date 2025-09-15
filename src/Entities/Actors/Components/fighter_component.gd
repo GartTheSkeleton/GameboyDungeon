@@ -17,7 +17,6 @@ var death_color: Color
 func _init(definition: FighterComponentDefinition) -> void:
 	max_hp = definition.max_hp
 	hp = definition.max_hp
-	defense = definition.defense
 	power = definition.power
 	death_texture = definition.death_texture
 	#death_color = definition.death_color
@@ -37,21 +36,22 @@ func take_damage(amount: int) -> void:
 
 func die() -> void:
 	print('dead')
-	#var death_message: String
+	var death_message: String
 	#var death_message_color: Color
-	#if get_map_data().player == entity:
-		#death_message = "You died!"
+	if get_map_data().player == entity:
+		death_message = "You died!"
 		#death_message_color = GameColors.PLAYER_DIE
-		#SignalBus.player_died.emit()
-	#else:
-		#death_message = "%s is dead!" % entity.get_entity_name()
+		SignalBus.player_died.emit()
+	else:
+		death_message = "%s is dead!" % entity.get_entity_name()
 		#death_message_color = GameColors.ENEMY_DIE
 	#MessageLog.send_message(death_message, death_message_color)
-	entity.texture = death_texture
+	if death_texture:
+		entity.texture = death_texture
 	#entity.modulate = death_color
 	#entity.ai_component.queue_free()
 	#entity.ai_component = null
-	#entity.entity_name = "Remains of %s" % entity.entity_name
+	entity.entity_name = "Remains of %s" % entity.entity_name
 	entity.blocks_movement = false
 	#get_map_data().unregister_blocking_entity(entity)
 	#entity.type = Entity.EntityType.CORPSE
