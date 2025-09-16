@@ -15,6 +15,8 @@ func get_action() -> Action:
 		SignalBus.player_turned.emit(action.playerFacing)
 	elif Input.is_action_just_pressed("B"):
 		action = AttackAction.new()
+	elif Input.is_action_just_pressed("A"):
+		action = InteractAction.new()
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		action = EscapeAction.new()

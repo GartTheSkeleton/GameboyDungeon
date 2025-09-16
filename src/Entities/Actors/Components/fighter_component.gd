@@ -37,15 +37,12 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	print('dead')
 	var death_message: String
-	#var death_message_color: Color
 	if get_map_data().player == entity:
 		death_message = "You died!"
-		#death_message_color = GameColors.PLAYER_DIE
 		SignalBus.player_died.emit()
 	else:
 		death_message = "%s is dead!" % entity.get_entity_name()
-		#death_message_color = GameColors.ENEMY_DIE
-	#MessageLog.send_message(death_message, death_message_color)
+	MessageLog.send_message(death_message)
 	if death_texture:
 		entity.texture = death_texture
 	#entity.modulate = death_color

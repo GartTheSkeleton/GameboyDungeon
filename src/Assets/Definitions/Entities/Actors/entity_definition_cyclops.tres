@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_iqdy0"]
 [ext_resource type="Texture2D" uid="uid://b3j413dkxht06" path="res://src/Assets/Definitions/Entities/Textures/cyclops_corpse_texture.tres" id="1_pkaoo"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_mlrns"]
-[ext_resource type="Texture2D" uid="uid://by15n0e6mlsq2" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
 
 [sub_resource type="Resource" id="Resource_avv7w"]
 script = ExtResource("2_mlrns")

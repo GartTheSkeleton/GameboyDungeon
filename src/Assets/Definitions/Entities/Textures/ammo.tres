@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bn2jedqo8khhb"]
+
+[ext_resource type="Texture2D" uid="uid://ctkse2g2650eu" path="res://src/Assets/TilePanels/ammo_ui.png" id="1_vjyig"]
+
+[resource]
+atlas = ExtResource("1_vjyig")

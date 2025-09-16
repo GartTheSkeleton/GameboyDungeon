@@ -7,6 +7,10 @@ var fighter_component: FighterComponent
 var entity_name: String
 var blocks_movement: bool
 var sprite: Sprite2D
+var luck: int
+var ammo: int
+var charms: int
+
 var texture: Texture:
 	set(value):
 		if sprite:
@@ -35,6 +39,9 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)
+		luck = entity_definition.fighter_definition.luck
+		ammo = entity_definition.fighter_definition.ammo
+		charms = entity_definition.fighter_definition.charms
 
 func get_entity_name() -> String:
 	return entity_name
@@ -44,3 +51,11 @@ func is_blocking_movement() -> bool:
 
 func is_alive() -> bool:
 	return fighter_component && fighter_component.hp > 0
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		 # Assuming 'global_array' is a global array holding references
+		if map_data.entities.has(self):
+			map_data.entities.erase(self)
+			# Repeat for any other arrays that might contain this object
+			

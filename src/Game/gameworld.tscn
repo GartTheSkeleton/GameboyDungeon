@@ -1,16 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=25 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/event_handler.gd" id="2_hdij2"]
-[ext_resource type="Script" path="res://src/Map/map.gd" id="2_yssg5"]
-[ext_resource type="Texture2D" uid="uid://da0st4pysge5c" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://djcix3tkx0pgh" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
-[ext_resource type="Texture2D" uid="uid://wsgskn3x1qa0" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://ds3xq2glk673u" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
-[ext_resource type="Texture2D" uid="uid://svmn8m2wftuu" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
-[ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
-[ext_resource type="Texture2D" uid="uid://nofhnu21m87x" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
+[ext_resource type="Script" uid="uid://cymdwb2cngxtt" path="res://src/Map/map.gd" id="2_yssg5"]
+[ext_resource type="Texture2D" uid="uid://c68og528pp06a" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://b7g5hp1gjgx8k" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
+[ext_resource type="Texture2D" uid="uid://dnk1cco4lo30c" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://y51uub0eail5" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
+[ext_resource type="Texture2D" uid="uid://dmfdwab6u80kd" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
+[ext_resource type="Script" path="res://src/Game/compass.gd" id="8_q8503"]
+[ext_resource type="Texture2D" uid="uid://cgenhmsgkqoj7" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
+[ext_resource type="Script" uid="uid://dhp1e27unnmsb" path="res://src/GUI/message_log.gd" id="12_as7lh"]
+[ext_resource type="Texture2D" uid="uid://btibctykyq5i6" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
+[ext_resource type="Script" uid="uid://cgdh6usx8ioo3" path="res://src/GUI/stats_container.gd" id="14_d75vc"]
+[ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="15_j816e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgd45"]
 atlas = ExtResource("4_1nj4o")
@@ -94,73 +98,209 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Gameworld" type="Node2D"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d75vc"]
+texture = ExtResource("12_q8503")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="InterfaceRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(160, 96)
+render_target_update_mode = 4
+
+[node name="Gameworld" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
 script = ExtResource("1_j714t")
 
-[node name="Map" type="Node2D" parent="."]
+[node name="Map" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 script = ExtResource("2_yssg5")
 map_width = null
 map_height = null
 
-[node name="Tile" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 eastPanelType = 1
 southPanelType = 2
 westPanelType = 1
 
-[node name="Tile2" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile2" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(1, 0)
 northPanelType = 2
 eastPanelType = 2
 southPanelType = 2
 westPanelType = 1
 
-[node name="Tile3" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile3" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(-1, 0)
 northPanelType = 2
 eastPanelType = 1
 southPanelType = 2
 westPanelType = 2
 
-[node name="Tile4" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile4" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(0, -1)
 northPanelType = 2
 eastPanelType = 1
 westPanelType = 2
 
-[node name="Tile5" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(1, -1)
 northPanelType = 2
 eastPanelType = 1
 southPanelType = 2
 westPanelType = 1
 
-[node name="Tile6" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile6" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(2, -1)
 eastPanelType = 2
 southPanelType = 2
 westPanelType = 1
 
-[node name="Tile7" parent="Map" instance=ExtResource("2_5ixr1")]
+[node name="Tile7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(2, -2)
 northPanelType = 2
 eastPanelType = 2
 westPanelType = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 z_index = 1
+offset = Vector2(0, -16)
 
-[node name="Compass" type="AnimatedSprite2D" parent="Camera2D"]
+[node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
 texture_filter = 1
 position = Vector2(56, -48)
 sprite_frames = SubResource("SpriteFrames_k0lof")
 animation = &"EAST"
 script = ExtResource("8_q8503")
 
-[node name="Gun" type="AnimatedSprite2D" parent="Camera2D"]
+[node name="Gun" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
 texture_filter = 1
+position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_q8503")
 
-[node name="EventHandler" type="Node" parent="."]
+[node name="EventHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 script = ExtResource("2_hdij2")
 
-[node name="Entities" type="Node2D" parent="."]
+[node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
+
+[node name="InfoBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="MessagesPanel" type="PanelContainer" parent="VBoxContainer/InfoBar"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.25
+theme_override_styles/panel = SubResource("StyleBoxTexture_d75vc")
+
+[node name="MessageLog" type="Container" parent="VBoxContainer/InfoBar/MessagesPanel"]
+layout_mode = 2
+script = ExtResource("12_as7lh")
+
+[node name="StatsPanel" type="PanelContainer" parent="VBoxContainer/InfoBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_d75vc")
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/InfoBar/StatsPanel"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 2
+script = ExtResource("14_d75vc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InfoBar/StatsPanel/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LuckUI" type="Sprite2D" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer/Control"]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+centered = false
+
+[node name="Luck" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("15_j816e")
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/InfoBar/StatsPanel/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AmmoUI" type="Sprite2D" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer2/Control"]
+unique_name_in_owner = true
+centered = false
+offset = Vector2(0, 2)
+
+[node name="Ammo" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("15_j816e")
+horizontal_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/InfoBar/StatsPanel/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharmUI" type="Sprite2D" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer3/Control"]
+unique_name_in_owner = true
+centered = false
+offset = Vector2(0, 2)
+
+[node name="Charms" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/Stats/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = ExtResource("15_j816e")
+horizontal_alignment = 2
+
+[connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Gameworld" to="VBoxContainer/InfoBar/StatsPanel/Stats" method="update_stat_labels"]
