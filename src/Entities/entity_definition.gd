@@ -7,6 +7,7 @@ extends Resource
 
 @export_category("Mechanics")
 @export var is_blocking_movement: bool = true
+@export var is_mimic: bool = false
 
 @export_category("Components")
 @export var fighter_definition: FighterComponentDefinition

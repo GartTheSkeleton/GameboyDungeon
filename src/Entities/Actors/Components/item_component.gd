@@ -5,6 +5,8 @@ var remain_after_use: bool
 var is_activated: bool
 var contents: String
 
+var mimic_texture = preload("res://src/Assets/Definitions/Entities/Textures/mimic_idle_texture.tres")
+
 var open_chest_texture: AtlasTexture = preload("res://src/Assets/Definitions/Entities/Textures/open_chest.tres")
 func _init(definition: ItemComponentDefinition, contents: String) -> void:
 	remain_after_use = definition.remain_after_use
@@ -19,10 +21,15 @@ func reveal_contents(grid_position: Vector2i) -> void:
 		MessageLog.send_message(message)
 
 func activate(parent_entity: Entity) -> void:
-	if parent_entity.entity_name == "Chest":
+	if parent_entity.entity_name == "Chest" && !parent_entity.is_mimic:
 		parent_entity.texture = open_chest_texture
 		MessageLog.send_message("You open the Chest!")
 		SignalBus.create_entity.emit(contents, parent_entity.grid_position)
+	elif parent_entity.is_mimic:
+		parent_entity.texture = mimic_texture
+		parent_entity.blocks_movement = true
+		parent_entity.entity_name = "That thing"
+		MessageLog.send_message("That's no Chest!")
 	elif parent_entity.entity_name == "Lucky Charm":
 		var player = parent_entity.map_data.player
 		player.luck += 1

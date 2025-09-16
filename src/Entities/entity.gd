@@ -6,6 +6,7 @@ var map_data: MapData
 var fighter_component: FighterComponent
 var item_component: ItemComponent
 var entity_name: String
+var is_mimic: bool
 var blocks_movement: bool
 var sprite: Sprite2D
 var luck: int
@@ -34,6 +35,7 @@ func _init(start_position: Vector2i, entity_definition: EntityDefinition, game_m
 func set_entity_type(entity_definition: EntityDefinition) -> void:
 	definition = entity_definition
 	entity_name = definition.name
+	is_mimic = definition.is_mimic
 	blocks_movement = definition.is_blocking_movement
 	if entity_definition.texture:
 		texture = entity_definition.texture

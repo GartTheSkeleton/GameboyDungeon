@@ -27,7 +27,8 @@ const entity_types = {
 	"player": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_player.tres"),
 	"key": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_key.tres"),
 	"charm": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_charm.tres"),
-	"chest": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_chest.tres")
+	"chest": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_chest.tres"),
+	"mimic": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_mimic.tres")
 }
 
 var random_remarks = [
@@ -103,7 +104,7 @@ func populate_map() -> void:
 			entities.add_child(npc)
 			map_data.entities.append(npc)
 		elif random_chance < 3 && room.gridPosition != Vector2i.ZERO:
-			var item := Entity.new(room.gridPosition, entity_types.chest, map_data)
+			var item := Entity.new(room.gridPosition, entity_types.mimic, map_data)
 			item.position.y += 8
 			entities.add_child(item)
 			map_data.entities.append(item)

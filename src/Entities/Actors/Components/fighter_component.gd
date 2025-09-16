@@ -19,7 +19,6 @@ func _init(definition: FighterComponentDefinition) -> void:
 	hp = definition.max_hp
 	power = definition.power
 	death_texture = definition.death_texture
-	#death_color = definition.death_color
 
 func heal(amount: int) -> int:
 	if hp == max_hp:
@@ -35,7 +34,6 @@ func take_damage(amount: int) -> void:
 	hp -= amount
 
 func die() -> void:
-	print('dead')
 	var death_message: String
 	if get_map_data().player == entity:
 		death_message = "You died!"
@@ -45,10 +43,7 @@ func die() -> void:
 	MessageLog.send_message(death_message)
 	if death_texture:
 		entity.texture = death_texture
-	#entity.modulate = death_color
-	#entity.ai_component.queue_free()
-	#entity.ai_component = null
 	entity.entity_name = "Remains of %s" % entity.entity_name
 	entity.blocks_movement = false
-	#get_map_data().unregister_blocking_entity(entity)
-	#entity.type = Entity.EntityType.CORPSE
+	if entity.is_mimic:
+		SignalBus.create_entity.emit(entity.item_component.contents, entity.grid_position)
