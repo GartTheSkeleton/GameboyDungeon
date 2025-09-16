@@ -10,3 +10,4 @@ extends Resource
 
 @export_category("Components")
 @export var fighter_definition: FighterComponentDefinition
+@export var item_definition: ItemComponentDefinition

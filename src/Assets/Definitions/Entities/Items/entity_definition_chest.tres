@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://igmgds6dtydl"]
+
+[ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="1_6thij"]
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_dsvru"]
+[ext_resource type="Texture2D" uid="uid://cj8t6tf1lrxr4" path="res://src/Assets/Entities/chest_closed.png" id="2_ust7g"]
+
+[sub_resource type="Resource" id="Resource_7phsl"]
+script = ExtResource("1_6thij")
+remain_after_use = true
+is_activated = false
+metadata/_custom_type_script = "uid://42lu0e0nlk5b"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6thij"]
+atlas = ExtResource("2_ust7g")
+
+[resource]
+script = ExtResource("1_dsvru")
+name = "Chest"
+texture = SubResource("AtlasTexture_6thij")
+is_blocking_movement = false
+item_definition = SubResource("Resource_7phsl")
+metadata/_custom_type_script = "uid://duxtebnoobju8"

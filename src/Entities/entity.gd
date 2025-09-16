@@ -4,6 +4,7 @@ extends Node2D
 var definition: EntityDefinition
 var map_data: MapData
 var fighter_component: FighterComponent
+var item_component: ItemComponent
 var entity_name: String
 var blocks_movement: bool
 var sprite: Sprite2D
@@ -36,6 +37,9 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 	blocks_movement = definition.is_blocking_movement
 	if entity_definition.texture:
 		texture = entity_definition.texture
+	if entity_definition.item_definition:
+		item_component = ItemComponent.new(entity_definition.item_definition, "Lucky Charm")
+		add_child(item_component)
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)

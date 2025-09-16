@@ -31,4 +31,5 @@ func perform(game: Game, entity: Entity) -> void:
 	if not destination_tile || is_facing_wall || blocking_entity:
 		var message: String
 		return
+	MessageLog.remove_message()
 	entity.grid_position = destination

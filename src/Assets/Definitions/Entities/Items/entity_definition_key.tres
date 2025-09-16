@@ -11,5 +11,4 @@ script = ExtResource("1_x4vib")
 name = "key"
 texture = SubResource("AtlasTexture_fqq6t")
 is_blocking_movement = true
-entity_type = 1
 metadata/_custom_type_script = "uid://duxtebnoobju8"
