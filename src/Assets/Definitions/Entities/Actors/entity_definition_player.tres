@@ -16,5 +16,6 @@ metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 script = ExtResource("1_eyv76")
 name = "Player"
 is_blocking_movement = false
+is_mimic = false
 fighter_definition = SubResource("Resource_xu0na")
 metadata/_custom_type_script = "uid://duxtebnoobju8"

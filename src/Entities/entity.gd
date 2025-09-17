@@ -9,8 +9,11 @@ var entity_name: String
 var is_mimic: bool
 var blocks_movement: bool
 var sprite: Sprite2D
+var hp: int
+var max_hp: int
 var luck: int
 var ammo: int
+var stored_ammo: int
 var charms: int
 
 var texture: Texture:
@@ -45,6 +48,7 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)
+		hp = entity_definition.fighter_definition.max_hp
 		luck = entity_definition.fighter_definition.luck
 		ammo = entity_definition.fighter_definition.ammo
 		charms = entity_definition.fighter_definition.charms

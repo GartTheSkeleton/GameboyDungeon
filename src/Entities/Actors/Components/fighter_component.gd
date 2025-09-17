@@ -13,6 +13,7 @@ var defense: int
 var power: int
 var death_texture: Texture
 var death_color: Color
+var stored_ammo = 0
 
 func _init(definition: FighterComponentDefinition) -> void:
 	max_hp = definition.max_hp

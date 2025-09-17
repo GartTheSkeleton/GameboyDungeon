@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=8 format=3 uid="uid://dn0sjjc6eup8t"]
+
+[ext_resource type="Texture2D" uid="uid://bqeiqvqvmrqo8" path="res://src/Assets/Entities/skeleton_dead.png" id="1_8xdif"]
+[ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_qkwo3"]
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="3_rjmyh"]
+[ext_resource type="Texture2D" uid="uid://cfsctu8vu1c8w" path="res://src/Assets/Entities/skeleton.png" id="4_qkwo3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjmyh"]
+atlas = ExtResource("1_8xdif")
+
+[sub_resource type="Resource" id="Resource_avv7w"]
+script = ExtResource("2_qkwo3")
+max_hp = 4
+power = 2
+luck = 0
+ammo = 0
+charms = 0
+death_texture = SubResource("AtlasTexture_rjmyh")
+metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6enyg"]
+atlas = ExtResource("4_qkwo3")
+
+[resource]
+script = ExtResource("3_rjmyh")
+name = "Cyclops"
+texture = SubResource("AtlasTexture_6enyg")
+is_blocking_movement = true
+is_mimic = false
+fighter_definition = SubResource("Resource_avv7w")
+metadata/_custom_type_script = "uid://duxtebnoobju8"

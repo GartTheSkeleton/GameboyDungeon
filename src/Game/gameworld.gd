@@ -20,6 +20,12 @@ var playerFacingString: String = directions.find_key(playerFacing)
 
 @onready var player: Entity
 
+var gun_bob = false
+var bob_timer = 0
+var bob_time = 18
+var time : float
+@onready var gun = $Camera2D/Gun
+
 var currentRoom: Tile
 var rng = RandomNumberGenerator.new()
 const entity_types = {
@@ -59,11 +65,17 @@ func createEntity(name: String, grid_pos: Vector2i):
 	map_data.entities.append(new_entity)
 	SignalBus.entity_created.emit(grid_pos)
 
+func _process(delta: float) -> void:
+	time += delta
+
+
 func _physics_process(_delta: float) -> void:
 	var action: Action = event_handler.get_action()
 	if action:
 		await action.perform(self, player)
 		var entity_in_room = get_map_data().get_entity_at_location(player.grid_position)
+		gun_bob = true
+		bob_timer = 0
 		if entity_in_room:
 			var message: String
 			if entity_in_room.fighter_component && !entity_in_room.item_component:
@@ -81,6 +93,15 @@ func _physics_process(_delta: float) -> void:
 				var index: int = rng.randi_range(0, random_remarks.size() - 1)
 				var message = random_remarks[index]
 				MessageLog.send_message(message)
+	
+	if gun_bob:
+		gun.position.y += get_sine(time)
+		bob_timer += 1
+		if bob_timer >= bob_time:
+			gun_bob = false
+			bob_timer = 0
+	else:
+		gun.position.y = 0
 
 func get_map_data() -> MapData:
 	return map.map_data
@@ -109,3 +130,6 @@ func populate_map() -> void:
 			entities.add_child(item)
 			map_data.entities.append(item)
 	SignalBus.player_turned.emit(playerFacing)
+
+func get_sine(time):
+	return sin(time * 40) * .6

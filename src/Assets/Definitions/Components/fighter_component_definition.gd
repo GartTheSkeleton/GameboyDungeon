@@ -1,6 +1,8 @@
 class_name FighterComponentDefinition
 extends Resource
 
+var stored_ammo = 0
+
 @export_category("Stats")
 @export var max_hp: int
 @export var power: int

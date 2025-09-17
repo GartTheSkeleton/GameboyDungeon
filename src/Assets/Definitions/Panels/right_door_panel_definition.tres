@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://dr34qve5b8mj"]
 
 [ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_o0yq2"]
-[ext_resource type="Texture2D" uid="uid://dc5qfdg3imjg7" path="res://src/Assets/TilePanels/door_right.png" id="2_4hrjy"]
+[ext_resource type="Texture2D" uid="uid://k11viv8gvfq8" path="res://src/Assets/TilePanels/door_right.png" id="2_4hrjy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_th37a"]
 atlas = ExtResource("2_4hrjy")
