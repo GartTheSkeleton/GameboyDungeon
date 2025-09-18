@@ -128,7 +128,7 @@ func populate_map() -> void:
 	player_created.emit(player)
 	for room in map_data.tiles:
 		var random_chance = rng.randf_range(0, 10.0)
-		if random_chance > 7.5 && room.gridPosition != Vector2i.ZERO:
+		if random_chance > 0 && room.gridPosition != Vector2i.ZERO:
 			var enemies = [entity_types.skeleton, entity_types.cyclops]
 			var random_index = randi_range(0, enemies.size() - 1)
 			var chosen_enemy = enemies[random_index]

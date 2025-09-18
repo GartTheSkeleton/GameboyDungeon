@@ -2,6 +2,8 @@ class_name FighterComponent
 extends Component
 
 signal hp_changed(hp, max_hp)
+var parent: Entity
+var next_hit_crits: bool = false
 var max_hp: int
 var hp: int:
 	set(value):
@@ -12,13 +14,27 @@ var hp: int:
 var defense: int
 var power: int
 var death_texture: Texture
-var death_color: Color
-var stored_ammo = 0
-var luck
-var ammo
-var charms
+var stored_ammo: int = 0:
+	set(value):
+		stored_ammo = value
+		SignalBus.stats_changed.emit(parent)
+var luck: int:
+	set(value):
+		luck = value
+		SignalBus.stats_changed.emit(parent)
+var ammo: int:
+	set(value):
+		ammo = value
+		SignalBus.stats_changed.emit(parent)
+var charms: int:
+	set(value):
+		charms = value
+		SignalBus.stats_changed.emit(parent)
 
-func _init(definition: FighterComponentDefinition) -> void:
+var rng = RandomNumberGenerator.new()
+
+func _init(definition: FighterComponentDefinition, parent: Entity) -> void:
+	self.parent = parent
 	max_hp = definition.max_hp
 	hp = definition.max_hp
 	power = definition.power
@@ -40,6 +56,47 @@ func heal(amount: int) -> int:
 
 func take_damage(amount: int) -> void:
 	hp -= amount
+
+func expend_ammo() -> void:
+	ammo -= 1
+
+func reload() -> void:
+	if ammo == 6:
+		MessageLog.send_message("You don't need to reload!")
+	elif stored_ammo > 0:
+		var missing_ammo = 6 - ammo
+		stored_ammo -= missing_ammo
+		ammo += missing_ammo
+		var message = "You load up %s more shots" % str(missing_ammo)
+		MessageLog.send_message(message)
+
+func pray() -> void:
+	rng.randomize()
+	MessageLog.send_message("You pray to whoever is listening...")
+	await get_tree().create_timer(1).timeout
+	var result = rng.randi_range(0, 6)
+	if result == 6:
+		next_hit_crits = true
+		MessageLog.send_message("You feel blessed by whoever heard you!")
+	elif result == 5:
+		var reward = 2
+		var empty_slots = 6 - ammo
+		if empty_slots >= reward:
+			ammo += reward
+		elif empty_slots == 1:
+			ammo += 1
+			stored_ammo += 1
+		else:
+			stored_ammo += 2
+		MessageLog.send_message("You found 2 bullets in your pocket!")
+	elif result == 4:
+		if ammo < 6:
+			ammo += 1
+		else:
+			stored_ammo += 1
+		MessageLog.send_message("You found an extra bullet in your pocket!")
+	else:
+		MessageLog.send_message("You fear the gods aren't listening!")
 
 func die() -> void:
 	var death_message: String

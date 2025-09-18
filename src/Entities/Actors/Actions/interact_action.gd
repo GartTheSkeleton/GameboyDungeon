@@ -22,10 +22,10 @@ func perform(game: Game, entity: Entity) -> void:
 				var attack = AttackAction.new()
 				attack.perform(game, entity)
 			"Reload":
-				pass
+				entity.fighter_component.reload()
 			"Scream":
 				pass
 			"Pray":
-				pass
+				entity.fighter_component.pray()
 			"Stab":
 				pass

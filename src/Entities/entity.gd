@@ -40,7 +40,7 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 		item_component = ItemComponent.new(entity_definition.item_definition, "Lucky Charm")
 		add_child(item_component)
 	if entity_definition.fighter_definition:
-		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
+		fighter_component = FighterComponent.new(entity_definition.fighter_definition, self)
 		add_child(fighter_component)
 
 func get_entity_name() -> String:
@@ -58,4 +58,3 @@ func _notification(what):
 		if map_data.entities.has(self):
 			map_data.entities.erase(self)
 			# Repeat for any other arrays that might contain this object
-			
