@@ -5,5 +5,7 @@ signal player_turned(direction: Vector2i)
 signal message_sent(text: String, color: Color)
 signal remove_message
 signal stats_changed
+signal end_combat
 signal create_entity(name: String, position: Vector2i)
 signal entity_created(position: Vector2i)
+signal transition_input_handler(input_handler: InputHandler.InputHandlers)

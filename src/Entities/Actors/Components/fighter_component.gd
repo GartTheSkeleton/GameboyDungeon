@@ -14,11 +14,18 @@ var power: int
 var death_texture: Texture
 var death_color: Color
 var stored_ammo = 0
+var luck
+var ammo
+var charms
 
 func _init(definition: FighterComponentDefinition) -> void:
 	max_hp = definition.max_hp
 	hp = definition.max_hp
 	power = definition.power
+	luck = definition.luck
+	ammo = definition.ammo
+	stored_ammo = definition.stored_ammo
+	charms = definition.charms
 	death_texture = definition.death_texture
 
 func heal(amount: int) -> int:
@@ -46,5 +53,6 @@ func die() -> void:
 		entity.texture = death_texture
 	entity.entity_name = "Remains of %s" % entity.entity_name
 	entity.blocks_movement = false
+	SignalBus.end_combat.emit()
 	if entity.is_mimic:
 		SignalBus.create_entity.emit(entity.item_component.contents, entity.grid_position)

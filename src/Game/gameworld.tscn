@@ -1,21 +1,32 @@
-[gd_scene load_steps=26 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=31 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
-[ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/event_handler.gd" id="2_hdij2"]
+[ext_resource type="Script" uid="uid://qltfgtgp65q7" path="res://src/Game/EventHandler/input_handler.gd" id="2_hdij2"]
 [ext_resource type="Script" uid="uid://cymdwb2cngxtt" path="res://src/Map/map.gd" id="2_yssg5"]
-[ext_resource type="Texture2D" uid="uid://dqgymm4mr56b" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://cnac3erllce0m" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
-[ext_resource type="Texture2D" uid="uid://tq7uo8q6h5gp" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://c0aafc03lvaa8" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
-[ext_resource type="Texture2D" uid="uid://bq5blktm1kvj1" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
+[ext_resource type="Texture2D" uid="uid://c68og528pp06a" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://b7g5hp1gjgx8k" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
+[ext_resource type="Texture2D" uid="uid://dnk1cco4lo30c" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://y51uub0eail5" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
+[ext_resource type="Texture2D" uid="uid://dmfdwab6u80kd" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
 [ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
-[ext_resource type="Texture2D" uid="uid://b3xhtyweh68fe" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
-[ext_resource type="Texture2D" uid="uid://dqwm6sa5fa18c" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
+[ext_resource type="Texture2D" uid="uid://cgenhmsgkqoj7" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
+[ext_resource type="Texture2D" uid="uid://dj5be0ge14cg8" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
 [ext_resource type="Script" uid="uid://dhp1e27unnmsb" path="res://src/GUI/message_log.gd" id="12_as7lh"]
-[ext_resource type="Texture2D" uid="uid://cnd1fk5mitquk" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
+[ext_resource type="Texture2D" uid="uid://btibctykyq5i6" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
+[ext_resource type="Script" uid="uid://dsrv47uv7iuoh" path="res://src/Game/combat_manager.gd" id="13_k0lof"]
+[ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/main_game_input_handler.gd" id="14_6jf8o"]
 [ext_resource type="Script" uid="uid://cgdh6usx8ioo3" path="res://src/GUI/stats_container.gd" id="14_d75vc"]
+[ext_resource type="Script" uid="uid://hw2dgtuymkav" path="res://src/Game/combat_menu.gd" id="14_pkeyt"]
 [ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="15_j816e"]
+[ext_resource type="Script" uid="uid://dh7gbon62pg31" path="res://src/Game/EventHandler/combat_input_handler.gd" id="18_2p5m6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
+texture = ExtResource("12_q8503")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgd45"]
 atlas = ExtResource("4_1nj4o")
@@ -139,6 +150,7 @@ size = Vector2i(160, 96)
 render_target_update_mode = 4
 
 [node name="Gameworld" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
 script = ExtResource("1_j714t")
 
 [node name="Map" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
@@ -194,6 +206,76 @@ westPanelType = 2
 z_index = 1
 offset = Vector2(0, -16)
 
+[node name="CombatManager" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("13_k0lof")
+
+[node name="CombatPanel" type="PanelContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager"]
+custom_minimum_size = Vector2(60, 0)
+offset_left = -80.0
+offset_top = -24.0
+offset_right = -19.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_pkeyt")
+
+[node name="CombatMenu" type="VBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("14_pkeyt")
+
+[node name="Shoot" type="HBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu"]
+layout_mode = 2
+
+[node name="Cursor" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Shoot"]
+layout_mode = 2
+text = "➡"
+label_settings = ExtResource("15_j816e")
+
+[node name="Label" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Shoot"]
+layout_mode = 2
+text = "Shoot"
+label_settings = ExtResource("15_j816e")
+
+[node name="Reload" type="HBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Reload"]
+layout_mode = 2
+text = "Reload
+"
+label_settings = ExtResource("15_j816e")
+visible_characters = 6
+visible_ratio = 0.899
+
+[node name="Scream" type="HBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Scream"]
+layout_mode = 2
+text = "Scream"
+label_settings = ExtResource("15_j816e")
+
+[node name="Pray" type="HBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Pray"]
+layout_mode = 2
+text = "Pray"
+label_settings = ExtResource("15_j816e")
+
+[node name="Stab" type="HBoxContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/CombatManager/CombatPanel/CombatMenu/Stab"]
+layout_mode = 2
+text = "Stab
+"
+label_settings = ExtResource("15_j816e")
+visible_characters = 4
+visible_ratio = 0.92
+
 [node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
 texture_filter = 1
 position = Vector2(56, -48)
@@ -215,7 +297,7 @@ offset_left = 2.0
 offset_top = 4.0
 offset_right = 42.0
 offset_bottom = 27.0
-text = "HP- "
+text = "HP: "
 label_settings = ExtResource("15_j816e")
 
 [node name="AmmoLabel2" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
@@ -235,9 +317,18 @@ texture = ExtResource("11_1s8sg")
 texture_filter = 1
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_q8503")
+offset = Vector2(0, -15)
 
-[node name="EventHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
+[node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 script = ExtResource("2_hdij2")
+
+[node name="MainGameInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
+script = ExtResource("14_6jf8o")
+
+[node name="GameOverInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
+
+[node name="CombatInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
+script = ExtResource("18_2p5m6")
 
 [node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 

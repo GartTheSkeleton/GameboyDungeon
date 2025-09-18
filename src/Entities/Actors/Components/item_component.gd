@@ -32,8 +32,8 @@ func activate(parent_entity: Entity) -> void:
 		MessageLog.send_message("That's no Chest!")
 	elif parent_entity.entity_name == "Lucky Charm":
 		var player = parent_entity.map_data.player
-		player.luck += 1
-		player.charms += 1
+		player.fighter_component.luck += 1
+		player.fighter_component.charms += 1
 		SignalBus.stats_changed.emit(player)
 		MessageLog.send_message("You feel luckier!")
 	is_activated = true

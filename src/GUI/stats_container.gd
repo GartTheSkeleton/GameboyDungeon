@@ -14,9 +14,10 @@ var ammo_ui_texture = preload("res://src/Assets/Definitions/Entities/Textures/am
 var charms_ui_texture = preload("res://src/Assets/Definitions/Entities/Textures/charms.tres")
 
 func update_stat_labels(player: Entity) -> void:
-	luck = str(player.luck)
-	ammo = str(player.ammo)
-	charms = str(player.charms)
+	if player.fighter_component:
+		luck = str(player.fighter_component.luck)
+		ammo = str(player.fighter_component.ammo)
+		charms = str(player.fighter_component.charms)
 
 func _ready() -> void:
 	SignalBus.stats_changed.connect(update_stat_labels)

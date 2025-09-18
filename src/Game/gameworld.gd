@@ -14,9 +14,11 @@ var playerFacing: Vector2i = directions["NORTH"]
 var playerFacingString: String = directions.find_key(playerFacing)
 
 @onready var camera: Camera2D = $Camera2D
-@onready var event_handler: EventHandler = $EventHandler
+@onready var input_handler: InputHandler = $InputHandler
 @onready var entities: Node2D = $Entities
 @onready var map: Map = $Map
+@onready var combat_manager: CombatManager = %CombatManager
+@onready var combat_menu: CombatMenu = %CombatMenu
 
 @onready var player: Entity
 
@@ -30,6 +32,7 @@ var currentRoom: Tile
 var rng = RandomNumberGenerator.new()
 const entity_types = {
 	"cyclops": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_cyclops.tres"),
+	"skeleton": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_skeleton.tres"),
 	"player": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_player.tres"),
 	"key": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_key.tres"),
 	"charm": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_charm.tres"),
@@ -63,6 +66,8 @@ func createEntity(name: String, grid_pos: Vector2i):
 		return
 	entities.add_child(new_entity)
 	map_data.entities.append(new_entity)
+	for entity in map_data.entities:
+		entity.map_data = map_data
 	SignalBus.entity_created.emit(grid_pos)
 
 func _process(delta: float) -> void:
@@ -70,29 +75,33 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var action: Action = event_handler.get_action()
+	var action: Action = input_handler.get_action()
 	if action:
 		await action.perform(self, player)
 		var entity_in_room = get_map_data().get_entity_at_location(player.grid_position)
 		gun_bob = true
 		bob_timer = 0
-		if entity_in_room:
-			var message: String
-			if entity_in_room.fighter_component && !entity_in_room.item_component:
-				if entity_in_room.fighter_component.hp > 0:
-					message = "AHH! A %s!" % entity_in_room.entity_name
-			else:
-				if !entity_in_room.item_component.is_activated:
-					message = "You found a %s!" % entity_in_room.entity_name
-			if message:
-				MessageLog.send_message(message)
-		elif action is MovementAction:
-			rng.randomize()
-			var chance: int = rng.randi_range(0, 10)
-			if chance > 8:
-				var index: int = rng.randi_range(0, random_remarks.size() - 1)
-				var message = random_remarks[index]
-				MessageLog.send_message(message)
+		if !combat_manager.has_begun:
+			if entity_in_room:
+				var message: String
+				if entity_in_room.fighter_component && !entity_in_room.item_component:
+					if entity_in_room.fighter_component.hp > 0:
+						message = "AHH! A %s!" % entity_in_room.entity_name
+						combat_manager.begin_combat(player, entity_in_room)
+						InputHandler.external_transition_to(InputHandler.InputHandlers.COMBAT)
+							
+				else:
+					if !entity_in_room.item_component.is_activated:
+						message = "You found a %s!" % entity_in_room.entity_name
+				if message:
+					MessageLog.send_message(message)
+			elif action is MovementAction:
+				rng.randomize()
+				var chance: int = rng.randi_range(0, 10)
+				if chance > 8:
+					var index: int = rng.randi_range(0, random_remarks.size() - 1)
+					var message = random_remarks[index]
+					MessageLog.send_message(message)
 	
 	if gun_bob:
 		gun.position.y += get_sine(time)
@@ -120,7 +129,10 @@ func populate_map() -> void:
 	for room in map_data.tiles:
 		var random_chance = rng.randf_range(0, 10.0)
 		if random_chance > 7.5 && room.gridPosition != Vector2i.ZERO:
-			var npc := Entity.new(room.gridPosition, entity_types.cyclops, map_data)
+			var enemies = [entity_types.skeleton, entity_types.cyclops]
+			var random_index = randi_range(0, enemies.size() - 1)
+			var chosen_enemy = enemies[random_index]
+			var npc := Entity.new(room.gridPosition, chosen_enemy, map_data)
 			npc.position.y -= 6
 			entities.add_child(npc)
 			map_data.entities.append(npc)
