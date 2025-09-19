@@ -3,7 +3,7 @@ extends Sprite2D
 
 var _definition: PanelDefinition
 var is_locked: bool
-var name: String
+var panel_name: String
 
 
 func _init(grid_position: Vector2i, panel_definition: PanelDefinition) -> void:
@@ -15,5 +15,5 @@ func set_panel_type(panel_definition: PanelDefinition) -> void:
 	_definition = panel_definition
 	texture = _definition.texture
 	is_locked = _definition.locked
-	name = _definition.name
+	panel_name = _definition.name
 	
