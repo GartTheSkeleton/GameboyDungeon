@@ -4,6 +4,7 @@ extends Component
 signal hp_changed(hp, max_hp)
 var parent: Entity
 var next_hit_crits: bool = false
+var turn_skipped: bool = false
 var max_hp: int
 var hp: int:
 	set(value):
@@ -17,19 +18,23 @@ var death_texture: Texture
 var stored_ammo: int = 0:
 	set(value):
 		stored_ammo = value
-		SignalBus.stats_changed.emit(parent)
+		if parent.entity_name == "Player":
+			SignalBus.stats_changed.emit(parent)
 var luck: int:
 	set(value):
 		luck = value
-		SignalBus.stats_changed.emit(parent)
+		if parent.entity_name == "Player":
+			SignalBus.stats_changed.emit(parent)
 var ammo: int:
 	set(value):
 		ammo = value
-		SignalBus.stats_changed.emit(parent)
+		if parent.entity_name == "Player":
+			SignalBus.stats_changed.emit(parent)
 var charms: int:
 	set(value):
 		charms = value
-		SignalBus.stats_changed.emit(parent)
+		if parent.entity_name == "Player":
+			SignalBus.stats_changed.emit(parent)
 
 var rng = RandomNumberGenerator.new()
 
@@ -69,6 +74,7 @@ func reload() -> void:
 		ammo += missing_ammo
 		var message = "You load up %s more shots" % str(missing_ammo)
 		MessageLog.send_message(message)
+	await get_tree().create_timer(1).timeout
 
 func pray() -> void:
 	rng.randomize()
@@ -83,20 +89,31 @@ func pray() -> void:
 		var empty_slots = 6 - ammo
 		if empty_slots >= reward:
 			ammo += reward
-		elif empty_slots == 1:
-			ammo += 1
-			stored_ammo += 1
+			MessageLog.send_message("Your gun suddenly feels 2 bullets heavier!")
 		else:
 			stored_ammo += 2
-		MessageLog.send_message("You found 2 bullets in your pocket!")
+			MessageLog.send_message("You found 2 bullets in your pocket!")
 	elif result == 4:
 		if ammo < 6:
 			ammo += 1
+			MessageLog.send_message("Your gun suddenly feels 1 bullet heavier!")
 		else:
 			stored_ammo += 1
-		MessageLog.send_message("You found an extra bullet in your pocket!")
+			MessageLog.send_message("You found an extra bullet in your pocket!")
 	else:
 		MessageLog.send_message("You fear the gods aren't listening!")
+
+func get_screamed_at(target_roll: int) -> void:
+	await get_tree().create_timer(1).timeout
+	if target_roll >= 3:
+		luck -= 1
+		turn_skipped = true
+		var message = "%s winces at the noise!..." % parent.entity_name
+		MessageLog.send_message(message)
+	else:
+		var message = "%s seems unphased..." % parent.entity_name
+		MessageLog.send_message(message)
+	await get_tree().create_timer(1).timeout
 
 func die() -> void:
 	var death_message: String

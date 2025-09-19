@@ -21,6 +21,7 @@ func reveal_contents(grid_position: Vector2i) -> void:
 		MessageLog.send_message(message)
 
 func activate(parent_entity: Entity) -> void:
+	var player = parent_entity.map_data.player
 	if parent_entity.entity_name == "Chest" && !parent_entity.is_mimic:
 		parent_entity.texture = open_chest_texture
 		MessageLog.send_message("You open the Chest!")
@@ -30,8 +31,9 @@ func activate(parent_entity: Entity) -> void:
 		parent_entity.blocks_movement = true
 		parent_entity.entity_name = "That thing"
 		MessageLog.send_message("That's no Chest!")
+		print("beginning combat from mimic")
+		SignalBus.start_combat.emit(player, parent_entity)
 	elif parent_entity.entity_name == "Lucky Charm":
-		var player = parent_entity.map_data.player
 		player.fighter_component.luck += 1
 		player.fighter_component.charms += 1
 		SignalBus.stats_changed.emit(player)

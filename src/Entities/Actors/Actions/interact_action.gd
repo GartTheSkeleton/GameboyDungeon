@@ -20,12 +20,14 @@ func perform(game: Game, entity: Entity) -> void:
 		match selected_option.name:
 			"Shoot":
 				var attack = AttackAction.new()
-				attack.perform(game, entity)
+				await attack.perform(game, entity)
 			"Reload":
-				entity.fighter_component.reload()
+				await entity.fighter_component.reload()
 			"Scream":
-				pass
+				var scream = ScreamAction.new()
+				await scream.perform(game, entity)
 			"Pray":
-				entity.fighter_component.pray()
+				await entity.fighter_component.pray()
 			"Stab":
 				pass
+		SignalBus.player_turn_complete.emit()

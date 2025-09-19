@@ -7,7 +7,7 @@
 script = ExtResource("2_t5i0r")
 max_hp = 5
 power = 4
-luck = -3
+luck = -2
 ammo = 6
 stored_ammo = 24
 charms = 0

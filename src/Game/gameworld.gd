@@ -53,6 +53,7 @@ var random_remarks = [
 
 func _ready() -> void:
 	populate_map()
+	SignalBus.start_combat.connect(combat_manager.begin_combat)
 	SignalBus.create_entity.connect(createEntity)
 
 func createEntity(name: String, grid_pos: Vector2i):
@@ -75,21 +76,21 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var action: Action = input_handler.get_action()
-	if action:
-		await action.perform(self, player)
-		var entity_in_room = get_map_data().get_entity_at_location(player.grid_position)
-		gun_bob = true
-		bob_timer = 0
-		if !combat_manager.has_begun:
+	if !combat_manager.has_begun:
+		var action: Action = input_handler.get_action()
+		if action:
+			await action.perform(self, player)
+			var entity_in_room = get_map_data().get_entity_at_location(player.grid_position)
+			gun_bob = true
+			bob_timer = 0
+			
 			if entity_in_room:
 				var message: String
 				if entity_in_room.fighter_component && !entity_in_room.item_component:
 					if entity_in_room.fighter_component.hp > 0:
 						message = "AHH! A %s!" % entity_in_room.entity_name
+						print("beginning combat from game world")
 						combat_manager.begin_combat(player, entity_in_room)
-						InputHandler.external_transition_to(InputHandler.InputHandlers.COMBAT)
-							
 				else:
 					if !entity_in_room.item_component.is_activated:
 						message = "You found a %s!" % entity_in_room.entity_name
@@ -102,15 +103,14 @@ func _physics_process(_delta: float) -> void:
 					var index: int = rng.randi_range(0, random_remarks.size() - 1)
 					var message = random_remarks[index]
 					MessageLog.send_message(message)
-	
-	if gun_bob:
-		gun.position.y += get_sine(time)
-		bob_timer += 1
-		if bob_timer >= bob_time:
-			gun_bob = false
-			bob_timer = 0
-	else:
-		gun.position.y = 0
+		if gun_bob:
+			gun.position.y += get_sine(time)
+			bob_timer += 1
+			if bob_timer >= bob_time:
+				gun_bob = false
+				bob_timer = 0
+		else:
+			gun.position.y = 0
 
 func get_map_data() -> MapData:
 	return map.map_data
@@ -128,7 +128,7 @@ func populate_map() -> void:
 	player_created.emit(player)
 	for room in map_data.tiles:
 		var random_chance = rng.randf_range(0, 10.0)
-		if random_chance > 0 && room.gridPosition != Vector2i.ZERO:
+		if random_chance >= 5 && room.gridPosition != Vector2i.ZERO:
 			var enemies = [entity_types.skeleton, entity_types.cyclops]
 			var random_index = randi_range(0, enemies.size() - 1)
 			var chosen_enemy = enemies[random_index]
@@ -136,7 +136,7 @@ func populate_map() -> void:
 			npc.position.y -= 6
 			entities.add_child(npc)
 			map_data.entities.append(npc)
-		elif random_chance < 3 && room.gridPosition != Vector2i.ZERO:
+		elif random_chance < 5 && room.gridPosition != Vector2i.ZERO:
 			var item := Entity.new(room.gridPosition, entity_types.mimic, map_data)
 			item.position.y += 8
 			entities.add_child(item)

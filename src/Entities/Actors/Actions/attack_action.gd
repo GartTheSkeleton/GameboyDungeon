@@ -27,12 +27,10 @@ func perform(game: Game, entity: Entity) -> void:
 		attack_description= "You attack %s" % target.get_entity_name()
 		target.fighter_component.take_damage(damage)
 		entity.fighter_component.ammo -= 1
-	elif attack_roll > 1:
+	elif attack_roll > 2:
 		attack_description = "Your gun jams!"
 	else:
 		attack_description = "You miss your shot!"
 		entity.fighter_component.ammo -= 1
 	if target.is_alive():
 		MessageLog.send_message(attack_description)
-	#if entity.item_component && !entity.item_component.is_activated:
-		#entity.item_component.activate(entity)
