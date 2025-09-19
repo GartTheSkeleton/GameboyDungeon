@@ -1,19 +1,19 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://4uesrrnxktp8"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://bda78jstap81"]
 
-[ext_resource type="Texture2D" uid="uid://bravu7cssttrd" path="res://src/Assets/Entities/slime_attack.png" id="1_q6fqd"]
-[ext_resource type="Texture2D" uid="uid://cyivyykhisbdm" path="res://src/Assets/Entities/slime_dead.png" id="2_w6jin"]
-[ext_resource type="Texture2D" uid="uid://xr0hciaj72mr" path="res://src/Assets/Entities/slime_hurt.png" id="3_86f6h"]
+[ext_resource type="Texture2D" uid="uid://cipri6fnq0r3x" path="res://src/Assets/Entities/abomination_attack.png" id="1_q6fqd"]
+[ext_resource type="Texture2D" uid="uid://d0j7crxm0dl05" path="res://src/Assets/Entities/abomination_dead.png" id="2_w6jin"]
+[ext_resource type="Texture2D" uid="uid://bh2vsgbp6grkh" path="res://src/Assets/Entities/abomination_hurt.png" id="3_86f6h"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="4_khnki"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="5_2tgcn"]
-[ext_resource type="Texture2D" uid="uid://d04bx5k80alc1" path="res://src/Assets/Entities/slime.png" id="6_o52tc"]
+[ext_resource type="Texture2D" uid="uid://cuv0lwaxgo8i" path="res://src/Assets/Entities/abomination.png" id="6_khnki"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_daoli"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hndd"]
 atlas = ExtResource("1_q6fqd")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_emcwg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiifi"]
 atlas = ExtResource("2_w6jin")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xwrou"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgsq7"]
 atlas = ExtResource("3_86f6h")
 
 [sub_resource type="Resource" id="Resource_avv7w"]
@@ -24,18 +24,18 @@ luck = 0
 ammo = 0
 stored_ammo = 0
 charms = 0
-death_texture = SubResource("AtlasTexture_emcwg")
-hurt_texture = SubResource("AtlasTexture_xwrou")
-attack_texture = SubResource("AtlasTexture_daoli")
+death_texture = SubResource("AtlasTexture_fiifi")
+hurt_texture = SubResource("AtlasTexture_jgsq7")
+attack_texture = SubResource("AtlasTexture_4hndd")
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w5yu3"]
-atlas = ExtResource("6_o52tc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_os3x3"]
+atlas = ExtResource("6_khnki")
 
 [resource]
 script = ExtResource("5_2tgcn")
-name = "Boney Fellow"
-texture = SubResource("AtlasTexture_w5yu3")
+name = "Abomination"
+texture = SubResource("AtlasTexture_os3x3")
 is_blocking_movement = true
 is_mimic = false
 fighter_definition = SubResource("Resource_avv7w")
