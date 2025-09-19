@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=33 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://hw2dgtuymkav" path="res://src/Game/combat_menu.gd" id="14_pkeyt"]
 [ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="15_j816e"]
 [ext_resource type="Script" uid="uid://dh7gbon62pg31" path="res://src/Game/EventHandler/combat_input_handler.gd" id="18_2p5m6"]
+[ext_resource type="Script" uid="uid://oxl34e2vlyub" path="res://src/Game/EventHandler/game_over_input_handler.gd" id="18_cl2rc"]
+[ext_resource type="Script" uid="uid://bxs8gv7s574b4" path="res://src/Game/EventHandler/base_input_script.gd" id="19_8hu63"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
 texture = ExtResource("12_q8503")
@@ -624,6 +626,7 @@ offset_right = -96.0
 offset_bottom = 22.0
 
 [node name="HealthLabel" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
@@ -633,6 +636,7 @@ text = "HP: "
 label_settings = ExtResource("15_j816e")
 
 [node name="AmmoLabel2" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 24.0
 offset_top = 15.0
@@ -652,15 +656,20 @@ sprite_frames = SubResource("SpriteFrames_q8503")
 offset = Vector2(0, -15)
 
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
+unique_name_in_owner = true
 script = ExtResource("2_hdij2")
 
 [node name="MainGameInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
 script = ExtResource("14_6jf8o")
 
 [node name="GameOverInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
+script = ExtResource("18_cl2rc")
 
 [node name="CombatInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
 script = ExtResource("18_2p5m6")
+
+[node name="BlockInputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/InputHandler"]
+script = ExtResource("19_8hu63")
 
 [node name="Entities" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 

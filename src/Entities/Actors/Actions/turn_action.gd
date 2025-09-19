@@ -7,8 +7,6 @@ var direction: String
 func _init(inputDirection: String, game: Game) -> void:
 	playerFacing = game.playerFacing
 	direction = inputDirection
-	
-
 
 func perform(game: Game, entity: Entity) -> void:
 	var directionsKeys = game.directions.keys()
