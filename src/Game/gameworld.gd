@@ -129,13 +129,14 @@ func populate_map() -> void:
 	for room in map_data.tiles:
 		var random_chance = rng.randf_range(0, 10.0)
 		if random_chance > 0 && room.gridPosition != Vector2i.ZERO:
-			var enemies = [entity_types.skeleton, entity_types.cyclops]
-			var random_index = randi_range(0, enemies.size() - 1)
-			var chosen_enemy = enemies[random_index]
-			var npc := Entity.new(room.gridPosition, chosen_enemy, map_data)
-			npc.position.y -= 6
-			entities.add_child(npc)
-			map_data.entities.append(npc)
+			pass
+			#var enemies = [entity_types.skeleton, entity_types.cyclops]
+			#var random_index = randi_range(0, enemies.size() - 1)
+			#var chosen_enemy = enemies[random_index]
+			#var npc := Entity.new(room.gridPosition, chosen_enemy, map_data)
+			#npc.position.y -= 6
+			#entities.add_child(npc)
+			#map_data.entities.append(npc)
 		elif random_chance < 3 && room.gridPosition != Vector2i.ZERO:
 			var item := Entity.new(room.gridPosition, entity_types.mimic, map_data)
 			item.position.y += 8

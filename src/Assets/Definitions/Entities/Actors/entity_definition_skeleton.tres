@@ -1,12 +1,20 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=8 format=3 uid="uid://dn0sjjc6eup8t"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://dn0sjjc6eup8t"]
 
-[ext_resource type="Texture2D" uid="uid://bdm8v630luvep" path="res://src/Assets/Entities/skeleton_dead.png" id="1_8xdif"]
+[ext_resource type="Texture2D" uid="uid://b6j2vda200u8f" path="res://src/Assets/Entities/skeleton_dead.png" id="1_8xdif"]
+[ext_resource type="Texture2D" uid="uid://dptqa3eyp3hmh" path="res://src/Assets/Entities/skeleton_attack.png" id="1_rjmyh"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_qkwo3"]
+[ext_resource type="Texture2D" uid="uid://w6qb23sti1po" path="res://src/Assets/Entities/skeleton_hurt.png" id="3_6enyg"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="3_rjmyh"]
-[ext_resource type="Texture2D" uid="uid://b37mdwiynjla" path="res://src/Assets/Entities/skeleton.png" id="4_qkwo3"]
+[ext_resource type="Texture2D" uid="uid://dt84gyogs1erv" path="res://src/Assets/Entities/skeleton.png" id="4_qkwo3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjgpr"]
+atlas = ExtResource("1_rjmyh")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjmyh"]
 atlas = ExtResource("1_8xdif")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqhmm"]
+atlas = ExtResource("3_6enyg")
 
 [sub_resource type="Resource" id="Resource_avv7w"]
 script = ExtResource("2_qkwo3")
@@ -17,6 +25,8 @@ ammo = 0
 stored_ammo = 0
 charms = 0
 death_texture = SubResource("AtlasTexture_rjmyh")
+hurt_texture = SubResource("AtlasTexture_jqhmm")
+attack_texture = SubResource("AtlasTexture_gjgpr")
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6enyg"]
