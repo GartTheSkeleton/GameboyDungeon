@@ -12,3 +12,5 @@ extends Resource
 
 @export_category("Visuals")
 @export var death_texture: AtlasTexture
+@export var hurt_texture: AtlasTexture
+@export var attack_texture: AtlasTexture

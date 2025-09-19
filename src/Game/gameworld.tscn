@@ -4,16 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://qltfgtgp65q7" path="res://src/Game/EventHandler/input_handler.gd" id="2_hdij2"]
 [ext_resource type="Script" uid="uid://cymdwb2cngxtt" path="res://src/Map/map.gd" id="2_yssg5"]
-[ext_resource type="Texture2D" uid="uid://c68og528pp06a" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://b7g5hp1gjgx8k" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
-[ext_resource type="Texture2D" uid="uid://dnk1cco4lo30c" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://y51uub0eail5" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
-[ext_resource type="Texture2D" uid="uid://dmfdwab6u80kd" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
+[ext_resource type="Texture2D" uid="uid://bqvjr3i5duwsp" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://bqxy38kt5nony" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
+[ext_resource type="Texture2D" uid="uid://dxfw24sqlajw4" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://c811arujrl75p" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
+[ext_resource type="Texture2D" uid="uid://1dl3k8u5p346" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
 [ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
-[ext_resource type="Texture2D" uid="uid://cgenhmsgkqoj7" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
-[ext_resource type="Texture2D" uid="uid://dj5be0ge14cg8" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
+[ext_resource type="Texture2D" uid="uid://dyayyx4hq6a4g" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
+[ext_resource type="Texture2D" uid="uid://ser3tmqpfy2i" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
 [ext_resource type="Script" uid="uid://dhp1e27unnmsb" path="res://src/GUI/message_log.gd" id="12_as7lh"]
-[ext_resource type="Texture2D" uid="uid://btibctykyq5i6" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
+[ext_resource type="Texture2D" uid="uid://b34bay6xf2g3f" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
 [ext_resource type="Script" uid="uid://dsrv47uv7iuoh" path="res://src/Game/combat_manager.gd" id="13_k0lof"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/main_game_input_handler.gd" id="14_6jf8o"]
 [ext_resource type="Script" uid="uid://cgdh6usx8ioo3" path="res://src/GUI/stats_container.gd" id="14_d75vc"]
@@ -160,49 +160,381 @@ script = ExtResource("2_yssg5")
 map_width = null
 map_height = null
 
-[node name="Tile" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-eastPanelType = 1
-southPanelType = 2
-westPanelType = 1
-
-[node name="Tile2" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(1, 0)
-northPanelType = 2
+[node name="00" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 eastPanelType = 2
-southPanelType = 2
-westPanelType = 1
-
-[node name="Tile3" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(-1, 0)
-northPanelType = 2
-eastPanelType = 1
 southPanelType = 2
 westPanelType = 2
 
-[node name="Tile4" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+[node name="0-1" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(0, -1)
-northPanelType = 2
-eastPanelType = 1
+northPanelType = 1
+eastPanelType = 2
 westPanelType = 2
 
-[node name="Tile5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(1, -1)
+[node name="0-2" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, -2)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 1
+westPanelType = 2
+
+[node name="1-2" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(1, -2)
 northPanelType = 2
 eastPanelType = 1
 southPanelType = 2
 westPanelType = 1
+hasEnemy = true
 
-[node name="Tile6" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(2, -1)
-eastPanelType = 2
-southPanelType = 2
-westPanelType = 1
-
-[node name="Tile7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+[node name="2-2" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(2, -2)
-northPanelType = 2
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 1
+
+[node name="2-1" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, -1)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+
+[node name="20" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, 0)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 2
+westPanelType = 2
+hasChest = true
+
+[node name="2-3" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, -3)
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+
+[node name="2-4" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, -4)
+northPanelType = 1
 eastPanelType = 2
 westPanelType = 2
+
+[node name="2-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, -5)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 1
+westPanelType = 1
+hasEnemy = true
+
+[node name="3-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -5)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+
+[node name="4-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -5)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 2
+westPanelType = 1
+hasFairy = true
+
+[node name="1-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(1, -5)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+
+[node name="0-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, -5)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+
+[node name="-1-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -5)
+northPanelType = 1
+southPanelType = 1
+westPanelType = 1
+
+[node name="-1-4" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -4)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+
+[node name="-1-3" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -3)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 2
+westPanelType = 2
+hasLever = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-6" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -6)
+northPanelType = 3
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+leverTarget = Vector2i(-1, -6)
+
+[node name="-2-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-2, -5)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+hasEnemy = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="-3-5" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-3, -5)
+northPanelType = 2
+southPanelType = 2
+westPanelType = 2
+hasChest = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -7)
+eastPanelType = 1
+westPanelType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-2-7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-2, -7)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-3-7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-3, -7)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 2
+hasChest = true
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="0-7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, -7)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="1-7" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(1, -7)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+hasEnemy = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -8)
+northPanelType = 1
+eastPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="0-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(0, -8)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="1-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(1, -8)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="2-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(2, -8)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="3-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -8)
+northPanelType = 1
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="3-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -9)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="4-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -8)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="5-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(5, -8)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="5-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(5, -9)
+northPanelType = 1
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="5-10" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(5, -10)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="4-10" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -10)
+northPanelType = 1
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 1
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="4-11" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -11)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="4-12" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -12)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+hasLever = true
+leverTarget = Vector2i(1, -11)
+
+[node name="3-10" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -10)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+hasEnemy = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="6-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(6, -9)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -9)
+northPanelType = 1
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-10" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -10)
+northPanelType = 1
+eastPanelType = 1
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+hasEnemy = true
+enemyType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-11" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -11)
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 2
+itemType = 1
+enemyType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-12" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -11)
+northPanelType = 1
+eastPanelType = 2
+westPanelType = 2
+itemType = 1
+enemyType = 1
+leverTarget = Vector2i(-1, -6)
+
+[node name="-1-13" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-1, -11)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 1
+westPanelType = 1
+itemType = 1
+hasEnemy = true
+leverTarget = Vector2i(-1, -6)
+
+[node name="-2-13" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(-2, -13)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+westPanelType = 2
+hasChest = true
+leverTarget = Vector2i(-1, -6)
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 z_index = 1

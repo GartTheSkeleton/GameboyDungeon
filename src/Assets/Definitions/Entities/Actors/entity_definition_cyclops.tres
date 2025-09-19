@@ -1,9 +1,17 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=7 format=3 uid="uid://dhty74h8bhetk"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=11 format=3 uid="uid://dhty74h8bhetk"]
 
+[ext_resource type="Texture2D" uid="uid://c0t2ip3tncl50" path="res://src/Assets/Entities/nothic_attack.png" id="1_avv7w"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_iqdy0"]
 [ext_resource type="Texture2D" uid="uid://b3j413dkxht06" path="res://src/Assets/Definitions/Entities/Textures/cyclops_corpse_texture.tres" id="1_pkaoo"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_mlrns"]
-[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://bguvdkdwf1lp0" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://gbb5kbxobyxu" path="res://src/Assets/Entities/nothic_hurt.png" id="3_myacs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81d2u"]
+atlas = ExtResource("1_avv7w")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg1oi"]
+atlas = ExtResource("3_myacs")
 
 [sub_resource type="Resource" id="Resource_avv7w"]
 script = ExtResource("2_mlrns")
@@ -14,6 +22,8 @@ ammo = 0
 stored_ammo = 0
 charms = 0
 death_texture = ExtResource("1_pkaoo")
+hurt_texture = SubResource("AtlasTexture_xg1oi")
+attack_texture = SubResource("AtlasTexture_81d2u")
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phdbn"]
