@@ -46,6 +46,7 @@ var rightOpenPanelDefinition = preload("res://src/Assets/Definitions/Panels/righ
 func _ready() -> void:
 	SignalBus.player_turned.connect(update_room_sprites)
 	position = Grid.grid_to_world(gridPosition)
+	SignalBus.gameworld_ready.connect(populate_room)
 
 func update_room_sprites(direction: Vector2i) -> void:
 #	set center tile base on player direction and the rooms directional panel types
@@ -163,3 +164,26 @@ func update_room_sprites(direction: Vector2i) -> void:
 					rightSprite.texture = rightOpenPanelDefinition.texture
 				panelTypes.WALL:
 					rightSprite.texture = rightWallPanelDefinition.texture
+
+func populate_room() -> void:
+	var entity_name: String
+	var chest_contents = null
+	if hasChest:
+		if isMimic:
+			entity_name = "Mimic"
+		else:
+			entity_name = "Chest"
+			chest_contents = "Lucky Charm"
+	if hasEnemy:
+		match enemyType:
+			enemyTypes.CYCLOPS:
+				entity_name = "Cyclops"
+			enemyTypes.SKELETON:
+				entity_name = "Skeleton"
+			enemyTypes.SLUG:
+				entity_name = "Slug"
+			enemyTypes.ABOMINATION:
+				entity_name = "Slug"
+	if entity_name:
+		print("entity_name, position: ", entity_name, gridPosition)
+		SignalBus.create_entity.emit(entity_name, gridPosition, chest_contents)

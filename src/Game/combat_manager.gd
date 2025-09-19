@@ -56,6 +56,7 @@ func next_turn() -> void:
 func begin_turn() -> void:
 	if !player_character.is_alive() || !enemy_character.is_alive():
 		end_combat()
+	current_character.fighter_component.turn_count += 1
 	if current_character == player_character:
 		if current_character.fighter_component.turn_skipped:
 			MessageLog.send_message("You're too stunned to act quickly!")
@@ -70,7 +71,7 @@ func begin_turn() -> void:
 			await get_tree().create_timer(wait_time).timeout
 	#		cast combat action
 			var options = ["Attack", "Savor", "Scream"]
-			if enemy_character.fighter_component.last_combat_action == "Scream" || player_character.fighter_component.luck <= -3:
+			if enemy_character.fighter_component.last_combat_action == "Scream" || player_character.fighter_component.luck <= -3 || enemy_character.fighter_component.turn_count < 2:
 				options.remove_at(2)
 			var choice_index = randi_range(0, options.size() -1)
 			var choice = options[choice_index]

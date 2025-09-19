@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EntityDefinition" load_steps=10 format=3 uid="uid://bfybupytfifkq"]
 
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_rg638"]
-[ext_resource type="Texture2D" uid="uid://cov1krwb4vyf4" path="res://src/Assets/Entities/mimic_dead.png" id="1_rxcct"]
+[ext_resource type="Texture2D" uid="uid://fcaijomwywid" path="res://src/Assets/Entities/mimic_dead.png" id="1_rxcct"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_1r42d"]
 [ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="3_phqd3"]
-[ext_resource type="Texture2D" uid="uid://bkgf6o6qiu3f6" path="res://src/Assets/Entities/chest_closed.png" id="5_1r42d"]
+[ext_resource type="Texture2D" uid="uid://cj8t6tf1lrxr4" path="res://src/Assets/Entities/chest_closed.png" id="5_1r42d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6roke"]
 atlas = ExtResource("1_rxcct")

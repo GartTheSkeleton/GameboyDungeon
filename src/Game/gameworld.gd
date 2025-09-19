@@ -37,7 +37,9 @@ const entity_types = {
 	"key": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_key.tres"),
 	"charm": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_charm.tres"),
 	"chest": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_chest.tres"),
-	"mimic": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_mimic.tres")
+	"mimic": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_mimic.tres"),
+	"abomination": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_abomination.tres"),
+	"slug": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_slime.tres")
 }
 
 var random_remarks = [
@@ -52,18 +54,35 @@ var random_remarks = [
 ]
 
 func _ready() -> void:
-	populate_map()
+	create_player()
 	SignalBus.start_combat.connect(combat_manager.begin_combat)
 	SignalBus.create_entity.connect(createEntity)
 	SignalBus.player_died.connect(handle_player_death)
+	SignalBus.gameworld_ready.emit()
 
-func createEntity(name: String, grid_pos: Vector2i):
+func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 	var new_entity: Entity
 	var map_data = get_map_data()
 	match name:
 		"Lucky Charm":
 			new_entity = Entity.new(grid_pos, entity_types.charm, map_data)
 			new_entity.position.y -= 16
+		"Abomination":
+			new_entity = Entity.new(grid_pos, entity_types.abomination, map_data)
+		"Mimic": 
+			new_entity = Entity.new(grid_pos, entity_types.mimic, map_data)
+			new_entity.item_component.contents = "Lucky Charm"
+		"Chest": 
+			new_entity = Entity.new(grid_pos, entity_types.chest, map_data)
+			if chest_contents:
+				new_entity.item_component.contents = chest_contents
+		"Cyclops":
+			new_entity = Entity.new(grid_pos, entity_types.cyclops, map_data)
+		"Skeleton":
+			new_entity = Entity.new(grid_pos, entity_types.skeleton, map_data)
+		"Slug":
+			new_entity = Entity.new(grid_pos, entity_types.slug, map_data)
+		
 	if !new_entity:
 		return
 	entities.add_child(new_entity)
@@ -115,8 +134,7 @@ func _physics_process(_delta: float) -> void:
 func get_map_data() -> MapData:
 	return map.map_data
 
-func populate_map() -> void:
-	rng.randomize()
+func create_player() -> void:
 	var map_data = get_map_data()
 	var player_start_pos: Vector2i = Vector2i.ZERO
 	player = Entity.new(player_start_pos, entity_types.player, map_data)
@@ -126,21 +144,6 @@ func populate_map() -> void:
 	player.add_child(camera)
 	entities.add_child(player)
 	player_created.emit(player)
-	for room in map_data.tiles:
-		var random_chance = rng.randf_range(0, 10.0)
-		if random_chance >= 5 && room.gridPosition != Vector2i.ZERO:
-			var enemies = [entity_types.skeleton, entity_types.cyclops]
-			var random_index = randi_range(0, enemies.size() - 1)
-			var chosen_enemy = enemies[random_index]
-			var npc := Entity.new(room.gridPosition, chosen_enemy, map_data)
-			npc.position.y -= 6
-			entities.add_child(npc)
-			map_data.entities.append(npc)
-		elif random_chance < 5 && room.gridPosition != Vector2i.ZERO:
-			var item := Entity.new(room.gridPosition, entity_types.mimic, map_data)
-			item.position.y += 8
-			entities.add_child(item)
-			map_data.entities.append(item)
 	SignalBus.player_turned.emit(playerFacing)
 
 func get_sine(time):

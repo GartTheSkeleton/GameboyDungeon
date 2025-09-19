@@ -11,3 +11,4 @@ signal player_turn_complete
 signal create_entity(name: String, position: Vector2i)
 signal entity_created(position: Vector2i)
 signal transition_input_handler(input_handler: InputHandler.InputHandlers)
+signal gameworld_ready
