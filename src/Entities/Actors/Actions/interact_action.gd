@@ -16,7 +16,6 @@ func perform(game: Game, entity: Entity) -> void:
 		interactable_entity.item_component.activate(interactable_entity)
 	elif input_handler == InputHandler.InputHandlers.COMBAT:
 		var selected_option = game.combat_menu.get_selected_option()
-		print('selection: ', selected_option.name)
 		match selected_option.name:
 			"Shoot":
 				var attack = AttackAction.new()

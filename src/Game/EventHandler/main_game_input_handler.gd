@@ -13,12 +13,8 @@ func get_action() -> Action:
 	elif Input.is_action_just_pressed("Right"):
 		action = TurnAction.new("Right", game)
 		SignalBus.player_turned.emit(action.playerFacing)
-	elif Input.is_action_just_pressed("B"):
-		action = AttackAction.new()
 	elif Input.is_action_just_pressed("A"):
 		action = InteractAction.new(game.input_handler.current_input_handler_type)
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		action = EscapeAction.new()
+
 	
 	return action

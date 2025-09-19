@@ -55,6 +55,7 @@ func _ready() -> void:
 	populate_map()
 	SignalBus.start_combat.connect(combat_manager.begin_combat)
 	SignalBus.create_entity.connect(createEntity)
+	SignalBus.player_died.connect(handle_player_death)
 
 func createEntity(name: String, grid_pos: Vector2i):
 	var new_entity: Entity
@@ -89,7 +90,6 @@ func _physics_process(_delta: float) -> void:
 				if entity_in_room.fighter_component && !entity_in_room.item_component:
 					if entity_in_room.fighter_component.hp > 0:
 						message = "AHH! A %s!" % entity_in_room.entity_name
-						print("beginning combat from game world")
 						combat_manager.begin_combat(player, entity_in_room)
 				else:
 					if !entity_in_room.item_component.is_activated:
@@ -145,3 +145,6 @@ func populate_map() -> void:
 
 func get_sine(time):
 	return sin(time * 40) * .6
+
+func handle_player_death() -> void:
+	input_handler.external_transition_to(InputHandler.InputHandlers.GAME_OVER)

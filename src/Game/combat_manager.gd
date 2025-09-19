@@ -28,7 +28,7 @@ func begin_combat(player: Entity, enemy: Entity) -> void:
 	begin_turn()
 
 func _physics_process(delta: float) -> void:
-	if has_begun && current_character == player_character:
+	if has_begun && current_character == player_character && player_character.is_alive():
 		if !current_character.fighter_component.turn_skipped:
 			var action: Action = input_handler.get_action()
 			if action:
@@ -36,12 +36,9 @@ func _physics_process(delta: float) -> void:
 					visible = false
 					InputHandler.external_transition_to(InputHandler.InputHandlers.NO_INPUT)
 				await action.perform(game, player_character)
-		else:
-			MessageLog.send_message("You're too stunned to act quickly!")
-			await get_tree().create_timer(1).timeout
-			end_player_turn()
-	if !has_begun && input_handler.current_input_handler_type != InputHandler.InputHandlers.MAIN_GAME:
-		InputHandler.external_transition_to(InputHandler.InputHandlers.MAIN_GAME)
+	var not_main_or_fail = input_handler.current_input_handler_type != InputHandler.InputHandlers.MAIN_GAME || input_handler.current_input_handler_type != InputHandler.InputHandlers.GAME_OVER
+	#if !has_begun && not_main_or_fail:
+		#InputHandler.external_transition_to(InputHandler.InputHandlers.MAIN_GAME)
 
 func next_turn() -> void:
 	if current_character.fighter_component.turn_skipped:
@@ -57,15 +54,47 @@ func next_turn() -> void:
 	begin_turn()
 
 func begin_turn() -> void:
+	if !player_character.is_alive() || !enemy_character.is_alive():
+		end_combat()
 	if current_character == player_character:
-		InputHandler.external_transition_to(InputHandler.InputHandlers.COMBAT)
-		visible = true
+		if current_character.fighter_component.turn_skipped:
+			MessageLog.send_message("You're too stunned to act quickly!")
+			await get_tree().create_timer(1).timeout
+			end_player_turn()
+		else:
+			InputHandler.external_transition_to(InputHandler.InputHandlers.COMBAT)
+			visible = true
 	else:
 		if !current_character.fighter_component.turn_skipped:
 			var wait_time = randf_range(0.5, 1.5)
 			await get_tree().create_timer(wait_time).timeout
 	#		cast combat action
-			MessageLog.send_message("THE MONSTER ATTACKS")
+			var options = ["Attack", "Savor", "Scream"]
+			if enemy_character.fighter_component.last_combat_action == "Scream" || player_character.fighter_component.luck <= -3:
+				options.remove_at(2)
+			var choice_index = randi_range(0, options.size() -1)
+			var choice = options[choice_index]
+			match choice:
+				"Attack":
+					var attack = AttackAction.new()
+					await attack.perform(game, enemy_character)
+				"Scream":
+					var scream = ScreamAction.new()
+					await scream.perform(game, enemy_character)
+				"Savor":
+					var message: String
+					var flavor_text = [
+						"%s bares its teeth!" % enemy_character.entity_name,
+						"%s salivates at your fear!" % enemy_character.entity_name,
+						"%s stares at you with empty eyes." % enemy_character.entity_name,
+						"%s feints a strike!" % enemy_character.entity_name,
+						"%s retches disturbingly!" % enemy_character.entity_name,
+					]
+					var text_index = randi_range(0, flavor_text.size() -1)
+					message = flavor_text[text_index]
+					MessageLog.send_message(message)
+			if enemy_character:
+				enemy_character.fighter_component.last_combat_action = choice
 			await get_tree().create_timer(0.5).timeout
 		next_turn()
 
@@ -80,8 +109,12 @@ func end_combat() -> void:
 	enemy_character = null
 	has_begun = false
 	visible = false
-	InputHandler.external_transition_to(InputHandler.InputHandlers.MAIN_GAME)
+	if game.player && game.player.is_alive():
+		InputHandler.external_transition_to(InputHandler.InputHandlers.MAIN_GAME)
+	else:
+		InputHandler.external_transition_to(InputHandler.InputHandlers.GAME_OVER)
 
 func end_player_turn() -> void:
-	player_character.fighter_component.turn_skipped = false
+	if player_character:
+		player_character.fighter_component.turn_skipped = false
 	next_turn()

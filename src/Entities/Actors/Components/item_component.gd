@@ -29,9 +29,8 @@ func activate(parent_entity: Entity) -> void:
 	elif parent_entity.is_mimic:
 		parent_entity.texture = mimic_texture
 		parent_entity.blocks_movement = true
-		parent_entity.entity_name = "That thing"
+		parent_entity.entity_name = "That Thing"
 		MessageLog.send_message("That's no Chest!")
-		print("beginning combat from mimic")
 		SignalBus.start_combat.emit(player, parent_entity)
 	elif parent_entity.entity_name == "Lucky Charm":
 		player.fighter_component.luck += 1

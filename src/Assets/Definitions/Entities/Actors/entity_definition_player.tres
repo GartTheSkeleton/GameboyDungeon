@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_xu0na"]
 script = ExtResource("2_t5i0r")
-max_hp = 5
+max_hp = 16
 power = 4
-luck = -2
+luck = -3
 ammo = 6
 stored_ammo = 24
 charms = 0

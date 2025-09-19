@@ -36,6 +36,7 @@ var charms: int:
 		if parent.entity_name == "Player":
 			SignalBus.stats_changed.emit(parent)
 
+var last_combat_action: String
 var rng = RandomNumberGenerator.new()
 
 func _init(definition: FighterComponentDefinition, parent: Entity) -> void:
@@ -82,17 +83,27 @@ func pray() -> void:
 	await get_tree().create_timer(1).timeout
 	var result = rng.randi_range(0, 6)
 	if result == 6:
-		next_hit_crits = true
-		MessageLog.send_message("You feel blessed by whoever heard you!")
-	elif result == 5:
-		var reward = 2
-		var empty_slots = 6 - ammo
-		if empty_slots >= reward:
-			ammo += reward
-			MessageLog.send_message("Your gun suddenly feels 2 bullets heavier!")
+		if next_hit_crits == false:
+			next_hit_crits = true
+			MessageLog.send_message("You feel blessed by whoever heard you!")
 		else:
-			stored_ammo += 2
-			MessageLog.send_message("You found 2 bullets in your pocket!")
+			var health_reward = .5 * max_hp
+			hp += health_reward
+			MessageLog.send_message("By their blessing, you feel invigorated!")
+	elif result == 5:
+		if hp != max_hp:
+			var health_reward = .5 * max_hp
+			hp += health_reward
+			MessageLog.send_message("By some blessing, you feel invigorated!")
+		else: 
+			var reward = 2
+			var empty_slots = 6 - ammo
+			if empty_slots >= reward:
+				ammo += reward
+				MessageLog.send_message("Your gun suddenly feels 2 bullets heavier!")
+			else:
+				stored_ammo += 2
+				MessageLog.send_message("You found 2 bullets in your pocket!")
 	elif result == 4:
 		if ammo < 6:
 			ammo += 1
@@ -102,16 +113,24 @@ func pray() -> void:
 			MessageLog.send_message("You found an extra bullet in your pocket!")
 	else:
 		MessageLog.send_message("You fear the gods aren't listening!")
+	await get_tree().create_timer(1).timeout
 
 func get_screamed_at(target_roll: int) -> void:
 	await get_tree().create_timer(1).timeout
+	var message: String
 	if target_roll >= 3:
 		luck -= 1
 		turn_skipped = true
-		var message = "%s winces at the noise!..." % parent.entity_name
+		if parent.entity_name != "Player":
+			message = "%s winces at the noise!" % parent.entity_name
+		else:
+			message = "You wince at the noise!"
 		MessageLog.send_message(message)
 	else:
-		var message = "%s seems unphased..." % parent.entity_name
+		if parent.entity_name == "Player":
+			message = "You steady your heart!"
+		else:
+			message = "%s seems unphased..." % parent.entity_name
 		MessageLog.send_message(message)
 	await get_tree().create_timer(1).timeout
 
