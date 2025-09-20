@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c00xyupivrw0x"]
 
-[ext_resource type="FontFile" uid="uid://cbrvjg6nqn571" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="1_duxle"]
+[ext_resource type="FontFile" uid="uid://dr1akhybiferu" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="1_duxle"]
 
 [resource]
 line_spacing = 1.0

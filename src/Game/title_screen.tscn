@@ -1,0 +1,205 @@
+[gd_scene load_steps=30 format=3 uid="uid://b50uateaxhv0i"]
+
+[ext_resource type="Script" uid="uid://djtf710hwpir8" path="res://src/Game/title_screen.gd" id="1_ak2if"]
+[ext_resource type="Texture2D" uid="uid://ugawitgi2gx" path="res://src/Assets/VFX/logo.png" id="2_ig5kc"]
+[ext_resource type="AudioStream" uid="uid://ql60b2m2hnvc" path="res://src/Assets/SFX/poweron.wav" id="3_jxihu"]
+[ext_resource type="Texture2D" uid="uid://g0a2jsgb4og4" path="res://src/Assets/TilePanels/hallway_left.png" id="4_wehae"]
+[ext_resource type="Texture2D" uid="uid://dd32xstvtjwc6" path="res://src/Assets/TilePanels/hallway_right.png" id="5_cu413"]
+[ext_resource type="Texture2D" uid="uid://c1acopydcytmt" path="res://src/Assets/TilePanels/hallway_center.png" id="6_8i0xu"]
+[ext_resource type="Texture2D" uid="uid://cfxeq68yfpkis" path="res://src/Assets/VFX/title_screen1.png" id="7_c4o2p"]
+[ext_resource type="Texture2D" uid="uid://3iechcf88d2k" path="res://src/Assets/VFX/title_screen2.png" id="8_3fqyo"]
+[ext_resource type="Texture2D" uid="uid://b0xevy6t8u88l" path="res://src/Assets/VFX/title_screen3.png" id="9_386ki"]
+[ext_resource type="Texture2D" uid="uid://colbg2lm7amdo" path="res://src/Assets/VFX/title_screen4.png" id="10_dadxd"]
+[ext_resource type="Texture2D" uid="uid://bguvdkdwf1lp0" path="res://src/Assets/Entities/nothic.png" id="11_c4o2p"]
+[ext_resource type="Texture2D" uid="uid://dt84gyogs1erv" path="res://src/Assets/Entities/skeleton.png" id="12_3fqyo"]
+[ext_resource type="Texture2D" uid="uid://gbb5kbxobyxu" path="res://src/Assets/Entities/nothic_hurt.png" id="12_ta1o7"]
+[ext_resource type="Texture2D" uid="uid://c0t2ip3tncl50" path="res://src/Assets/Entities/nothic_attack.png" id="13_0vaei"]
+[ext_resource type="Texture2D" uid="uid://d04bx5k80alc1" path="res://src/Assets/Entities/slime.png" id="13_386ki"]
+[ext_resource type="Texture2D" uid="uid://dl0h63oslylg4" path="res://src/Assets/VFX/credits.png" id="14_3fqyo"]
+[ext_resource type="Texture2D" uid="uid://w6qb23sti1po" path="res://src/Assets/Entities/skeleton_hurt.png" id="15_ix3l2"]
+[ext_resource type="Texture2D" uid="uid://dptqa3eyp3hmh" path="res://src/Assets/Entities/skeleton_attack.png" id="16_0bn4c"]
+[ext_resource type="Texture2D" uid="uid://xr0hciaj72mr" path="res://src/Assets/Entities/slime_hurt.png" id="18_l8me3"]
+[ext_resource type="Texture2D" uid="uid://bravu7cssttrd" path="res://src/Assets/Entities/slime_attack.png" id="19_t0t5u"]
+[ext_resource type="FontFile" uid="uid://dr1akhybiferu" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="20_0vaei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
+atlas = ExtResource("2_ig5kc")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8lcnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c4o2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3fqyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_386ki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dadxd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dadxd"]
+atlas = ExtResource("11_c4o2p")
+region = Rect2(0, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lcnw"]
+atlas = ExtResource("12_3fqyo")
+region = Rect2(0, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2m04"]
+atlas = ExtResource("13_386ki")
+region = Rect2(0, 0, 160, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqyj6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dadxd")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ta1o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0vaei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0vaei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_c4o2p")
+}],
+"loop": false,
+"name": &"1Atk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lcnw")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_ix3l2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0bn4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0bn4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3fqyo")
+}],
+"loop": false,
+"name": &"2Atk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2m04")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_l8me3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_t0t5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_t0t5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_386ki")
+}],
+"loop": false,
+"name": &"3Atk",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ix3l2"]
+font = ExtResource("20_0vaei")
+font_color = Color(0.858824, 0.784314, 0.866667, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_386ki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_3fqyo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ak2if")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, -8)
+texture = SubResource("AtlasTexture_0hol4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jxihu")
+
+[node name="Title Screen Panel" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="HallwayLeft" type="Sprite2D" parent="Title Screen Panel"]
+position = Vector2(24, 72)
+texture = ExtResource("4_wehae")
+
+[node name="HallwayRight" type="Sprite2D" parent="Title Screen Panel"]
+position = Vector2(136, 72)
+texture = ExtResource("5_cu413")
+
+[node name="HallwayCenter" type="Sprite2D" parent="Title Screen Panel"]
+position = Vector2(80, 72)
+texture = ExtResource("6_8i0xu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Title Screen Panel"]
+visible = false
+position = Vector2(80, 72)
+sprite_frames = SubResource("SpriteFrames_8lcnw")
+autoplay = "default"
+
+[node name="Enemy" type="AnimatedSprite2D" parent="Title Screen Panel"]
+visible = false
+position = Vector2(80, 96)
+sprite_frames = SubResource("SpriteFrames_jqyj6")
+animation = &"1Atk"
+
+[node name="Sprite2D" type="Sprite2D" parent="Title Screen Panel"]
+
+[node name="Label" type="Label" parent="Title Screen Panel"]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 64.0
+offset_bottom = 151.0
+text = "⬇️"
+label_settings = SubResource("LabelSettings_ix3l2")
+
+[node name="Credits" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(80, 72)
+sprite_frames = SubResource("SpriteFrames_386ki")
