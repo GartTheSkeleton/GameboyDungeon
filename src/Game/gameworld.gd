@@ -137,7 +137,7 @@ func _physics_process(_delta: float) -> void:
 						combat_manager.begin_combat(player, entity_in_room)
 				else:
 					if item_in_room:
-						if !item_in_room.item_component.conversation_complete:
+						if !item_in_room.item_component.conversation_started && !item_in_room.item_component.conversation_complete:
 							var name: String
 							if item_in_room.entity_name == "Ammo":
 								name = item_in_room.entity_name

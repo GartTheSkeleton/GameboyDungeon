@@ -4,7 +4,9 @@ extends Component
 var remain_after_use: bool
 var is_activated: bool
 var contents: String
+var conversation_started: bool = false
 var conversation_complete: bool = false
+var transaction_complete: bool = false
 
 var mimic_texture = preload("res://src/Assets/Definitions/Entities/Textures/mimic_idle_texture.tres")
 var rng = RandomNumberGenerator.new()
@@ -57,14 +59,25 @@ func activate(parent_entity: Entity) -> void:
 		SignalBus.reveal_stab_action.emit()
 		MessageLog.send_message("Thank the gods; this doesn't need reloading.")
 	elif parent_entity.entity_name == "Fairy Merchant":
-		if !conversation_complete:
+		conversation_started = true
+		if transaction_complete:
+			await MessageLog.send_message("La ti dee~! La ti daa~! I've got a Lucky Charm!")
+		elif !conversation_complete:
 			await MessageLog.send_message("I can invigorate you for a single Lucky Charm!", ["If you aren't interested, keep walkin'!"])
 		else:
-			await player.fighter_component.heal(player.fighter_component.max_hp)
-			player.fighter_component.charms -= 1
-			player.fighter_component.luck -= 1
-	if !parent_entity.entity_name == "Fairy Merchant" || conversation_complete == true:
+			if player.fighter_component.charms <= 0:
+				await MessageLog.send_message("You ain't got the stuff, SCRAM!")
+			elif player.fighter_component.hp == player.fighter_component.max_hp:
+				await MessageLog.send_message("You seem pretty vigorous already...", ["I don't take no hand outs! SCRAM!"])
+			else:
+				await MessageLog.send_message("La ti dee~! La ti daa~! I've got a Lucky Charm!")
+				await player.fighter_component.heal(player.fighter_component.max_hp)
+				player.fighter_component.charms -= 1
+				player.fighter_component.luck -= 1
+				transaction_complete = true
+	if !parent_entity.entity_name == "Fairy Merchant":
 		is_activated = true
-	conversation_complete = true
 	if !remain_after_use:
 		parent_entity.free()
+	await get_tree().create_timer(2).timeout
+	conversation_complete = true

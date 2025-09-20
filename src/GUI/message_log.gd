@@ -4,7 +4,7 @@ extends Container
 var last_message: Message
 
 func _ready() -> void:
-	SignalBus.message_sent.connect(add_message)
+	SignalBus.message_sent.connect(await add_message)
 	SignalBus.remove_message.connect(clear_message)
 
 func add_message(text: String, extra_messages = null) -> void:

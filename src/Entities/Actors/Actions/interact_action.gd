@@ -13,7 +13,8 @@ func perform(game: Game, entity: Entity) -> void:
 		var interactable_entity = map_data.get_item_at_location(entity.grid_position)
 		if !interactable_entity:
 			return
-		interactable_entity.item_component.activate(interactable_entity)
+		if !interactable_entity.item_component.conversation_started || interactable_entity.item_component.conversation_complete:
+			interactable_entity.item_component.activate(interactable_entity)
 	elif input_handler == InputHandler.InputHandlers.COMBAT:
 		var selected_option = game.combat_menu.get_selected_option()
 		match selected_option.name:

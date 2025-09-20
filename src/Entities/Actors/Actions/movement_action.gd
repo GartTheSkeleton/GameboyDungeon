@@ -34,4 +34,5 @@ func perform(game: Game, entity: Entity) -> void:
 	MessageLog.remove_message()
 	if item_in_room && item_in_room.item_component.conversation_complete && !item_in_room.item_component.is_activated:
 		item_in_room.item_component.conversation_complete = false
+		item_in_room.item_component.conversation_started = false
 	entity.grid_position = destination
