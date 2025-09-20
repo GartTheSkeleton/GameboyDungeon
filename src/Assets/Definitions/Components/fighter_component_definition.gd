@@ -7,7 +7,7 @@ extends Resource
 @export var power: int
 @export var luck: int
 @export var ammo: int
-@export var stored_ammo = 0
+@export var stored_ammo: int
 @export var charms: int
 
 @export_category("Visuals")
