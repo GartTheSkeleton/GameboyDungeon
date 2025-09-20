@@ -1,16 +1,17 @@
-# Godot 4 specific ignores
+# Godot 4+ specific ignores
 .godot/
-*.import
-export_presets.cfg
-# User-specific settings, if desired to ignore
-# .vscode/
-# .idea/
-# Godot editor settings, if desired to ignore
-# editor_settings-3.tres
-# editor_settings-4.tres
-# Temporary files
-*.backup
-*~
-# Build artifacts or distribution folders
-# build/
-# dist/
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
