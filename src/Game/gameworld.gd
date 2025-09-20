@@ -50,7 +50,19 @@ var random_remarks = [
 	"\"It's so dark down here...\"",
 	"\"Smells like mold...\"",
 	"\"Did I hear something?\"",
-	"\"Deep breaths... Deep breaths.\""
+	"\"Deep breaths... Deep breaths.\"",
+	"\"Getting hungry.\"",
+	"\"I feel like I'm being watched...\"",
+	"\"What even is this place?\"",
+	"\"Did I hear something crying?\"",
+	"\"Thought I heard something groan.\"",
+	"\"Every hall looks the same...\"",
+	"\"Why's it so damp down here?\"",
+	"\"Just... Keep... Going...\"",
+	"\"Count my bullets... Can't run out...\"",
+	"\"It's so cold down here.\"",
+	"\"I'm really testing my luck...\"",
+	"\"I hear something breathing...\""
 ]
 
 func _ready() -> void:

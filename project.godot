@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameboyDungeon"
-run/main_scene="res://src/Game/gameworld.tscn"
+run/main_scene="uid://b50uateaxhv0i"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://src/Assets/icon.svg"
 
@@ -81,3 +81,4 @@ Select={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.858824, 0.784314, 0.866667, 1)
