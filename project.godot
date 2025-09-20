@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameboyDungeon"
-run/main_scene="uid://b50uateaxhv0i"
+run/main_scene="uid://bb7wofvtwlsvg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://src/Assets/icon.svg"
 

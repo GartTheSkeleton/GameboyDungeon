@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=47 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -25,8 +25,11 @@
 [ext_resource type="Script" uid="uid://dh7gbon62pg31" path="res://src/Game/EventHandler/combat_input_handler.gd" id="18_2p5m6"]
 [ext_resource type="Script" uid="uid://oxl34e2vlyub" path="res://src/Game/EventHandler/game_over_input_handler.gd" id="18_cl2rc"]
 [ext_resource type="Texture2D" uid="uid://b0vqg5q47i5i5" path="res://src/Assets/VFX/gun_reload2.png" id="18_hy4dy"]
-[ext_resource type="Script" path="res://src/Game/gun.gd" id="18_jmb1y"]
 [ext_resource type="Script" uid="uid://bxs8gv7s574b4" path="res://src/Game/EventHandler/base_input_script.gd" id="19_8hu63"]
+[ext_resource type="Texture2D" uid="uid://bxyddm8y2q0w7" path="res://src/Assets/VFX/knife_attack1.png" id="20_5hjs6"]
+[ext_resource type="Texture2D" uid="uid://dlskr7ffnhyur" path="res://src/Assets/VFX/knife_attack2.png" id="21_jvhvo"]
+[ext_resource type="Texture2D" uid="uid://datxfbmw5pqi1" path="res://src/Assets/VFX/knife_attack3.png" id="22_pucdq"]
+[ext_resource type="Texture2D" uid="uid://cay8f2ajghcgq" path="res://src/Assets/VFX/hitmarker.png" id="23_jvhvo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
 texture = ExtResource("12_q8503")
@@ -162,6 +165,78 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0n7o"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5hjs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jvhvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pucdq")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Stab",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pucdq"]
+atlas = ExtResource("23_jvhvo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0n7o"]
+atlas = ExtResource("23_jvhvo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqtym"]
+atlas = ExtResource("23_jvhvo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcrsa"]
+atlas = ExtResource("23_jvhvo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jv3qj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pucdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0n7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqtym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcrsa")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -791,7 +866,16 @@ sprite_frames = SubResource("SpriteFrames_q8503")
 animation = &"Reload"
 autoplay = "Idle"
 offset = Vector2(0, -15)
-script = ExtResource("18_jmb1y")
+
+[node name="Knife" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Knife"]]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_j0n7o")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Hitmarker" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Hitmarker"]]
+sprite_frames = SubResource("SpriteFrames_jv3qj")
+autoplay = "default"
 
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 unique_name_in_owner = true

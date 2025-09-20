@@ -24,24 +24,31 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			damage = 2 * floor(.666 * entity.fighter_component.power) if is_knife_attack else 2 * entity.fighter_component.power
 			attack_description = "You deal a devastating blow to %s" % target.get_entity_name()
 			entity.fighter_component.next_hit_crits = false
+			entity.get_tree().get_first_node_in_group("Hitmarker").play("Hit")
 			if !is_knife_attack:
 				entity.fighter_component.ammo -= 1
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
+			else:
+				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
 		elif attack_roll >= 5:
 			damage = floor(.666 * entity.fighter_component.power) if is_knife_attack else entity.fighter_component.power
 			var type_index = rng.randi_range(0,1)
 			var options = ["stab", "slash at"]
 			var attack_selection = options[type_index]
 			attack_description = "You %s %s!" % [attack_selection, target.get_entity_name()] if is_knife_attack else "You shoot %s!" % target.get_entity_name()
+			entity.get_tree().get_first_node_in_group("Hitmarker").play("Hit")
 			if !is_knife_attack:
 				entity.fighter_component.ammo -= 1
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
+			else:
+				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
 		elif attack_roll > 2:
 			if !is_knife_attack:
 				attack_description = "Your gun jams!"
 				entity.get_tree().get_first_node_in_group("Gun").play("Jam")
 			else:
 				attack_description = "Your blade pierces nought but air."
+				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
 		else:
 			if !is_knife_attack:
 				attack_description = "You miss your shot!"
@@ -49,6 +56,7 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
 			else:
 				attack_description = "It's too quick! Your knife clashes with stone!"
+				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
 		MessageLog.send_message(attack_description)
 		await game.get_tree().create_timer(.75).timeout
 		await target.fighter_component.take_damage(damage)
