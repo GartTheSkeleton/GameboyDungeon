@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cg0pqok8x1f87"]
+
+[ext_resource type="Texture2D" uid="uid://wy4tmmhmm6ce" path="res://src/Assets/Entities/skeleton_attack.png" id="1_rcrlp"]
+
+[resource]
+atlas = ExtResource("1_rcrlp")

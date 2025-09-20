@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ss4kneusj5nm"]
+
+[ext_resource type="Texture2D" uid="uid://f6ppd7mng3q6" path="res://src/Assets/Entities/skeleton_hurt.png" id="1_4kug6"]
+
+[resource]
+atlas = ExtResource("1_4kug6")

@@ -189,7 +189,7 @@ func populate_room() -> void:
 			enemyTypes.SLUG:
 				entity_name = "Slug"
 			enemyTypes.ABOMINATION:
-				entity_name = "Slug"
+				entity_name = "Abomination"
 	if entity_name:
 		print("entity_name, position: ", entity_name, gridPosition)
 		SignalBus.create_entity.emit(entity_name, gridPosition, chest_contents)

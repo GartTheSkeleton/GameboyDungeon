@@ -1,32 +1,25 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://bda78jstap81"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=10 format=3 uid="uid://bda78jstap81"]
 
-[ext_resource type="Texture2D" uid="uid://cde5ckr6cfqlh" path="res://src/Assets/Entities/abomination_attack.png" id="1_q6fqd"]
-[ext_resource type="Texture2D" uid="uid://cshapqtnq4rxj" path="res://src/Assets/Entities/abomination_dead.png" id="2_w6jin"]
-[ext_resource type="Texture2D" uid="uid://dg8wto1rp7b53" path="res://src/Assets/Entities/abomination_hurt.png" id="3_86f6h"]
+[ext_resource type="Texture2D" uid="uid://d3k3ys6gy02qk" path="res://src/Assets/Definitions/Entities/Textures/abom_attack_texture.tres" id="1_w6jin"]
+[ext_resource type="Texture2D" uid="uid://cip6yw7yx5a8j" path="res://src/Assets/Definitions/Entities/Textures/abom_death_texture.tres" id="2_86f6h"]
+[ext_resource type="Texture2D" uid="uid://viv18q1sjg7g" path="res://src/Assets/Definitions/Entities/Textures/abom_hurt_texture.tres" id="3_khnki"]
+[ext_resource type="Texture2D" uid="uid://c3armb6hoqjlq" path="res://src/Assets/Definitions/Entities/Textures/abom_idle_texture.tres" id="4_2tgcn"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="4_khnki"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="5_2tgcn"]
 [ext_resource type="Texture2D" uid="uid://cg65x4upmf2o1" path="res://src/Assets/Entities/abomination.png" id="6_khnki"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hndd"]
-atlas = ExtResource("1_q6fqd")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fiifi"]
-atlas = ExtResource("2_w6jin")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jgsq7"]
-atlas = ExtResource("3_86f6h")
-
 [sub_resource type="Resource" id="Resource_avv7w"]
 script = ExtResource("4_khnki")
-max_hp = 4
+max_hp = 16
 power = 2
-luck = 0
+luck = 1
 ammo = 0
 stored_ammo = 0
 charms = 0
-death_texture = SubResource("AtlasTexture_fiifi")
-hurt_texture = SubResource("AtlasTexture_jgsq7")
-attack_texture = SubResource("AtlasTexture_4hndd")
+death_texture = ExtResource("2_86f6h")
+hurt_texture = ExtResource("3_khnki")
+attack_texture = ExtResource("1_w6jin")
+idle_texture = ExtResource("4_2tgcn")
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_os3x3"]

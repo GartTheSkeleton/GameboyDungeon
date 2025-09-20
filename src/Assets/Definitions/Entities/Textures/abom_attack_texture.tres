@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d3k3ys6gy02qk"]
+
+[ext_resource type="Texture2D" uid="uid://cde5ckr6cfqlh" path="res://src/Assets/Entities/abomination_attack.png" id="1_mwimp"]
+
+[resource]
+atlas = ExtResource("1_mwimp")

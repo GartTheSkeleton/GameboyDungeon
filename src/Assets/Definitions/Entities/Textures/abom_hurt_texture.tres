@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://viv18q1sjg7g"]
+
+[ext_resource type="Texture2D" uid="uid://dg8wto1rp7b53" path="res://src/Assets/Entities/abomination_hurt.png" id="1_4f4ty"]
+
+[resource]
+atlas = ExtResource("1_4f4ty")

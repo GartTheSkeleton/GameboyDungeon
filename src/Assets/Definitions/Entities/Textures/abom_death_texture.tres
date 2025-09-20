@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cip6yw7yx5a8j"]
+
+[ext_resource type="Texture2D" uid="uid://cshapqtnq4rxj" path="res://src/Assets/Entities/abomination_dead.png" id="1_52o4a"]
+
+[resource]
+atlas = ExtResource("1_52o4a")

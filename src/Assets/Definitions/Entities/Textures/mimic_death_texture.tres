@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bdefmkswgvttl"]
+
+[ext_resource type="Texture2D" uid="uid://fcaijomwywid" path="res://src/Assets/Entities/mimic_dead.png" id="1_ajs4o"]
+
+[resource]
+atlas = ExtResource("1_ajs4o")
