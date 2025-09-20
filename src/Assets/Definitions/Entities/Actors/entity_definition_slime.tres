@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://4uesrrnxktp8"]
 
-[ext_resource type="Texture2D" uid="uid://c0fq8sm2ny5dh" path="res://src/Assets/Entities/slime_attack.png" id="1_tog1w"]
-[ext_resource type="Texture2D" uid="uid://dp32ecxyib7yk" path="res://src/Assets/Entities/slime_dead.png" id="2_fwoan"]
+[ext_resource type="Texture2D" uid="uid://bravu7cssttrd" path="res://src/Assets/Entities/slime_attack.png" id="1_tog1w"]
+[ext_resource type="Texture2D" uid="uid://cyivyykhisbdm" path="res://src/Assets/Entities/slime_dead.png" id="2_fwoan"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_si0xn"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="3_tog1w"]
-[ext_resource type="Texture2D" uid="uid://kdohq3c40hib" path="res://src/Assets/Entities/slime_hurt.png" id="3_wfcmr"]
-[ext_resource type="Texture2D" uid="uid://c5x52rgnhaqs" path="res://src/Assets/Entities/slime.png" id="6_q8oky"]
+[ext_resource type="Texture2D" uid="uid://xr0hciaj72mr" path="res://src/Assets/Entities/slime_hurt.png" id="3_wfcmr"]
+[ext_resource type="Texture2D" uid="uid://d04bx5k80alc1" path="res://src/Assets/Entities/slime.png" id="6_q8oky"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_daoli"]
 atlas = ExtResource("1_tog1w")

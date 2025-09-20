@@ -1,10 +1,15 @@
 class_name AttackAction
 extends Action
 
+
 var rng = RandomNumberGenerator.new()
+
 
 func perform(game: Game, entity: Entity) -> void:
 	rng.randomize()
+	
+	entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
+	
 	if entity.entity_name == "Player":
 		if entity.fighter_component.ammo <= 0:
 			MessageLog.send_message("You're out of ammo!")

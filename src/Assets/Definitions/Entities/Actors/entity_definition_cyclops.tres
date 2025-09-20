@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EntityDefinition" load_steps=11 format=3 uid="uid://dhty74h8bhetk"]
 
-[ext_resource type="Texture2D" uid="uid://jbsdb4l0dgl" path="res://src/Assets/Entities/nothic_attack.png" id="1_avv7w"]
+[ext_resource type="Texture2D" uid="uid://c0t2ip3tncl50" path="res://src/Assets/Entities/nothic_attack.png" id="1_avv7w"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_iqdy0"]
 [ext_resource type="Texture2D" uid="uid://b3j413dkxht06" path="res://src/Assets/Definitions/Entities/Textures/cyclops_corpse_texture.tres" id="1_pkaoo"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_mlrns"]
-[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
-[ext_resource type="Texture2D" uid="uid://bxovn6umapgfx" path="res://src/Assets/Entities/nothic_hurt.png" id="3_myacs"]
+[ext_resource type="Texture2D" uid="uid://bguvdkdwf1lp0" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://gbb5kbxobyxu" path="res://src/Assets/Entities/nothic_hurt.png" id="3_myacs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81d2u"]
 atlas = ExtResource("1_avv7w")

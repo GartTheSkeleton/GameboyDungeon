@@ -1,26 +1,29 @@
-[gd_scene load_steps=33 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=36 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
 [ext_resource type="Script" uid="uid://qltfgtgp65q7" path="res://src/Game/EventHandler/input_handler.gd" id="2_hdij2"]
 [ext_resource type="Script" uid="uid://cymdwb2cngxtt" path="res://src/Map/map.gd" id="2_yssg5"]
-[ext_resource type="Texture2D" uid="uid://c68og528pp06a" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://b7g5hp1gjgx8k" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
-[ext_resource type="Texture2D" uid="uid://dnk1cco4lo30c" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
-[ext_resource type="Texture2D" uid="uid://y51uub0eail5" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
-[ext_resource type="Texture2D" uid="uid://dmfdwab6u80kd" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
+[ext_resource type="Texture2D" uid="uid://bqvjr3i5duwsp" path="res://src/Assets/VFX/compass_switch.png" id="4_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://bqxy38kt5nony" path="res://src/Assets/VFX/compass_east.png" id="4_54q2d"]
+[ext_resource type="Texture2D" uid="uid://dxfw24sqlajw4" path="res://src/Assets/VFX/compass_north.png" id="5_1nj4o"]
+[ext_resource type="Texture2D" uid="uid://c811arujrl75p" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
+[ext_resource type="Texture2D" uid="uid://1dl3k8u5p346" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
 [ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
-[ext_resource type="Texture2D" uid="uid://cgenhmsgkqoj7" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
-[ext_resource type="Texture2D" uid="uid://dj5be0ge14cg8" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
+[ext_resource type="Texture2D" uid="uid://dyayyx4hq6a4g" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
+[ext_resource type="Texture2D" uid="uid://ser3tmqpfy2i" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
 [ext_resource type="Script" uid="uid://dhp1e27unnmsb" path="res://src/GUI/message_log.gd" id="12_as7lh"]
-[ext_resource type="Texture2D" uid="uid://btibctykyq5i6" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
+[ext_resource type="Texture2D" uid="uid://b34bay6xf2g3f" path="res://src/Assets/Definitions/Resoures/border_box.png" id="12_q8503"]
 [ext_resource type="Script" uid="uid://dsrv47uv7iuoh" path="res://src/Game/combat_manager.gd" id="13_k0lof"]
 [ext_resource type="Script" uid="uid://c486fvimusn8k" path="res://src/Game/EventHandler/main_game_input_handler.gd" id="14_6jf8o"]
 [ext_resource type="Script" uid="uid://cgdh6usx8ioo3" path="res://src/GUI/stats_container.gd" id="14_d75vc"]
 [ext_resource type="Script" uid="uid://hw2dgtuymkav" path="res://src/Game/combat_menu.gd" id="14_pkeyt"]
 [ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="15_j816e"]
+[ext_resource type="Texture2D" uid="uid://dx7x3vj6qhpgm" path="res://src/Assets/VFX/gun_jam.png" id="16_aappt"]
+[ext_resource type="Texture2D" uid="uid://chh442jvrs4n" path="res://src/Assets/VFX/gun_shoot.png" id="17_2mf2y"]
 [ext_resource type="Script" uid="uid://dh7gbon62pg31" path="res://src/Game/EventHandler/combat_input_handler.gd" id="18_2p5m6"]
-[ext_resource type="Script" uid="uid://oxl34e2vlyub" path="res://src/Game/EventHandler/game_over_input_handler.gd" id="18_cl2rc"]
+[ext_resource type="Script" path="res://src/Game/EventHandler/game_over_input_handler.gd" id="18_cl2rc"]
+[ext_resource type="Script" uid="uid://eolkibxqyikn" path="res://src/Game/gun.gd" id="18_jmb1y"]
 [ext_resource type="Script" uid="uid://bxs8gv7s574b4" path="res://src/Game/EventHandler/base_input_script.gd" id="19_8hu63"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
@@ -108,7 +111,38 @@ animations = [{
 "texture": SubResource("AtlasTexture_as7lh")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_aappt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_aappt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_aappt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lgd45")
+}],
+"loop": false,
+"name": &"Jam",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_2mf2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_aappt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lgd45")
+}],
+"loop": false,
+"name": &"Shoot",
 "speed": 5.0
 }]
 
@@ -653,7 +687,10 @@ texture = ExtResource("11_1s8sg")
 texture_filter = 1
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_q8503")
+animation = &"Jam"
+autoplay = "Idle"
 offset = Vector2(0, -15)
+script = ExtResource("18_jmb1y")
 
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 unique_name_in_owner = true
