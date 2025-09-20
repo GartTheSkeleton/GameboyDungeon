@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bgo57l73sioep"]
+
+[ext_resource type="Texture2D" uid="uid://d33hpsqw7blnt" path="res://src/Assets/Entities/lever_unlocked.png" id="1_oeva7"]
+
+[resource]
+atlas = ExtResource("1_oeva7")

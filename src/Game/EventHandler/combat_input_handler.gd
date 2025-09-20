@@ -11,8 +11,6 @@ func get_action() -> Action:
 		action = CursorCombatMovementAction.new("Down")
 	elif Input.is_action_just_pressed("A"):
 		action = InteractAction.new(game.input_handler.current_input_handler_type)
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		action = EscapeAction.new()
+
 	
 	return action

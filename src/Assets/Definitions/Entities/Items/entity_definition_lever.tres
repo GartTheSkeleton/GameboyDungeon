@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://drdw0rpq3ejd0"]
+
+[ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="1_bvs7k"]
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_xp4ck"]
+[ext_resource type="Texture2D" uid="uid://btxsdqdwufs7v" path="res://src/Assets/Entities/lever_locked.png" id="3_l4urf"]
+
+[sub_resource type="Resource" id="Resource_c6r8k"]
+script = ExtResource("1_bvs7k")
+remain_after_use = true
+is_activated = false
+metadata/_custom_type_script = "uid://42lu0e0nlk5b"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jhdk"]
+atlas = ExtResource("3_l4urf")
+
+[resource]
+script = ExtResource("1_xp4ck")
+name = "Lever"
+texture = SubResource("AtlasTexture_3jhdk")
+is_blocking_movement = false
+is_mimic = false
+is_fairy = false
+item_definition = SubResource("Resource_c6r8k")
+metadata/_custom_type_script = "uid://duxtebnoobju8"

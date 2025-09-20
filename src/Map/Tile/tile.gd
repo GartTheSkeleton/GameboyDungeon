@@ -177,6 +177,8 @@ func populate_room() -> void:
 			chest_contents = "Lucky Charm"
 	if hasFairy:
 		entity_name = "Fairy"
+	if hasLever:
+		entity_name = "Lever"
 	if hasChest:
 		if isMimic:
 			entity_name = "Mimic"

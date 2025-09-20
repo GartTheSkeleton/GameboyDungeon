@@ -15,18 +15,19 @@ func perform(game: Game, entity: Entity) -> void:
 	var is_facing_wall: bool = false
 	var blocking_entity = map_data.get_blocking_entity_at_location(current_grid_position)
 	var item_in_room = map_data.get_item_at_location(current_grid_position)
+	var blocking_panel_types = [current_room.panelTypes.WALL, current_room.panelTypes.LOCKEDDOOR]
 	match game.playerFacingString:
 		"NORTH":
-			if current_room.northPanelType == current_room.panelTypes.WALL:
+			if blocking_panel_types.has(current_room.northPanelType):
 				is_facing_wall = true
 		"EAST":
-			if current_room.eastPanelType == current_room.panelTypes.WALL:
+			if blocking_panel_types.has(current_room.eastPanelType):
 				is_facing_wall = true
 		"SOUTH":
-			if current_room.southPanelType == current_room.panelTypes.WALL:
+			if blocking_panel_types.has(current_room.southPanelType):
 				is_facing_wall = true
 		"WEST":
-			if current_room.westPanelType == current_room.panelTypes.WALL:
+			if blocking_panel_types.has(current_room.westPanelType):
 				is_facing_wall = true
 	if not destination_tile || is_facing_wall || blocking_entity:
 		var message: String

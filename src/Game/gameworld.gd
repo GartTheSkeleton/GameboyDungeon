@@ -35,6 +35,7 @@ const entity_types = {
 	"skeleton": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_skeleton.tres"),
 	"player": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_player.tres"),
 	"key": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_key.tres"),
+	"lever": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_lever.tres"),
 	"ammo": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_ammo.tres"),
 	"charm": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_charm.tres"),
 	"knife": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_knife.tres"),
@@ -87,6 +88,9 @@ func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 			new_entity.position.y -= 16
 		"Lucky Charm":
 			new_entity = Entity.new(grid_pos, entity_types.charm, map_data)
+			new_entity.position.y -= 16
+		"Lever":
+			new_entity = Entity.new(grid_pos, entity_types.lever, map_data)
 			new_entity.position.y -= 16
 		"Fairy":
 			new_entity = Entity.new(grid_pos, entity_types.fairy, map_data)

@@ -10,8 +10,9 @@ var transaction_complete: bool = false
 
 var mimic_texture = preload("res://src/Assets/Definitions/Entities/Textures/mimic_idle_texture.tres")
 var rng = RandomNumberGenerator.new()
-
 var open_chest_texture: AtlasTexture = preload("res://src/Assets/Definitions/Entities/Textures/open_chest.tres")
+var unlocked_lever_texture: AtlasTexture = preload("res://src/Assets/Definitions/Entities/Textures/unlocked_lever_texture.tres")
+
 func _init(definition: ItemComponentDefinition, contents = null) -> void:
 	remain_after_use = definition.remain_after_use
 	is_activated = definition.is_activated
@@ -28,6 +29,7 @@ func reveal_contents(grid_position: Vector2i, player_grid_position: Vector2i) ->
 func activate(parent_entity: Entity) -> void:
 	rng.randomize()
 	var player = parent_entity.map_data.player
+	var map_data = parent_entity.map_data
 	if parent_entity.entity_name == "Ammo":
 		var result = rng.randi_range(1, 6) + player.fighter_component.luck
 		if result >= 6:
@@ -58,6 +60,28 @@ func activate(parent_entity: Entity) -> void:
 		player.fighter_component.has_knife = true
 		SignalBus.reveal_stab_action.emit()
 		MessageLog.send_message("Thank the gods; this doesn't need reloading.")
+	elif parent_entity.entity_name == "Lever":
+		var current_room = map_data.get_tile(parent_entity.grid_position)
+		var target_room = map_data.get_tile(current_room.leverTarget)
+		if target_room:
+			var unlocked = false
+			if target_room.northPanelType == target_room.panelTypes.LOCKEDDOOR:
+				target_room.northPanelType = target_room.panelTypes.DOOR
+				unlocked = true
+			if target_room.eastPanelType == target_room.panelTypes.LOCKEDDOOR:
+				target_room.eastPanelType = target_room.panelTypes.DOOR
+				unlocked = true
+			if target_room.southPanelType == target_room.panelTypes.LOCKEDDOOR:
+				target_room.southPanelType = target_room.panelTypes.DOOR
+				unlocked = true
+			if target_room.westPanelType == target_room.panelTypes.LOCKEDDOOR:
+				target_room.westPanelType = target_room.panelTypes.DOOR
+				unlocked = true
+			parent_entity.texture = unlocked_lever_texture
+			if unlocked:
+				MessageLog.send_message("You hear the echoes of a distant door opening.")
+			else:
+				MessageLog.send_message("The sound of the lever is echoed only by silence.")
 	elif parent_entity.entity_name == "Fairy Merchant":
 		conversation_started = true
 		if transaction_complete:
@@ -79,5 +103,6 @@ func activate(parent_entity: Entity) -> void:
 		is_activated = true
 	if !remain_after_use:
 		parent_entity.free()
-	await get_tree().create_timer(2).timeout
-	conversation_complete = true
+	else:
+		await get_tree().create_timer(2).timeout
+		conversation_complete = true

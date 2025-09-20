@@ -87,11 +87,19 @@ func reload() -> void:
 		MessageLog.send_message("You don't need to reload!")
 	elif stored_ammo > 0:
 		gun.play("Reload")
+		var message: String
 		var missing_ammo = 6 - ammo
-		stored_ammo -= missing_ammo
-		ammo += missing_ammo
-		var message = "You load up %s more shots" % str(missing_ammo)
+		if stored_ammo >= missing_ammo:
+			stored_ammo -= missing_ammo
+			ammo += missing_ammo
+			message = "You load up %s more shots" % str(missing_ammo)
+		else:
+			ammo += stored_ammo
+			stored_ammo = 0
+			message = "You load up %s more shots" % str(stored_ammo)
 		MessageLog.send_message(message)
+	else:
+		MessageLog.send_message("Uh oh! You're of ammo!")
 	await get_tree().create_timer(1).timeout
 
 func pray() -> void:
