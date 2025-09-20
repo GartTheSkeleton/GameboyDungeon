@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=38 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -21,8 +21,10 @@
 [ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="15_j816e"]
 [ext_resource type="Texture2D" uid="uid://dx7x3vj6qhpgm" path="res://src/Assets/VFX/gun_jam.png" id="16_aappt"]
 [ext_resource type="Texture2D" uid="uid://chh442jvrs4n" path="res://src/Assets/VFX/gun_shoot.png" id="17_2mf2y"]
+[ext_resource type="Texture2D" uid="uid://bfgjhn0pdnc1l" path="res://src/Assets/VFX/gun_reload1.png" id="17_jmb1y"]
 [ext_resource type="Script" uid="uid://dh7gbon62pg31" path="res://src/Game/EventHandler/combat_input_handler.gd" id="18_2p5m6"]
 [ext_resource type="Script" path="res://src/Game/EventHandler/game_over_input_handler.gd" id="18_cl2rc"]
+[ext_resource type="Texture2D" uid="uid://dusgaspheqdsr" path="res://src/Assets/VFX/gun_reload2.png" id="18_hy4dy"]
 [ext_resource type="Script" uid="uid://eolkibxqyikn" path="res://src/Game/gun.gd" id="18_jmb1y"]
 [ext_resource type="Script" uid="uid://bxs8gv7s574b4" path="res://src/Game/EventHandler/base_input_script.gd" id="19_8hu63"]
 
@@ -129,6 +131,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"Jam",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_jmb1y")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_hy4dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lgd45")
+}],
+"loop": true,
+"name": &"Reload",
 "speed": 5.0
 }, {
 "frames": [{
@@ -687,8 +706,10 @@ texture = ExtResource("11_1s8sg")
 texture_filter = 1
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_q8503")
-animation = &"Jam"
+animation = &"Reload"
 autoplay = "Idle"
+frame = 3
+frame_progress = 0.303843
 offset = Vector2(0, -15)
 script = ExtResource("18_jmb1y")
 

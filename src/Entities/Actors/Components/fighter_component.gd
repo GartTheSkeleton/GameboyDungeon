@@ -1,6 +1,8 @@
 class_name FighterComponent
 extends Component
 
+@onready var gun = get_tree().get_first_node_in_group("Gun")
+
 signal hp_changed(hp, max_hp)
 var parent: Entity
 var next_hit_crits: bool = false
@@ -71,6 +73,7 @@ func reload() -> void:
 	if ammo == 6:
 		MessageLog.send_message("You don't need to reload!")
 	elif stored_ammo > 0:
+		gun.play("Reload")
 		var missing_ammo = 6 - ammo
 		stored_ammo -= missing_ammo
 		ammo += missing_ammo

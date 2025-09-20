@@ -7,9 +7,6 @@ var rng = RandomNumberGenerator.new()
 
 func perform(game: Game, entity: Entity) -> void:
 	rng.randomize()
-	
-	entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
-	
 	if entity.entity_name == "Player":
 		if entity.fighter_component.ammo <= 0:
 			MessageLog.send_message("You're out of ammo!")
@@ -28,15 +25,19 @@ func perform(game: Game, entity: Entity) -> void:
 			attack_description = "You deal a devastating blow to %s" % target.get_entity_name()
 			entity.fighter_component.ammo -= 1
 			entity.fighter_component.next_hit_crits = false
+			entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
 		elif attack_roll >= 5:
 			damage = entity.fighter_component.power
 			attack_description= "You attack %s" % target.get_entity_name()
 			entity.fighter_component.ammo -= 1
+			entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
 		elif attack_roll > 2:
 			attack_description = "Your gun jams!"
+			entity.get_tree().get_first_node_in_group("Gun").play("Jam")
 		else:
 			attack_description = "You miss your shot!"
 			entity.fighter_component.ammo -= 1
+			entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
 		MessageLog.send_message(attack_description)
 		await game.get_tree().create_timer(1).timeout
 		target.fighter_component.take_damage(damage)
