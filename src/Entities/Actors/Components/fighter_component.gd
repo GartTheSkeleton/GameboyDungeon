@@ -16,7 +16,10 @@ var hp: int:
 			die()
 var defense: int
 var power: int
-var death_texture: Texture
+var death_texture: AtlasTexture
+var hurt_texture: AtlasTexture
+var attack_texture: AtlasTexture
+var idle_texture: AtlasTexture
 var stored_ammo: int = 0:
 	set(value):
 		stored_ammo = value
@@ -53,6 +56,9 @@ func _init(definition: FighterComponentDefinition, parent: Entity) -> void:
 	stored_ammo = definition.stored_ammo
 	charms = definition.charms
 	death_texture = definition.death_texture
+	hurt_texture = definition.hurt_texture
+	idle_texture = definition.idle_texture
+	attack_texture = definition.attack_texture
 
 func heal(amount: int) -> int:
 	if hp == max_hp:
@@ -65,7 +71,13 @@ func heal(amount: int) -> int:
 	return amount_recovered
 
 func take_damage(amount: int) -> void:
-	hp -= amount
+	if amount > 0:
+		if hurt_texture:
+			parent.texture = hurt_texture
+			await get_tree().create_timer(1).timeout
+		hp -= amount
+		if parent.is_alive() && parent.texture != idle_texture :
+			parent.texture = idle_texture 
 
 func expend_ammo() -> void:
 	ammo -= 1
@@ -154,3 +166,14 @@ func die() -> void:
 	SignalBus.end_combat.emit()
 	if entity.is_mimic:
 		SignalBus.create_entity.emit(entity.item_component.contents, entity.grid_position, null)
+
+func swap_texture(texture: String) -> void:
+	match texture:
+		"idle":
+			parent.texture = idle_texture
+		"hurt":
+			parent.texture = hurt_texture
+		"attack":
+			parent.texture = attack_texture
+		"death":
+			parent.texture = death_texture

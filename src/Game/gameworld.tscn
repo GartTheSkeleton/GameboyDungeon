@@ -146,7 +146,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_lgd45")
 }],
-"loop": true,
+"loop": false,
 "name": &"Reload",
 "speed": 5.0
 }, {

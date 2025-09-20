@@ -50,9 +50,10 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			else:
 				attack_description = "It's too quick! Your knife clashes with stone!"
 		MessageLog.send_message(attack_description)
-		await game.get_tree().create_timer(1).timeout
-		target.fighter_component.take_damage(damage)
+		await game.get_tree().create_timer(.75).timeout
+		await target.fighter_component.take_damage(damage)
 	else:
+		entity.fighter_component.swap_texture("attack")
 		var target: Entity = game.player
 		var die_1 = rng.randi_range(1, 6)
 		var die_2 = rng.randi_range(1, 6)
@@ -73,4 +74,5 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			attack_description = "%s flails clumsily!" % entity.get_entity_name()
 		MessageLog.send_message(attack_description)
 		await game.get_tree().create_timer(1).timeout
-		target.fighter_component.take_damage(damage)
+		await target.fighter_component.take_damage(damage)
+		entity.fighter_component.swap_texture("idle")

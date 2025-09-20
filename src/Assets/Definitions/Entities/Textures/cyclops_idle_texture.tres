@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cklujs7utlrn1"]
+
+[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="1_sabgc"]
+
+[resource]
+atlas = ExtResource("1_sabgc")

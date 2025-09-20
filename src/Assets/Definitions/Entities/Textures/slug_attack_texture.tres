@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ddugy1jqssd38"]
+
+[ext_resource type="Texture2D" uid="uid://c0fq8sm2ny5dh" path="res://src/Assets/Entities/slime_attack.png" id="1_12vcj"]
+
+[resource]
+atlas = ExtResource("1_12vcj")

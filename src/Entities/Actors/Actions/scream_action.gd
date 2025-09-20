@@ -18,9 +18,11 @@ func perform(game: Game, entity: Entity) -> void:
 			result = 2000
 		await target.fighter_component.get_screamed_at(result)
 	else:
+		entity.fighter_component.swap_texture("attack")
 		rng.randomize()
 		var target: Entity = game.player
 		var message = "%s lets out a primal scream!" % entity.entity_name
 		MessageLog.send_message(message)
 		var result = rng.randi_range(0, 6) + entity.fighter_component.luck
 		await target.fighter_component.get_screamed_at(result)
+		entity.fighter_component.swap_texture("idle")

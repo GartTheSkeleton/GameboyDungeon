@@ -14,3 +14,4 @@ extends Resource
 @export var death_texture: AtlasTexture
 @export var hurt_texture: AtlasTexture
 @export var attack_texture: AtlasTexture
+@export var idle_texture: AtlasTexture
