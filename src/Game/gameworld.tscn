@@ -573,13 +573,22 @@ gridPosition = Vector2i(4, -15)
 northPanelType = 2
 eastPanelType = 2
 southPanelType = 1
+westPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -10)
+
+[node name="4-16" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(4, -16)
+northPanelType = 2
+eastPanelType = 2
+southPanelType = 1
 westPanelType = 1
 itemType = 1
 hasEnemy = true
 leverTarget = Vector2i(-1, -10)
 
-[node name="3-15" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(3, -15)
+[node name="3-16" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -16)
 northPanelType = 2
 eastPanelType = 1
 southPanelType = 2
@@ -804,6 +813,7 @@ eastPanelType = 2
 southPanelType = 2
 westPanelType = 1
 itemType = 1
+hasEnemy = true
 leverTarget = Vector2i(-1, -6)
 
 [node name="5-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
@@ -866,7 +876,7 @@ gridPosition = Vector2i(6, -9)
 northPanelType = 2
 eastPanelType = 2
 southPanelType = 2
-itemType = 1
+hasChest = true
 leverTarget = Vector2i(-1, -6)
 
 [node name="-1-9" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
