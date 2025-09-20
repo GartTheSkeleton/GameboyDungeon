@@ -28,5 +28,7 @@ func perform(game: Game, entity: Entity) -> void:
 			"Pray":
 				await entity.fighter_component.pray()
 			"Stab":
-				pass
+				var is_knife_attack = true
+				var attack = AttackAction.new()
+				await attack.perform(game, entity, is_knife_attack)
 		SignalBus.player_turn_complete.emit()

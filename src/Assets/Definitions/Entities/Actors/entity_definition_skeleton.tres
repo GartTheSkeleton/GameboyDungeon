@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EntityDefinition" load_steps=12 format=3 uid="uid://dn0sjjc6eup8t"]
 
-[ext_resource type="Texture2D" uid="uid://b6j2vda200u8f" path="res://src/Assets/Entities/skeleton_dead.png" id="1_8xdif"]
-[ext_resource type="Texture2D" uid="uid://dptqa3eyp3hmh" path="res://src/Assets/Entities/skeleton_attack.png" id="1_rjmyh"]
+[ext_resource type="Texture2D" uid="uid://bdm8v630luvep" path="res://src/Assets/Entities/skeleton_dead.png" id="1_8xdif"]
+[ext_resource type="Texture2D" uid="uid://wy4tmmhmm6ce" path="res://src/Assets/Entities/skeleton_attack.png" id="1_rjmyh"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_qkwo3"]
-[ext_resource type="Texture2D" uid="uid://w6qb23sti1po" path="res://src/Assets/Entities/skeleton_hurt.png" id="3_6enyg"]
+[ext_resource type="Texture2D" uid="uid://f6ppd7mng3q6" path="res://src/Assets/Entities/skeleton_hurt.png" id="3_6enyg"]
 [ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="3_rjmyh"]
-[ext_resource type="Texture2D" uid="uid://dt84gyogs1erv" path="res://src/Assets/Entities/skeleton.png" id="4_qkwo3"]
+[ext_resource type="Texture2D" uid="uid://b37mdwiynjla" path="res://src/Assets/Entities/skeleton.png" id="4_qkwo3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjgpr"]
 atlas = ExtResource("1_rjmyh")

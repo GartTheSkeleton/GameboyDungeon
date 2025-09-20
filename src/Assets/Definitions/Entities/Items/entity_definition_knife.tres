@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://cbuwob6wjgiss"]
+
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_h81hx"]
+[ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="1_xx2mi"]
+[ext_resource type="Texture2D" uid="uid://ccqlprekdggrq" path="res://src/Assets/Entities/knife.png" id="3_gu5y3"]
+
+[sub_resource type="Resource" id="Resource_xa8wj"]
+script = ExtResource("1_xx2mi")
+remain_after_use = false
+is_activated = false
+metadata/_custom_type_script = "uid://42lu0e0nlk5b"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ewvj"]
+atlas = ExtResource("3_gu5y3")
+
+[resource]
+script = ExtResource("1_h81hx")
+name = "Knife"
+texture = SubResource("AtlasTexture_3ewvj")
+is_blocking_movement = true
+is_mimic = false
+item_definition = SubResource("Resource_xa8wj")
+metadata/_custom_type_script = "uid://duxtebnoobju8"

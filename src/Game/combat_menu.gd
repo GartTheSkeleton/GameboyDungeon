@@ -9,7 +9,8 @@ extends VBoxContainer
 @onready var cursor: Label = $Shoot/Cursor
 
 func _ready() -> void:
-	stab_action.visible = false
+	#stab_action.visible = false
+	SignalBus.reveal_stab_action.connect(reveal_stab_action)
 
 func get_selected_option() -> HBoxContainer:
 	var cursor_parent = cursor.get_parent() as HBoxContainer
@@ -19,3 +20,6 @@ func get_selected_option() -> HBoxContainer:
 		if options[i].name == cursor_parent.name:
 			current_index = i
 	return options[current_index]
+
+func reveal_stab_action() -> void:
+	stab_action.visible = true

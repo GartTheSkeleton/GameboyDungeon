@@ -20,16 +20,16 @@ var grid_position: Vector2i:
 		grid_position = value
 		position = Grid.grid_to_world(grid_position)
 
-func _init(start_position: Vector2i, entity_definition: EntityDefinition, game_map_data: MapData) -> void:
+func _init(start_position: Vector2i, entity_definition: EntityDefinition, game_map_data: MapData, contents = null) -> void:
 	if entity_definition.texture:
 		sprite = Sprite2D.new()
 		sprite.centered = true
 		add_child(sprite)
 	map_data = game_map_data
 	grid_position = start_position
-	set_entity_type(entity_definition)
+	set_entity_type(entity_definition, contents)
 
-func set_entity_type(entity_definition: EntityDefinition) -> void:
+func set_entity_type(entity_definition: EntityDefinition, contents = null) -> void:
 	definition = entity_definition
 	entity_name = definition.name
 	is_mimic = definition.is_mimic
@@ -37,7 +37,7 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 	if entity_definition.texture:
 		texture = entity_definition.texture
 	if entity_definition.item_definition:
-		item_component = ItemComponent.new(entity_definition.item_definition, "Lucky Charm")
+		item_component = ItemComponent.new(entity_definition.item_definition, contents)
 		add_child(item_component)
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition, self)

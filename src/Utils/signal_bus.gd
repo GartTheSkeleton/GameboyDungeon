@@ -8,7 +8,8 @@ signal stats_changed
 signal start_combat
 signal end_combat
 signal player_turn_complete
-signal create_entity(name: String, position: Vector2i)
-signal entity_created(position: Vector2i)
+signal create_entity(name: String, position: Vector2i, contents)
+signal entity_created(entity_grid_position: Vector2i, player_grid_position)
 signal transition_input_handler(input_handler: InputHandler.InputHandlers)
 signal gameworld_ready
+signal reveal_stab_action

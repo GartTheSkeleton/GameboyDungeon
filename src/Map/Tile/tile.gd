@@ -3,7 +3,7 @@ extends Node2D
 
 enum panelTypes { DOOR, HALL, WALL, LOCKEDDOOR }
 enum enemyTypes { SLUG, SKELETON, CYCLOPS, ABOMINATION }
-enum itemTypes {BULLET, CHARM, KNIFE}
+enum itemTypes {AMMO, CHARM, KNIFE}
 
 @onready var leftSprite: Sprite2D = $LeftPanel
 @onready var centerSprite: Sprite2D = $CenterPanel
@@ -168,12 +168,18 @@ func update_room_sprites(direction: Vector2i) -> void:
 func populate_room() -> void:
 	var entity_name: String
 	var chest_contents = null
+	match itemType:
+		itemTypes.AMMO:
+			chest_contents = "Ammo"
+		itemTypes.KNIFE:
+			chest_contents = "Knife"
+		itemTypes.CHARM:
+			chest_contents = "Lucky Charm"
 	if hasChest:
 		if isMimic:
 			entity_name = "Mimic"
 		else:
 			entity_name = "Chest"
-			chest_contents = "Lucky Charm"
 	if hasEnemy:
 		match enemyType:
 			enemyTypes.CYCLOPS:

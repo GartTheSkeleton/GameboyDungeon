@@ -87,9 +87,11 @@ func begin_turn() -> void:
 					var flavor_text = [
 						"%s bares its teeth!" % enemy_character.entity_name,
 						"%s salivates at your fear!" % enemy_character.entity_name,
-						"%s stares at you with empty eyes." % enemy_character.entity_name,
+						"%s glares into your soul." % enemy_character.entity_name,
 						"%s feints a strike!" % enemy_character.entity_name,
 						"%s retches disturbingly!" % enemy_character.entity_name,
+						"%s shudders menacingly" % enemy_character.entity_name,
+						"%s sways erratically" % enemy_character.entity_name,
 					]
 					var text_index = randi_range(0, flavor_text.size() -1)
 					message = flavor_text[text_index]
@@ -104,6 +106,8 @@ func end_turn() -> void:
 
 func end_combat() -> void:
 	player_character.fighter_component.turn_skipped = false
+	if player_character.fighter_component.ammo < 6:
+		player_character.fighter_component.reload()
 	player_character.fighter_component.luck = -3 + player_character.fighter_component.charms
 	player_character = null
 	enemy_character.fighter_component.turn_skipped = false

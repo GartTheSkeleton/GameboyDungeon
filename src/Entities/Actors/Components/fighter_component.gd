@@ -41,6 +41,7 @@ var charms: int:
 var last_combat_action: String
 var rng = RandomNumberGenerator.new()
 var turn_count: int = 0
+var has_knife: bool = true
 
 func _init(definition: FighterComponentDefinition, parent: Entity) -> void:
 	self.parent = parent
@@ -152,4 +153,4 @@ func die() -> void:
 	entity.blocks_movement = false
 	SignalBus.end_combat.emit()
 	if entity.is_mimic:
-		SignalBus.create_entity.emit(entity.item_component.contents, entity.grid_position)
+		SignalBus.create_entity.emit(entity.item_component.contents, entity.grid_position, null)

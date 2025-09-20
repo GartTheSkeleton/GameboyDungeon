@@ -9,7 +9,7 @@ max_hp = 16
 power = 4
 luck = -3
 ammo = 6
-stored_ammo = 24
+stored_ammo = 6
 charms = 0
 metadata/_custom_type_script = "uid://n8b0mqkp6t6i"
 

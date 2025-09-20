@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://5vu36v04tkdb"]
+
+[ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="1_mmkyi"]
+[ext_resource type="Script" uid="uid://duxtebnoobju8" path="res://src/Entities/entity_definition.gd" id="1_wyquo"]
+[ext_resource type="Texture2D" uid="uid://otjv328w72kl" path="res://src/Assets/Entities/bullets.png" id="2_js1gq"]
+
+[sub_resource type="Resource" id="Resource_pfsly"]
+script = ExtResource("1_mmkyi")
+remain_after_use = false
+is_activated = false
+metadata/_custom_type_script = "uid://42lu0e0nlk5b"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmkyi"]
+atlas = ExtResource("2_js1gq")
+
+[resource]
+script = ExtResource("1_wyquo")
+name = "Ammo"
+texture = SubResource("AtlasTexture_mmkyi")
+is_blocking_movement = true
+is_mimic = false
+item_definition = SubResource("Resource_pfsly")
+metadata/_custom_type_script = "uid://duxtebnoobju8"
