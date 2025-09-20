@@ -4,6 +4,7 @@ extends Component
 var remain_after_use: bool
 var is_activated: bool
 var contents: String
+var conversation_complete: bool = false
 
 var mimic_texture = preload("res://src/Assets/Definitions/Entities/Textures/mimic_idle_texture.tres")
 var rng = RandomNumberGenerator.new()
@@ -55,6 +56,15 @@ func activate(parent_entity: Entity) -> void:
 		player.fighter_component.has_knife = true
 		SignalBus.reveal_stab_action.emit()
 		MessageLog.send_message("Thank the gods; this doesn't need reloading.")
-	is_activated = true
+	elif parent_entity.entity_name == "Fairy Merchant":
+		if !conversation_complete:
+			await MessageLog.send_message("I can invigorate you for a single Lucky Charm!", ["If you aren't interested, keep walkin'!"])
+		else:
+			await player.fighter_component.heal(player.fighter_component.max_hp)
+			player.fighter_component.charms -= 1
+			player.fighter_component.luck -= 1
+	if !parent_entity.entity_name == "Fairy Merchant" || conversation_complete == true:
+		is_activated = true
+	conversation_complete = true
 	if !remain_after_use:
 		parent_entity.free()

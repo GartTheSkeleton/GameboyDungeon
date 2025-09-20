@@ -175,6 +175,8 @@ func populate_room() -> void:
 			chest_contents = "Knife"
 		itemTypes.CHARM:
 			chest_contents = "Lucky Charm"
+	if hasFairy:
+		entity_name = "Fairy"
 	if hasChest:
 		if isMimic:
 			entity_name = "Mimic"
@@ -191,5 +193,4 @@ func populate_room() -> void:
 			enemyTypes.ABOMINATION:
 				entity_name = "Abomination"
 	if entity_name:
-		print("entity_name, position: ", entity_name, gridPosition)
 		SignalBus.create_entity.emit(entity_name, gridPosition, chest_contents)

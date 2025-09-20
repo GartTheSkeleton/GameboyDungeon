@@ -9,6 +9,8 @@ var entity_name: String
 var is_mimic: bool
 var blocks_movement: bool
 var sprite: Sprite2D
+var animated_sprite: AnimatedSprite2D
+var is_fairy: bool = false
 
 var texture: Texture:
 	set(value):
@@ -42,6 +44,8 @@ func set_entity_type(entity_definition: EntityDefinition, contents = null) -> vo
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition, self)
 		add_child(fighter_component)
+	if entity_definition.is_fairy:
+		set_animated_sprite()
 
 func get_entity_name() -> String:
 	return entity_name
@@ -58,3 +62,39 @@ func _notification(what):
 		if map_data.entities.has(self):
 			map_data.entities.erase(self)
 			# Repeat for any other arrays that might contain this object
+
+func set_animated_sprite() -> void:
+	var animated_sprite = AnimatedSprite2D.new()
+	add_child(animated_sprite)
+	animated_sprite.position = grid_position
+	var sprite_frames = SpriteFrames.new()
+	animated_sprite.sprite_frames = sprite_frames
+	var sprite_sheet_texture = load("res://src/Entities/Actors/Animations/fairy.png")
+
+	var animation_name = "float"
+	var hframes = 2
+	var vframes = 0
+	var total_frames_in_animation = 2
+	var start_frame_index = 0
+
+	sprite_frames.add_animation(animation_name)
+	sprite_frames.set_animation_speed(animation_name, 5)
+	sprite_frames.set_animation_loop(animation_name, true)
+
+	for i in range(total_frames_in_animation):
+		var frame_index_in_sheet = start_frame_index + i
+		var x = (frame_index_in_sheet % hframes)
+		var y = (frame_index_in_sheet / hframes)
+
+		var frame_rect = Rect2(x * (sprite_sheet_texture.get_width() / hframes),
+		0,
+		sprite_sheet_texture.get_width() / hframes,
+		0)
+
+		var atlas_texture = AtlasTexture.new()
+		atlas_texture.atlas = sprite_sheet_texture
+		atlas_texture.region = frame_rect
+
+		sprite_frames.add_frame(animation_name, atlas_texture)
+
+	animated_sprite.play(animation_name)

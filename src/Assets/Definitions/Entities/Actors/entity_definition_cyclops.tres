@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jsvetc4bf0q" path="res://src/Assets/Definitions/Entities/Textures/cyclops_attack_texture.tres" id="1_myacs"]
 [ext_resource type="Texture2D" uid="uid://b3j413dkxht06" path="res://src/Assets/Definitions/Entities/Textures/cyclops_corpse_texture.tres" id="1_pkaoo"]
 [ext_resource type="Script" uid="uid://n8b0mqkp6t6i" path="res://src/Assets/Definitions/Components/fighter_component_definition.gd" id="2_mlrns"]
-[ext_resource type="Texture2D" uid="uid://c63fduacclqgs" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
+[ext_resource type="Texture2D" uid="uid://c5s1aajs4cdlf" path="res://src/Assets/Entities/nothic.png" id="2_phdbn"]
 [ext_resource type="Texture2D" uid="uid://cj81blc4mtxq" path="res://src/Assets/Definitions/Entities/Textures/cyclops_hurt_texture.tres" id="3_81d2u"]
 [ext_resource type="Texture2D" uid="uid://cklujs7utlrn1" path="res://src/Assets/Definitions/Entities/Textures/cyclops_idle_texture.tres" id="4_xg1oi"]
 
@@ -32,5 +32,6 @@ name = "Monoclops"
 texture = SubResource("AtlasTexture_phdbn")
 is_blocking_movement = true
 is_mimic = false
+is_fairy = false
 fighter_definition = SubResource("Resource_avv7w")
 metadata/_custom_type_script = "uid://duxtebnoobju8"

@@ -44,7 +44,7 @@ var charms: int:
 var last_combat_action: String
 var rng = RandomNumberGenerator.new()
 var turn_count: int = 0
-var has_knife: bool = true
+var has_knife: bool = false
 
 func _init(definition: FighterComponentDefinition, parent: Entity) -> void:
 	self.parent = parent

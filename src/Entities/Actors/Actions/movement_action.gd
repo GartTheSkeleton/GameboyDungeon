@@ -13,8 +13,8 @@ func perform(game: Game, entity: Entity) -> void:
 	var destination_tile: Tile = map_data.get_tile(destination)
 	var current_room = map_data.get_tile(current_grid_position)
 	var is_facing_wall: bool = false
-	var blocking_entity = game.get_map_data().get_blocking_entity_at_location(current_grid_position)
-	
+	var blocking_entity = map_data.get_blocking_entity_at_location(current_grid_position)
+	var item_in_room = map_data.get_item_at_location(current_grid_position)
 	match game.playerFacingString:
 		"NORTH":
 			if current_room.northPanelType == current_room.panelTypes.WALL:
@@ -32,4 +32,6 @@ func perform(game: Game, entity: Entity) -> void:
 		var message: String
 		return
 	MessageLog.remove_message()
+	if item_in_room && item_in_room.item_component.conversation_complete && !item_in_room.item_component.is_activated:
+		item_in_room.item_component.conversation_complete = false
 	entity.grid_position = destination

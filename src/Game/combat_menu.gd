@@ -9,7 +9,7 @@ extends VBoxContainer
 @onready var cursor: Label = $Shoot/Cursor
 
 func _ready() -> void:
-	#stab_action.visible = false
+	stab_action.visible = false
 	SignalBus.reveal_stab_action.connect(reveal_stab_action)
 
 func get_selected_option() -> HBoxContainer:

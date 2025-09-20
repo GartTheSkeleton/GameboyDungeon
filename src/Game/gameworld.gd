@@ -39,6 +39,7 @@ const entity_types = {
 	"charm": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_charm.tres"),
 	"knife": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_knife.tres"),
 	"chest": preload("res://src/Assets/Definitions/Entities/Items/entity_definition_chest.tres"),
+	"fairy": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_fairy.tres"),
 	"mimic": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_mimic.tres"),
 	"abomination": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_abomination.tres"),
 	"slug": preload("res://src/Assets/Definitions/Entities/Actors/entity_definition_slime.tres")
@@ -87,6 +88,9 @@ func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 		"Lucky Charm":
 			new_entity = Entity.new(grid_pos, entity_types.charm, map_data)
 			new_entity.position.y -= 16
+		"Fairy":
+			new_entity = Entity.new(grid_pos, entity_types.fairy, map_data)
+			new_entity.position.y -= 16
 		"Abomination":
 			new_entity = Entity.new(grid_pos, entity_types.abomination, map_data)
 		"Mimic": 
@@ -133,12 +137,13 @@ func _physics_process(_delta: float) -> void:
 						combat_manager.begin_combat(player, entity_in_room)
 				else:
 					if item_in_room:
-						var name: String
-						if item_in_room.entity_name == "Ammo":
-							name = item_in_room.entity_name
-						else:
-							name = "a " + item_in_room.entity_name
-						message = "You found %s!" % name
+						if !item_in_room.item_component.conversation_complete:
+							var name: String
+							if item_in_room.entity_name == "Ammo":
+								name = item_in_room.entity_name
+							else:
+								name = "a " + item_in_room.entity_name
+							message = "You found %s!" % name
 				if message:
 					MessageLog.send_message(message)
 			elif action is MovementAction:
