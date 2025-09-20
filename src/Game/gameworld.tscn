@@ -551,6 +551,14 @@ westPanelType = 1
 itemType = 1
 leverTarget = Vector2i(-1, -10)
 
+[node name="3-14" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
+gridPosition = Vector2i(3, -14)
+northPanelType = 2
+eastPanelType = 1
+southPanelType = 2
+itemType = 1
+leverTarget = Vector2i(-1, -10)
+
 [node name="1-14" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
 gridPosition = Vector2i(1, -14)
 northPanelType = 2
@@ -565,10 +573,9 @@ leverTarget = Vector2i(-1, -10)
 gridPosition = Vector2i(0, -14)
 northPanelType = 2
 eastPanelType = 1
-southPanelType = 1
-westPanelType = 1
-itemType = 1
-hasEnemy = true
+southPanelType = 2
+westPanelType = 2
+hasChest = true
 leverTarget = Vector2i(-1, -10)
 
 [node name="1-8" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
@@ -854,6 +861,24 @@ offset_right = 64.0
 offset_bottom = 37.0
 text = "0"
 label_settings = ExtResource("15_j816e")
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 55.0
+offset_bottom = 13.0
+color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 38.0
+offset_bottom = 27.0
+color = Color(0.133333, 0.12549, 0.203922, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass"]
 position = Vector2(-124, 2)

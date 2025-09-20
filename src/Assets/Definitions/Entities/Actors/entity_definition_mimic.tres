@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tx105ckw08h" path="res://src/Assets/Definitions/Entities/Textures/mimic_hurt_texture.tres" id="3_8md10"]
 [ext_resource type="Script" uid="uid://42lu0e0nlk5b" path="res://src/Assets/Definitions/Components/item_component_definition.gd" id="3_phqd3"]
 [ext_resource type="Texture2D" uid="uid://qpbk4ear3k4b" path="res://src/Assets/Definitions/Entities/Textures/mimic_idle_texture.tres" id="4_820kl"]
-[ext_resource type="Texture2D" uid="uid://d1lwl6l2og5nn" path="res://src/Assets/Entities/chest_closed.png" id="5_1r42d"]
+[ext_resource type="Texture2D" uid="uid://cj8t6tf1lrxr4" path="res://src/Assets/Entities/chest_closed.png" id="5_1r42d"]
 
 [sub_resource type="Resource" id="Resource_0rwkg"]
 script = ExtResource("2_1r42d")
