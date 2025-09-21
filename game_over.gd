@@ -7,6 +7,8 @@ var titlescreen = preload("res://src/Game/title_screen.tscn")
 
 var timer = 160
 
+func _ready() -> void:
+	$AudioStreamPlayer2D.volume_db = -1
 func _process(delta: float) -> void:
 	if grave.position.y < 90:
 		grave.position.y += 80*delta

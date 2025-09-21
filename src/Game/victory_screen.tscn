@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg3fu1airthrd"]
+
+[ext_resource type="Script" uid="uid://bgpdcfvcbemb5" path="res://src/Game/victory_screen.gd" id="1_48df1"]
+[ext_resource type="FontFile" uid="uid://cbrvjg6nqn571" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="3_bdbad"]
+[ext_resource type="AudioStream" uid="uid://64sxhyjeruvk" path="res://src/Assets/SFX/youwin.mp3" id="4_u3eje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kll4p"]
+line_spacing = 1.0
+font = ExtResource("3_bdbad")
+font_size = 8
+font_color = Color(0.133333, 0.12549, 0.203922, 1)
+outline_color = Color(0.858824, 0.784314, 0.866667, 1)
+
+[node name="victory_screen" type="Node2D"]
+script = ExtResource("1_48df1")
+
+[node name="Outro" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 143.0
+text = "Daylight! You've escaped the labyrinth!
+          
+You step into the light, feeling any Lucky Charms in your pocket turn to dust.
+          
+But you don't feel like their luck has left you.
+          
+Perhaps your unlucky streak ends with this ordeal."
+label_settings = SubResource("LabelSettings_kll4p")
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Outro2" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 53.0
+offset_right = 166.0
+offset_bottom = 195.0
+text = "Thanks for playing Maze of Misfortune!"
+label_settings = SubResource("LabelSettings_kll4p")
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_u3eje")

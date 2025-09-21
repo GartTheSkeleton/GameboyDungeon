@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=77 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -57,6 +57,7 @@
 [ext_resource type="AudioStream" uid="uid://b4jseya2snsvl" path="res://src/Assets/SFX/click.wav" id="39_2wliv"]
 [ext_resource type="AudioStream" uid="uid://divm5foymc28h" path="res://src/Assets/SFX/monster_hurt.wav" id="39_22b2w"]
 [ext_resource type="AudioStream" uid="uid://dujg5k6vnsvfs" path="res://src/Assets/SFX/warble.wav" id="40_goq3o"]
+[ext_resource type="AudioStream" uid="uid://bf2ynhbiilpw2" path="res://src/Assets/SFX/creepinaround.ogg" id="44_sjrmq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
 texture = ExtResource("12_q8503")
@@ -1857,5 +1858,9 @@ stream = ExtResource("39_22b2w")
 
 [node name="SlimeScream" type="AudioStreamPlayer2D" parent="AudioBus"]
 stream = ExtResource("40_goq3o")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("44_sjrmq")
+autoplay = true
 
 [connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Gameworld" to="VBoxContainer/InfoBar/StatsPanel/Stats" method="update_stat_labels"]
