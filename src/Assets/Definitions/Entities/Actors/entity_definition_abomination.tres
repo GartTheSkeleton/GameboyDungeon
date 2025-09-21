@@ -27,7 +27,7 @@ atlas = ExtResource("6_khnki")
 
 [resource]
 script = ExtResource("5_2tgcn")
-name = "uÛ♋️ª♊️♣️Úßꝥ♈Ü⭐"
+name = "uÛ♋️ª♊️♣️Úßä♈Ü⭐"
 texture = SubResource("AtlasTexture_os3x3")
 is_blocking_movement = true
 is_mimic = false
