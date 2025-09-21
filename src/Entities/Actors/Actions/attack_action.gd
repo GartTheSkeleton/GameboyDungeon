@@ -8,7 +8,7 @@ var rng = RandomNumberGenerator.new()
 func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 	rng.randomize()
 	if entity.entity_name == "Player":
-		if entity.fighter_component.ammo <= 0:
+		if !is_knife_attack && entity.fighter_component.ammo <= 0:
 			MessageLog.send_message("You're out of ammo!")
 			return
 		var destination: Vector2i = entity.grid_position

@@ -1,8 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://b50uateaxhv0i"]
+[gd_scene load_steps=35 format=3 uid="uid://b50uateaxhv0i"]
 
 [ext_resource type="Script" uid="uid://djtf710hwpir8" path="res://src/Game/title_screen.gd" id="1_ak2if"]
 [ext_resource type="Texture2D" uid="uid://cx283gtqhmw3f" path="res://src/Assets/VFX/logo.png" id="2_ig5kc"]
 [ext_resource type="AudioStream" uid="uid://dlmwu0wjhcav4" path="res://src/Assets/SFX/poweron.wav" id="3_jxihu"]
+[ext_resource type="AudioStream" uid="uid://b4jseya2snsvl" path="res://src/Assets/SFX/click.wav" id="4_l8me3"]
+[ext_resource type="AudioStream" uid="uid://cg52g0ylgwdnh" path="res://src/Assets/SFX/dungeon dance.mp3" id="4_t0t5u"]
 [ext_resource type="Texture2D" uid="uid://b06a6xs8xqca5" path="res://src/Assets/TilePanels/hallway_left.png" id="4_wehae"]
 [ext_resource type="Texture2D" uid="uid://hkne3xtsjqmx" path="res://src/Assets/TilePanels/hallway_right.png" id="5_cu413"]
 [ext_resource type="Texture2D" uid="uid://bu665ycj0tvvx" path="res://src/Assets/TilePanels/hallway_center.png" id="6_8i0xu"]
@@ -21,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://kdohq3c40hib" path="res://src/Assets/Entities/slime_hurt.png" id="18_l8me3"]
 [ext_resource type="Texture2D" uid="uid://c0fq8sm2ny5dh" path="res://src/Assets/Entities/slime_attack.png" id="19_t0t5u"]
 [ext_resource type="FontFile" uid="uid://cbrvjg6nqn571" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="20_0vaei"]
+[ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="22_0bn4c"]
+[ext_resource type="Texture2D" uid="uid://bs35ccod5k130" path="res://src/Assets/VFX/overlay.png" id="23_l8me3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
 atlas = ExtResource("2_ig5kc")
@@ -150,6 +154,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_t0t5u"]
+line_spacing = 1.0
+font = ExtResource("20_0vaei")
+font_size = 8
+font_color = Color(0.133333, 0.12549, 0.203922, 1)
+outline_color = Color(0.858824, 0.784314, 0.866667, 1)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ak2if")
 
@@ -159,6 +170,14 @@ texture = SubResource("AtlasTexture_0hol4")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_jxihu")
+
+[node name="Song" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_t0t5u")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l8me3")
+volume_db = -2.0
+pitch_scale = 0.74
 
 [node name="Title Screen Panel" type="Node2D" parent="."]
 visible = false
@@ -203,3 +222,45 @@ label_settings = SubResource("LabelSettings_ix3l2")
 visible = false
 position = Vector2(80, 72)
 sprite_frames = SubResource("SpriteFrames_386ki")
+
+[node name="Intro" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 143.0
+text = "It's been a rough week.
+                
+You feel like all your luck has dried up.
+                
+First you lost your wallet, then you lost your job, then you got lost in the wilderness.
+                
+Then, just when things couldn't get any worse..."
+label_settings = SubResource("LabelSettings_t0t5u")
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Intro2" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 143.0
+text = "You fell into a hole...
+                
+Now you're alone in some dark tunnel.
+                
+You can hear things moving in the dark.
+                
+At least you have your gun.
+                
+Maybe there's a way out of here."
+label_settings = ExtResource("22_0bn4c")
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="IntroPanel" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(80, 72)
+texture = ExtResource("23_l8me3")

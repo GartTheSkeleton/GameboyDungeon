@@ -3,6 +3,8 @@ extends Component
 
 @onready var gun = get_tree().get_first_node_in_group("Gun")
 
+var gameOverScreen = preload("res://src/Game/game_over.tscn")
+
 signal hp_changed(hp, max_hp)
 var parent: Entity
 var next_hit_crits: bool = false
@@ -173,6 +175,10 @@ func die() -> void:
 	if get_map_data().player == entity:
 		death_message = "You died!"
 		SignalBus.player_died.emit()
+		var gameOver = gameOverScreen.instantiate()
+		var game = get_tree().get_first_node_in_group("Gameworld")
+		game.add_sibling(gameOver)
+		game.queue_free()
 	else:
 		death_message = "%s is dead!" % entity.get_entity_name()
 	MessageLog.send_message(death_message)
