@@ -50,6 +50,7 @@ func activate(parent_entity: Entity) -> void:
 		SignalBus.create_entity.emit(contents, parent_entity.grid_position, contents)
 	elif parent_entity.is_mimic:
 		parent_entity.texture = mimic_texture
+		parent_entity.position.y -= 18
 		parent_entity.blocks_movement = true
 		parent_entity.entity_name = "That Thing"
 		MessageLog.send_message("That's no Chest!")
