@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_avv7w"]
 script = ExtResource("4_khnki")
 max_hp = 20
-power = 2
+power = 3
 luck = 1
 ammo = 0
 stored_ammo = 0
