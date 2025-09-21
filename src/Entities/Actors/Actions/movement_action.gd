@@ -59,3 +59,4 @@ func perform(game: Game, entity: Entity) -> void:
 			item_in_room.item_component.conversation_complete = false
 			item_in_room.item_component.conversation_started = false
 		entity.grid_position = destination
+		entity.map_data.visit_tile(destination)

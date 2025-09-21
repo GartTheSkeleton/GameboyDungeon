@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func get_action() -> Action:
-	return current_input_handler.get_action()
+	return await current_input_handler.get_action()
 
 func transition_to(input_handler: InputHandlers) -> void:
 	if current_input_handler != null:

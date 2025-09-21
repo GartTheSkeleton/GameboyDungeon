@@ -125,7 +125,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if !combat_manager.has_begun:
-		var action: Action = input_handler.get_action()
+		var action: Action = await input_handler.get_action()
 		if action:
 			await action.perform(self, player)
 			var entity_in_room = get_map_data().get_entity_at_location(player.grid_position)
