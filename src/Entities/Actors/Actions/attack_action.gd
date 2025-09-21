@@ -73,7 +73,6 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 		var attack_description: String
 		var damage: int
 		if attack_roll > 11 || entity.fighter_component.next_hit_crits:
-			print(entity.entity_name)
 			if entity.entity_name == "Slugg":
 				entity.get_tree().get_first_node_in_group("AudioBus").slug_scream.play()
 			else:

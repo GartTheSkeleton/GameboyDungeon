@@ -13,3 +13,6 @@ signal entity_created(entity_grid_position: Vector2i, player_grid_position)
 signal transition_input_handler(input_handler: InputHandler.InputHandlers)
 signal gameworld_ready
 signal reveal_stab_action
+signal room_discovered
+signal toggle_map
+signal close_map

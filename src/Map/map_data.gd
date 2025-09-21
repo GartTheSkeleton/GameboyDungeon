@@ -5,6 +5,7 @@ extends RefCounted
 var width: int
 var height: int
 var tiles: Array[Node]
+var visited_tiles: Array[Vector2i] = [Vector2i(0,0)]
 var entities: Array[Entity]
 var player: Entity
 
@@ -51,3 +52,8 @@ func get_actor_at_location(location: Vector2i) -> Entity:
 		if actor.grid_position == location:
 			return actor
 	return null
+
+func visit_tile(tile: Vector2i) -> void:
+	if !visited_tiles.has(tile):
+		visited_tiles.append(tile)
+		SignalBus.room_discovered.emit()
