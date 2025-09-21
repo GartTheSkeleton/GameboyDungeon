@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=77 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://y51uub0eail5" path="res://src/Assets/VFX/compass_south.png" id="6_lgd45"]
 [ext_resource type="Texture2D" uid="uid://dmfdwab6u80kd" path="res://src/Assets/VFX/compass_west.png" id="7_as7lh"]
 [ext_resource type="Script" uid="uid://drp8j51mma0ey" path="res://src/Game/compass.gd" id="8_q8503"]
+[ext_resource type="Script" uid="uid://dv18onqto87yj" path="res://src/GUI/extra_ui.gd" id="8_sjrmq"]
 [ext_resource type="Texture2D" uid="uid://cgenhmsgkqoj7" path="res://src/Assets/VFX/gun_idle.png" id="10_lgd45"]
 [ext_resource type="Texture2D" uid="uid://dj5be0ge14cg8" path="res://src/Assets/VFX/ui_bullet.png" id="11_1s8sg"]
 [ext_resource type="Script" uid="uid://dhp1e27unnmsb" path="res://src/GUI/message_log.gd" id="12_as7lh"]
@@ -1600,16 +1601,11 @@ label_settings = ExtResource("15_j816e")
 visible_characters = 4
 visible_ratio = 0.92
 
-[node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
-z_index = 5
-z_as_relative = false
-texture_filter = 1
+[node name="ExtraUI" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
 position = Vector2(56, -48)
-sprite_frames = SubResource("SpriteFrames_k0lof")
-animation = &"EAST"
-script = ExtResource("8_q8503")
+script = ExtResource("8_sjrmq")
 
-[node name="Control" type="Control" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass"]
+[node name="Control" type="Control" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -136.0
@@ -1617,7 +1613,7 @@ offset_top = -18.0
 offset_right = -96.0
 offset_bottom = 22.0
 
-[node name="HealthLabel" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+[node name="HealthLabel" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
@@ -1627,7 +1623,7 @@ offset_bottom = 27.0
 text = "HP: "
 label_settings = ExtResource("15_j816e")
 
-[node name="AmmoLabel2" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+[node name="AmmoLabel2" type="Label" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 24.0
@@ -1637,7 +1633,7 @@ offset_bottom = 37.0
 text = "0"
 label_settings = ExtResource("15_j816e")
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI/Control"]
 z_index = -1
 layout_mode = 0
 offset_left = 1.0
@@ -1646,7 +1642,7 @@ offset_right = 55.0
 offset_bottom = 13.0
 color = Color(0.133333, 0.12549, 0.203922, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass/Control"]
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI/Control"]
 z_index = -1
 layout_mode = 0
 offset_left = 1.0
@@ -1655,11 +1651,21 @@ offset_right = 38.0
 offset_bottom = 27.0
 color = Color(0.133333, 0.12549, 0.203922, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/Compass"]
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D/ExtraUI"]
 position = Vector2(-124, 2)
 texture = ExtResource("11_1s8sg")
 
+[node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+position = Vector2(56, -48)
+sprite_frames = SubResource("SpriteFrames_k0lof")
+animation = &"EAST"
+script = ExtResource("8_q8503")
+
 [node name="Gun" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Gun"]]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_q8503")
@@ -1668,16 +1674,19 @@ autoplay = "Idle"
 offset = Vector2(0, -15)
 
 [node name="Knife" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Knife"]]
+unique_name_in_owner = true
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_j0n7o")
 animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Hitmarker" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Hitmarker"]]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_jv3qj")
 autoplay = "default"
 
 [node name="Transitions" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Transitions"]]
+unique_name_in_owner = true
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_xwwmq")
 animation = &"Left"
@@ -1719,6 +1728,14 @@ layout_mode = 1
 offset_right = 160.0
 offset_bottom = 96.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_2wliv")
+
+[node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/MapCanvas/Control/Panel"]
+z_index = 50
+texture_filter = 1
+position = Vector2(139, 20)
+sprite_frames = SubResource("SpriteFrames_k0lof")
+animation = &"EAST"
+script = ExtResource("8_q8503")
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/SubViewportContainer/SubViewport/MapCanvas/Control/Panel"]
 layout_mode = 0

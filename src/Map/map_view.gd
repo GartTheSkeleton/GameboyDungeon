@@ -22,7 +22,7 @@ func world_to_grid(world_pos: Vector2i) -> Vector2i:
 
 func _ready() -> void:
 	canvas.visible = false
-	player_icon.color = GameColors.WORLD_COLOR
+	player_icon.color = Color("45283c")
 	player_icon.size = tile_size
 	player_icon.z_index = 100
 	add_child(player_icon)
@@ -45,10 +45,23 @@ func force_close() -> void:
 func draw_map() -> void:
 	var visited_tiles = map_data.visited_tiles
 	for i in visited_tiles.size():
-		if !displayed_tiles.has(visited_tiles[i]):
-			var world_coordinates = grid_to_world(visited_tiles[i])
-			var map_tile = ColorRect.new()
-			map_tile.position = world_coordinates
-			map_tile.size = tile_size
-			map_tile.color = GameColors.TEXT_COLOR
-			add_child(map_tile)
+		var tile = visited_tiles[i]
+		if !displayed_tiles.has(tile.gridPosition):
+			var world_coordinates = grid_to_world(visited_tiles[i].gridPosition)
+			var room_panel = Panel.new()
+			room_panel.position = world_coordinates
+			room_panel.size = tile_size
+			var style_box = StyleBoxFlat.new()
+			style_box.bg_color = GameColors.TEXT_COLOR
+			style_box.border_color = GameColors.WORLD_COLOR
+			room_panel.add_theme_stylebox_override("panel", style_box)
+			var border_panel_types = [tile.panelTypes.WALL, tile.panelTypes.LOCKEDDOOR]
+			if border_panel_types.has(tile.northPanelType):
+				style_box.border_width_top = 1
+			if border_panel_types.has(tile.southPanelType):
+				style_box.border_width_bottom = 1
+			if border_panel_types.has(tile.westPanelType):
+				style_box.border_width_left = 1
+			if border_panel_types.has(tile.eastPanelType):
+				style_box.border_width_right = 1
+			add_child(room_panel)

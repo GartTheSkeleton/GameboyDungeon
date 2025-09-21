@@ -75,6 +75,8 @@ func _ready() -> void:
 	SignalBus.player_died.connect(handle_player_death)
 	create_player()
 	SignalBus.gameworld_ready.emit()
+	#await get_tree().create_timer(1.5).timeout
+	#SignalBus.room_discovered.emit()
 
 func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 	var new_entity: Entity

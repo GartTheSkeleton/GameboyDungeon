@@ -59,5 +59,5 @@ func perform(game: Game, entity: Entity) -> void:
 			item_in_room.item_component.conversation_complete = false
 			item_in_room.item_component.conversation_started = false
 	entity.grid_position = destination
-	entity.map_data.visit_tile(destination)
+	entity.map_data.visit_tile(destination_tile)
 	entity.get_tree().get_first_node_in_group("Transitions").play("Walk")
