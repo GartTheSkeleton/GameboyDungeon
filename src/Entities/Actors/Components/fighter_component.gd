@@ -112,12 +112,17 @@ func pray() -> void:
 			next_hit_crits = true
 			MessageLog.send_message("You feel blessed by whoever heard you!")
 		else:
-			var health_reward = .5 * max_hp
-			hp += health_reward
-			MessageLog.send_message("By their blessing, you feel invigorated!")
+			if hp > (0.5 * max_hp):
+				var reward = 3 if stored_ammo == 0 else 2
+				stored_ammo += reward
+				MessageLog.send_message("You found %s bullets in your pocket!" % reward)
+			else:
+				var health_reward = .5 * max_hp
+				hp += health_reward
+				MessageLog.send_message("By their blessing, you feel invigorated!")
 	elif result == 5:
-		if hp != max_hp:
-			var health_reward = .5 * max_hp
+		if hp <= (0.5 * max_hp):
+			var health_reward = floor(.4 * max_hp)
 			hp += health_reward
 			MessageLog.send_message("By some blessing, you feel invigorated!")
 		else: 

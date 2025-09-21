@@ -35,7 +35,7 @@ func activate(parent_entity: Entity) -> void:
 		if result >= 6:
 			player.fighter_component.stored_ammo += 6
 			MessageLog.send_message("You gain 6 bullets!")
-		elif result <= 2:
+		elif result <= 3:
 			player.fighter_component.stored_ammo += 2
 			MessageLog.send_message("You gain 2 bullets!")
 		else:

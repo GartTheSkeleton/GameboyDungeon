@@ -99,7 +99,7 @@ func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 			new_entity = Entity.new(grid_pos, entity_types.abomination, map_data)
 		"Mimic": 
 			new_entity = Entity.new(grid_pos, entity_types.mimic, map_data, chest_contents)
-			new_entity.position.y += 12
+			new_entity.position.y += 16
 		"Chest": 
 			new_entity = Entity.new(grid_pos, entity_types.chest, map_data, chest_contents)
 			new_entity.position.y += 12
@@ -171,7 +171,7 @@ func get_map_data() -> MapData:
 
 func create_player() -> void:
 	var map_data = get_map_data()
-	var player_start_pos: Vector2i = Vector2i.ZERO
+	var player_start_pos: Vector2i = Vector2i(4,-19)
 	player = Entity.new(player_start_pos, entity_types.player, map_data)
 	player.position = player_start_pos
 	map_data.player = player
