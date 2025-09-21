@@ -15,6 +15,7 @@ func perform(game: Game, entity: Entity) -> void:
 			return
 		if !interactable_entity.item_component.conversation_started || interactable_entity.item_component.conversation_complete:
 			interactable_entity.item_component.activate(interactable_entity)
+			entity.get_tree().get_first_node_in_group("AudioBus").click.play()
 	elif input_handler == InputHandler.InputHandlers.COMBAT:
 		var selected_option = game.combat_menu.get_selected_option()
 		match selected_option.name:

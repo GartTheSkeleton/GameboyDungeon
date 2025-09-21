@@ -24,10 +24,12 @@ func perform(game: Game, entity: Entity) -> void:
 	if removal_index:
 		options.remove_at(removal_index)
 	if direction == "Down":
+		entity.get_tree().get_first_node_in_group("AudioBus").click.play()
 		next_index = current_index + 1
 		if next_index >= options.size():
 			next_index = 0
 	if direction == "Up":
+		entity.get_tree().get_first_node_in_group("AudioBus").click.play()
 		next_index = current_index - 1
 		if next_index < 0:
 			next_index = options.size() - 1

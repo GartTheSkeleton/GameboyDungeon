@@ -20,15 +20,23 @@ func perform(game: Game, entity: Entity) -> void:
 		"NORTH":
 			if blocking_panel_types.has(current_room.northPanelType):
 				is_facing_wall = true
+			if current_room.northPanelType == current_room.panelTypes.DOOR:
+				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 		"EAST":
 			if blocking_panel_types.has(current_room.eastPanelType):
 				is_facing_wall = true
+			if current_room.eastPanelType == current_room.panelTypes.DOOR:
+				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 		"SOUTH":
 			if blocking_panel_types.has(current_room.southPanelType):
 				is_facing_wall = true
+			if current_room.southPanelType == current_room.panelTypes.DOOR:
+				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 		"WEST":
 			if blocking_panel_types.has(current_room.westPanelType):
 				is_facing_wall = true
+			if current_room.westPanelType == current_room.panelTypes.DOOR:
+				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 	if not destination_tile || is_facing_wall || blocking_entity:
 		var message: String
 		return

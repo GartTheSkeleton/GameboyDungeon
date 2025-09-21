@@ -25,6 +25,7 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			attack_description = "You deal a devastating blow to %s" % target.get_entity_name()
 			entity.fighter_component.next_hit_crits = false
 			entity.get_tree().get_first_node_in_group("Hitmarker").play("Hit")
+			entity.get_tree().get_first_node_in_group("AudioBus").shoot.play()
 			if !is_knife_attack:
 				entity.fighter_component.ammo -= 1
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
@@ -37,6 +38,7 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			var attack_selection = options[type_index]
 			attack_description = "You %s %s!" % [attack_selection, target.get_entity_name()] if is_knife_attack else "You shoot %s!" % target.get_entity_name()
 			entity.get_tree().get_first_node_in_group("Hitmarker").play("Hit")
+			entity.get_tree().get_first_node_in_group("AudioBus").shoot.play()
 			if !is_knife_attack:
 				entity.fighter_component.ammo -= 1
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
@@ -46,6 +48,7 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 			if !is_knife_attack:
 				attack_description = "Your gun jams!"
 				entity.get_tree().get_first_node_in_group("Gun").play("Jam")
+				entity.get_tree().get_first_node_in_group("AudioBus").click.play()
 			else:
 				attack_description = "Your blade pierces nought but air."
 				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
@@ -54,6 +57,7 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 				attack_description = "You miss your shot!"
 				entity.fighter_component.ammo -= 1
 				entity.get_tree().get_first_node_in_group("Gun").play("Shoot")
+				entity.get_tree().get_first_node_in_group("AudioBus").shoot.play()
 			else:
 				attack_description = "It's too quick! Your knife clashes with stone!"
 				entity.get_tree().get_first_node_in_group("Knife").play("Stab")
@@ -69,15 +73,28 @@ func perform(game: Game, entity: Entity, is_knife_attack: bool = false) -> void:
 		var attack_description: String
 		var damage: int
 		if attack_roll > 11 || entity.fighter_component.next_hit_crits:
+			print(entity.entity_name)
+			if entity.entity_name == "Slugg":
+				entity.get_tree().get_first_node_in_group("AudioBus").slug_scream.play()
+			else:
+				entity.get_tree().get_first_node_in_group("AudioBus").monster_scream.play()
 			damage = 2 * entity.fighter_component.power
 			attack_description = "%s strikes you with terrifying force!" % entity.get_entity_name()
 			entity.fighter_component.ammo -= 1
 			entity.fighter_component.next_hit_crits = false
 		elif attack_roll >= 5:
+			if entity.entity_name == "Slugg":
+				entity.get_tree().get_first_node_in_group("AudioBus").slug_scream.play()
+			else:
+				entity.get_tree().get_first_node_in_group("AudioBus").monster_scream.play()
 			damage = entity.fighter_component.power
 			attack_description= "%s strikes you!" % entity.get_entity_name()
 		elif attack_roll > 2:
 			attack_description = "%s lashes out, but you dodge!" % entity.get_entity_name()
+			if entity.entity_name == "Slugg":
+				entity.get_tree().get_first_node_in_group("AudioBus").slug_scream.play()
+			else:
+				entity.get_tree().get_first_node_in_group("AudioBus").monster_scream.play()
 		else:
 			attack_description = "%s flails clumsily!" % entity.get_entity_name()
 		MessageLog.send_message(attack_description)

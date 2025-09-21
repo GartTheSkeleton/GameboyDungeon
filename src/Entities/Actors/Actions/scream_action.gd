@@ -11,6 +11,7 @@ func perform(game: Game, entity: Entity) -> void:
 		if not target:
 			return
 		MessageLog.send_message("You let out a primal scream!")
+		entity.get_tree().get_first_node_in_group("AudioBus").player_scream.play()
 		var result = rng.randi_range(0, 6) + entity.fighter_component.luck
 		if entity.fighter_component.hp < 5:
 			result += 1
@@ -23,6 +24,10 @@ func perform(game: Game, entity: Entity) -> void:
 		var target: Entity = game.player
 		var message = "%s lets out a primal scream!" % entity.entity_name
 		MessageLog.send_message(message)
+		if entity.entity_name == "Slugg":
+			entity.get_tree().get_first_node_in_group("AudioBus").slug_scream.play()
+		else:
+			entity.get_tree().get_first_node_in_group("AudioBus").monster_scream.play()
 		var result = rng.randi_range(0, 6) + entity.fighter_component.luck
 		await target.fighter_component.get_screamed_at(result)
 		entity.fighter_component.swap_texture("idle")
