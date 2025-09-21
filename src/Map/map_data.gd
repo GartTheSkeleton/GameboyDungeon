@@ -15,8 +15,8 @@ func _init(map_width: int, map_height: int, all_tiles: Array[Node]) -> void:
 	tiles = all_tiles
 	var starting_room = get_tile(Vector2i.ZERO)
 	visited_tiles.append(starting_room)
-	for i in tiles.size():
-		visited_tiles.append(tiles[i])
+	#for i in tiles.size():
+		#visited_tiles.append(tiles[i])
 
 func get_tile(grid_position: Vector2i) -> Tile:
 	var index = tiles.find_custom(func(tile: Tile): return tile.gridPosition == grid_position)
