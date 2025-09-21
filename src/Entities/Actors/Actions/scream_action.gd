@@ -13,7 +13,7 @@ func perform(game: Game, entity: Entity) -> void:
 		MessageLog.send_message("You let out a primal scream!")
 		entity.get_tree().get_first_node_in_group("AudioBus").player_scream.play()
 		var result = rng.randi_range(0, 6) + entity.fighter_component.luck
-		if entity.fighter_component.hp < 5:
+		if entity.fighter_component.hp < 10:
 			result += 1
 		if entity.fighter_component.next_hit_crits:
 			result = 2000

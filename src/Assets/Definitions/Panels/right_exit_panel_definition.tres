@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://d0g7o18eool4c"]
+
+[ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_trmtr"]
+[ext_resource type="Texture2D" uid="uid://kviwmwkvu0v3" path="res://src/Assets/TilePanels/exit_right.png" id="2_7wirw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vs46"]
+atlas = ExtResource("2_7wirw")
+
+[resource]
+script = ExtResource("1_trmtr")
+name = "Right Exit"
+texture = SubResource("AtlasTexture_7vs46")
+locked = false
+metadata/_custom_type_script = "uid://caf1n6uwwk1bq"

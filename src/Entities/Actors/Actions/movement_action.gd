@@ -16,32 +16,46 @@ func perform(game: Game, entity: Entity) -> void:
 	var blocking_entity = map_data.get_blocking_entity_at_location(current_grid_position)
 	var item_in_room = map_data.get_item_at_location(current_grid_position)
 	var blocking_panel_types = [current_room.panelTypes.WALL, current_room.panelTypes.LOCKEDDOOR]
+	var found_exit = false
 	match game.playerFacingString:
 		"NORTH":
 			if blocking_panel_types.has(current_room.northPanelType):
 				is_facing_wall = true
 			if current_room.northPanelType == current_room.panelTypes.DOOR:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
+			if current_room.northPanelType == current_room.panelTypes.EXIT:
+				found_exit = true
+				MessageLog.send_message("You escaped! Victory!")
 		"EAST":
 			if blocking_panel_types.has(current_room.eastPanelType):
 				is_facing_wall = true
 			if current_room.eastPanelType == current_room.panelTypes.DOOR:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
+			if current_room.eastPanelType == current_room.panelTypes.EXIT:
+				found_exit = true
+				MessageLog.send_message("You escaped! Victory!")
 		"SOUTH":
 			if blocking_panel_types.has(current_room.southPanelType):
 				is_facing_wall = true
 			if current_room.southPanelType == current_room.panelTypes.DOOR:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
+			if current_room.southPanelType == current_room.panelTypes.EXIT:
+				found_exit = true
+				MessageLog.send_message("You escaped! Victory!")
 		"WEST":
 			if blocking_panel_types.has(current_room.westPanelType):
 				is_facing_wall = true
 			if current_room.westPanelType == current_room.panelTypes.DOOR:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
-	if not destination_tile || is_facing_wall || blocking_entity:
-		var message: String
-		return
-	MessageLog.remove_message()
-	if item_in_room && item_in_room.item_component.conversation_complete && !item_in_room.item_component.is_activated:
-		item_in_room.item_component.conversation_complete = false
-		item_in_room.item_component.conversation_started = false
-	entity.grid_position = destination
+			if current_room.westPanelType == current_room.panelTypes.EXIT:
+				found_exit = true
+				MessageLog.send_message("You escaped! Victory!")
+	if not found_exit:
+		if not destination_tile || is_facing_wall || blocking_entity:
+			MessageLog.send_message("The way is blocked!")
+			return
+		MessageLog.remove_message()
+		if item_in_room && item_in_room.item_component.conversation_complete && !item_in_room.item_component.is_activated:
+			item_in_room.item_component.conversation_complete = false
+			item_in_room.item_component.conversation_started = false
+		entity.grid_position = destination

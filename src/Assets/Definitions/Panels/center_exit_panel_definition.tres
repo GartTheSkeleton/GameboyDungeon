@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://dh5wm3i82wsux"]
+
+[ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_x7gws"]
+[ext_resource type="Texture2D" uid="uid://cefy8ys52le4f" path="res://src/Assets/TilePanels/exit_center.png" id="2_jtrio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cxrm"]
+atlas = ExtResource("2_jtrio")
+
+[resource]
+script = ExtResource("1_x7gws")
+name = "Center Exit"
+texture = SubResource("AtlasTexture_2cxrm")
+locked = false
+metadata/_custom_type_script = "uid://caf1n6uwwk1bq"
