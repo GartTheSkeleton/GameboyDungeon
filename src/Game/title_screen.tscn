@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b50uateaxhv0i"]
+[gd_scene load_steps=36 format=3 uid="uid://b50uateaxhv0i"]
 
 [ext_resource type="Script" uid="uid://djtf710hwpir8" path="res://src/Game/title_screen.gd" id="1_ak2if"]
 [ext_resource type="Texture2D" uid="uid://cx283gtqhmw3f" path="res://src/Assets/VFX/logo.png" id="2_ig5kc"]
@@ -25,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://cbrvjg6nqn571" path="res://src/Assets/Fonts/Nudge Orb.ttf" id="20_0vaei"]
 [ext_resource type="LabelSettings" uid="uid://c00xyupivrw0x" path="res://src/Assets/Definitions/Resoures/message_label_settings.tres" id="22_0bn4c"]
 [ext_resource type="Texture2D" uid="uid://bs35ccod5k130" path="res://src/Assets/VFX/overlay.png" id="23_l8me3"]
+[ext_resource type="Texture2D" uid="uid://0bv6enwb0667" path="res://src/Assets/VFX/tutorial.png" id="25_wx4bp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
 atlas = ExtResource("2_ig5kc")
@@ -258,6 +259,11 @@ label_settings = ExtResource("22_0bn4c")
 autowrap_mode = 3
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="Tutorial" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(80, 72)
+texture = ExtResource("25_wx4bp")
 
 [node name="IntroPanel" type="Sprite2D" parent="."]
 visible = false

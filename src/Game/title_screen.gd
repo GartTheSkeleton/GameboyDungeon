@@ -12,6 +12,7 @@ var game = preload("res://src/Game/gameworld.tscn")
 @onready var intro = $Intro
 @onready var intro2 = $Intro2
 @onready var introPanel = $IntroPanel
+@onready var tutorial = $Tutorial
 var loading = true
 var waitTimer = 90
 var waitTimer2 = 82
@@ -23,6 +24,7 @@ var introTimer = 0
 var startgame = false
 var clicksound = false
 var songplayed = false
+var tutorialVisible = false
 
 func _ready() -> void:
 	titleScreen.visible = false
@@ -94,6 +96,8 @@ func _physics_process(delta: float) -> void:
 					pointer.position.x = 118
 		else:
 			introCutscene(delta)
+	if tutorialVisible == true:
+		tutorial.visible = true
 			#if intro.visible_characters < intro.get_total_character_count():
 				#intro.visible_characters += 1
 				#waitTimer = 90
@@ -133,6 +137,9 @@ func introCutscene(delta):
 		else:
 			waitTimer2 -= 1
 			if waitTimer2 <= 0:
+				tutorialVisible = true
+		if tutorialVisible == true:
+			if Input.is_action_just_pressed("A"):
 				ready = true
 		if ready == true:
 			var newgame = game.instantiate()
