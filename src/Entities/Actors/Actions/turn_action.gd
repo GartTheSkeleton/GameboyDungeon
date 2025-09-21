@@ -30,7 +30,7 @@ func perform(game: Game, entity: Entity) -> void:
 			playerFacing = game.directions[nextDirection]
 			
 	if direction == "Right":
-		transitions.play("Right")
+		transitions.play("")
 		if game.playerFacing == game.directions.WEST:
 			#easy solution, just loop back to other side of the dictionary
 			playerFacing = game.directions.NORTH
