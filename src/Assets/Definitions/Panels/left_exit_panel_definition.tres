@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://cndrhhaq4e7di"]
+[gd_resource type="Resource" script_class="PanelDefinition" load_steps=4 format=3 uid="uid://dai0fr2q76vap"]
 
 [ext_resource type="Script" uid="uid://caf1n6uwwk1bq" path="res://src/Map/panel_definition.gd" id="1_plj44"]
 [ext_resource type="Texture2D" uid="uid://c6abtk4s16fgf" path="res://src/Assets/TilePanels/exit_left.png" id="2_ghikq"]

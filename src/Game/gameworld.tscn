@@ -297,7 +297,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Left",
-"speed": 18.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -320,7 +320,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Right",
-"speed": 18.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -343,7 +343,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Walk",
-"speed": 18.0
+"speed": 24.0
 }]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d75vc"]
@@ -353,7 +353,7 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
-[node name="InterfaceRoot" type="Control"]
+[node name="InterfaceRoot" type="Control" groups=["Gameworld"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1669,7 +1669,7 @@ autoplay = "default"
 [node name="Transitions" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Transitions"]]
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_xwwmq")
-animation = &"Walk"
+animation = &"Left"
 autoplay = "Empty"
 
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
