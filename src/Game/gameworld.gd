@@ -171,7 +171,7 @@ func get_map_data() -> MapData:
 
 func create_player() -> void:
 	var map_data = get_map_data()
-	var player_start_pos: Vector2i = Vector2i(4,-19)
+	var player_start_pos: Vector2i = Vector2i.ZERO
 	player = Entity.new(player_start_pos, entity_types.player, map_data)
 	player.position = player_start_pos
 	map_data.player = player
