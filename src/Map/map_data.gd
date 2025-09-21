@@ -5,7 +5,7 @@ extends RefCounted
 var width: int
 var height: int
 var tiles: Array[Node]
-var visited_tiles: Array[Vector2i] = [Vector2i(0,0)]
+var visited_tiles: Array[Tile]
 var entities: Array[Entity]
 var player: Entity
 
@@ -13,6 +13,10 @@ func _init(map_width: int, map_height: int, all_tiles: Array[Node]) -> void:
 	width = map_width
 	height = map_height
 	tiles = all_tiles
+	var starting_room = get_tile(Vector2i.ZERO)
+	visited_tiles.append(starting_room)
+	for i in tiles.size():
+		visited_tiles.append(tiles[i])
 
 func get_tile(grid_position: Vector2i) -> Tile:
 	var index = tiles.find_custom(func(tile: Tile): return tile.gridPosition == grid_position)
@@ -53,7 +57,7 @@ func get_actor_at_location(location: Vector2i) -> Entity:
 			return actor
 	return null
 
-func visit_tile(tile: Vector2i) -> void:
+func visit_tile(tile: Tile) -> void:
 	if !visited_tiles.has(tile):
 		visited_tiles.append(tile)
 		SignalBus.room_discovered.emit()

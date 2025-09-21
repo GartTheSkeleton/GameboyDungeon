@@ -1,15 +1,9 @@
 extends AnimatedSprite2D
 
-@onready var gameworld = get_parent().get_parent()
-@onready var healthLabel = %HealthLabel
-@onready var ammoLabel = %AmmoLabel2
-@onready var gun = $"../Gun"
+@onready var gameworld = %Gameworld
 
 var currentRoom = Vector2(0,0)
 
 func _process(delta: float) -> void:
 	if animation != gameworld.playerFacingString:
 		play(gameworld.playerFacingString)
-	healthLabel.text = "HP:" + str(gameworld.player.fighter_component.hp) + "/" + str(gameworld.player.fighter_component.max_hp)
-	ammoLabel.text = str(gameworld.player.fighter_component.stored_ammo)
-	
