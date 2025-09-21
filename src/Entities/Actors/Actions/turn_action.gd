@@ -17,7 +17,9 @@ func perform(game: Game, entity: Entity) -> void:
 	var blocking_enemy = game.get_map_data().get_blocking_entity_at_location(current_grid_position)
 	if blocking_enemy:
 		return
+	var transitions = entity.get_tree().get_first_node_in_group("Transitions")
 	if direction == "Left":
+		transitions.play("Left")
 		if game.playerFacing == game.directions.NORTH:
 #			easy solution, just loop back to other side of the dictionary
 			playerFacing = game.directions.WEST
@@ -28,6 +30,7 @@ func perform(game: Game, entity: Entity) -> void:
 			playerFacing = game.directions[nextDirection]
 			
 	if direction == "Right":
+		transitions.play("Right")
 		if game.playerFacing == game.directions.WEST:
 			#easy solution, just loop back to other side of the dictionary
 			playerFacing = game.directions.NORTH
