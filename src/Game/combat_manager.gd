@@ -30,7 +30,7 @@ func begin_combat(player: Entity, enemy: Entity) -> void:
 func _physics_process(delta: float) -> void:
 	if has_begun && current_character == player_character && player_character.is_alive():
 		if !current_character.fighter_component.turn_skipped:
-			var action: Action = input_handler.get_action()
+			var action: Action = await input_handler.get_action()
 			if action:
 				if action is InteractAction:
 					visible = false

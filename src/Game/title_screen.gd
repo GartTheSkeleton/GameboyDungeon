@@ -119,7 +119,6 @@ func introCutscene(delta):
 	introTimer += delta
 	if introTimer >= .03:
 		introTimer = 0
-		print("CLICK")
 		if intro.visible_characters < intro.get_total_character_count():
 			intro.visible_characters += 1
 			waitTimer = 60
