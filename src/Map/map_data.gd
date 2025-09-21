@@ -56,5 +56,4 @@ func get_actor_at_location(location: Vector2i) -> Entity:
 func visit_tile(tile: Vector2i) -> void:
 	if !visited_tiles.has(tile):
 		visited_tiles.append(tile)
-		print(visited_tiles)
 		SignalBus.room_discovered.emit()

@@ -5,7 +5,6 @@ extends BaseInputHandler
 
 func close_map_and_wait() -> void:
 	SignalBus.close_map.emit()
-	await get_tree().create_timer(.1).timeout
 
 func get_action() -> Action:
 	var action: Action = null
