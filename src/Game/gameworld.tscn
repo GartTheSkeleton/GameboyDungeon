@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=74 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -30,12 +30,27 @@
 [ext_resource type="Texture2D" uid="uid://dlskr7ffnhyur" path="res://src/Assets/VFX/knife_attack2.png" id="21_jvhvo"]
 [ext_resource type="Texture2D" uid="uid://datxfbmw5pqi1" path="res://src/Assets/VFX/knife_attack3.png" id="22_pucdq"]
 [ext_resource type="Texture2D" uid="uid://cay8f2ajghcgq" path="res://src/Assets/VFX/hitmarker.png" id="23_jvhvo"]
-[ext_resource type="Script" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
+[ext_resource type="Texture2D" uid="uid://dqmbjygvncfyp" path="res://src/Assets/VFX/left_transition1.png" id="24_mphjs"]
+[ext_resource type="Texture2D" uid="uid://dxfwtcuhbhs6x" path="res://src/Assets/VFX/walk_transition4.png" id="24_upprx"]
+[ext_resource type="Texture2D" uid="uid://d0r8rorpb0mxg" path="res://src/Assets/VFX/left_transition2.png" id="25_s3evq"]
+[ext_resource type="Texture2D" uid="uid://b22yo3fqyp0hj" path="res://src/Assets/VFX/walk_transition5.png" id="25_wwakg"]
+[ext_resource type="Texture2D" uid="uid://dagaa3ceiwexs" path="res://src/Assets/VFX/left_transition3.png" id="26_sjrmq"]
+[ext_resource type="Texture2D" uid="uid://6c8coxjra5sr" path="res://src/Assets/VFX/left_transition4.png" id="27_ejevq"]
+[ext_resource type="Texture2D" uid="uid://dbl83mvowmnsl" path="res://src/Assets/VFX/left_transition5.png" id="28_0urkj"]
+[ext_resource type="Texture2D" uid="uid://cae1ili8bsu6f" path="res://src/Assets/VFX/right_transition1.png" id="29_41jq7"]
+[ext_resource type="Texture2D" uid="uid://5ao14q5gu5x8" path="res://src/Assets/VFX/right_transition2.png" id="30_nodc0"]
+[ext_resource type="Script" uid="uid://cv1moualqynav" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
+[ext_resource type="Texture2D" uid="uid://c5ggjqfybb1g7" path="res://src/Assets/VFX/right_transition3.png" id="31_tw4nq"]
 [ext_resource type="AudioStream" uid="uid://duhw0ov67lhwl" path="res://src/Assets/SFX/player_scream.wav" id="32_2wliv"]
+[ext_resource type="Texture2D" uid="uid://bxa2xgy0ipal8" path="res://src/Assets/VFX/right_transition4.png" id="32_cdnba"]
 [ext_resource type="AudioStream" uid="uid://cytj8j3822dwg" path="res://src/Assets/SFX/door.wav" id="33_1onj0"]
+[ext_resource type="Texture2D" uid="uid://cqugrqvhyp4ai" path="res://src/Assets/VFX/right_transition5.png" id="33_auq5j"]
 [ext_resource type="AudioStream" uid="uid://dvdotwc3fyngu" path="res://src/Assets/SFX/reload.wav" id="34_1qyf6"]
+[ext_resource type="Texture2D" uid="uid://clluwj5nouc57" path="res://src/Assets/VFX/walk_transition1.png" id="34_mphjs"]
 [ext_resource type="AudioStream" uid="uid://dsyctkf4tmclo" path="res://src/Assets/SFX/playerhurt.wav" id="35_phklu"]
+[ext_resource type="Texture2D" uid="uid://d3ktoo71jo4wi" path="res://src/Assets/VFX/walk_transition2.png" id="35_s3evq"]
 [ext_resource type="AudioStream" uid="uid://fhloq3bkkpee" path="res://src/Assets/SFX/heal.wav" id="36_ao58q"]
+[ext_resource type="Texture2D" uid="uid://ddisfvhbpm6bw" path="res://src/Assets/VFX/walk_transition3.png" id="36_sjrmq"]
 [ext_resource type="AudioStream" uid="uid://dtlk5r120a237" path="res://src/Assets/SFX/roar.wav" id="37_upprx"]
 [ext_resource type="AudioStream" uid="uid://c5xy8vttmd862" path="res://src/Assets/SFX/shoot.wav" id="38_wwakg"]
 [ext_resource type="AudioStream" uid="uid://b4jseya2snsvl" path="res://src/Assets/SFX/click.wav" id="39_2wliv"]
@@ -249,6 +264,86 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwwmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Empty",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_mphjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_s3evq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_sjrmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ejevq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0urkj")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Left",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_41jq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_nodc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_tw4nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_cdnba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_auq5j")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Right",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_mphjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_s3evq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_sjrmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_upprx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_wwakg")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Walk",
+"speed": 18.0
 }]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d75vc"]
@@ -1495,6 +1590,8 @@ visible_characters = 4
 visible_ratio = 0.92
 
 [node name="Compass" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D"]
+z_index = 5
+z_as_relative = false
 texture_filter = 1
 position = Vector2(56, -48)
 sprite_frames = SubResource("SpriteFrames_k0lof")
@@ -1568,6 +1665,12 @@ autoplay = "Idle"
 [node name="Hitmarker" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Hitmarker"]]
 sprite_frames = SubResource("SpriteFrames_jv3qj")
 autoplay = "default"
+
+[node name="Transitions" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Camera2D" groups=["Transitions"]]
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_xwwmq")
+animation = &"Walk"
+autoplay = "Empty"
 
 [node name="InputHandler" type="Node" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld"]
 unique_name_in_owner = true

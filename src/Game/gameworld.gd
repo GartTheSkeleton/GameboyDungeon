@@ -182,7 +182,7 @@ func create_player() -> void:
 	SignalBus.player_turned.emit(playerFacing)
 
 func get_sine(time):
-	return sin(time * 40) * .6
+	return sin(time * 40) * .68
 
 func handle_player_death() -> void:
 	input_handler.external_transition_to(InputHandler.InputHandlers.GAME_OVER)
