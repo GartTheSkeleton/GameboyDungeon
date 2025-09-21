@@ -13,7 +13,7 @@ var game = preload("res://src/Game/gameworld.tscn")
 @onready var intro2 = $Intro2
 @onready var introPanel = $IntroPanel
 var loading = true
-var waitTimer = 82
+var waitTimer = 90
 var waitTimer2 = 82
 var enemyType : int
 var enemyAnimationTimer = 100
@@ -75,6 +75,8 @@ func _physics_process(delta: float) -> void:
 				enemyAnimationTimer = [90,120,180,210].pick_random()
 				enemySprite.play(str(enemyType)+"Atk")
 		if Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Right"):
+			if titleScreen.visible == true:
+				click()
 			if pointerPos == 1:
 				pointerPos = 2
 			else:
@@ -120,7 +122,6 @@ func introCutscene(delta):
 		print("CLICK")
 		if intro.visible_characters < intro.get_total_character_count():
 			intro.visible_characters += 1
-			click()
 			waitTimer = 60
 		elif intro2.visible_characters < intro2.get_total_character_count():
 			waitTimer -= 1
@@ -129,7 +130,6 @@ func introCutscene(delta):
 				if introPanel.visible == false:
 					introPanel.visible = true
 				intro2.visible_characters += 1
-				click()
 				waitTimer2 = 60
 		else:
 			waitTimer2 -= 1
@@ -143,7 +143,7 @@ func introCutscene(delta):
 func click():
 	if clicksound == true:
 		$Click.pitch_scale = [.9,1,1.1].pick_random()
-		#$Click.play()
+		$Click.play()
 	if clicksound == false:
 		clicksound = true
 	

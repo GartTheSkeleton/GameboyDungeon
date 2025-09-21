@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://dbl83mvowmnsl" path="res://src/Assets/VFX/left_transition5.png" id="28_0urkj"]
 [ext_resource type="Texture2D" uid="uid://cae1ili8bsu6f" path="res://src/Assets/VFX/right_transition1.png" id="29_41jq7"]
 [ext_resource type="Texture2D" uid="uid://5ao14q5gu5x8" path="res://src/Assets/VFX/right_transition2.png" id="30_nodc0"]
-[ext_resource type="Script" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
+[ext_resource type="Script" uid="uid://cv1moualqynav" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
 [ext_resource type="Texture2D" uid="uid://c5ggjqfybb1g7" path="res://src/Assets/VFX/right_transition3.png" id="31_tw4nq"]
 [ext_resource type="AudioStream" uid="uid://duhw0ov67lhwl" path="res://src/Assets/SFX/player_scream.wav" id="32_2wliv"]
 [ext_resource type="Texture2D" uid="uid://bxa2xgy0ipal8" path="res://src/Assets/VFX/right_transition4.png" id="32_cdnba"]
@@ -382,7 +382,7 @@ stretch = true
 disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(160, 96)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Gameworld" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
