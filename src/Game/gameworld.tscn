@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=76 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -30,8 +30,6 @@
 [ext_resource type="Texture2D" uid="uid://dlskr7ffnhyur" path="res://src/Assets/VFX/knife_attack2.png" id="21_jvhvo"]
 [ext_resource type="Texture2D" uid="uid://datxfbmw5pqi1" path="res://src/Assets/VFX/knife_attack3.png" id="22_pucdq"]
 [ext_resource type="Texture2D" uid="uid://cay8f2ajghcgq" path="res://src/Assets/VFX/hitmarker.png" id="23_jvhvo"]
-[ext_resource type="Script" uid="uid://c5yjkkgk5ln1j" path="res://src/Map/map_view.gd" id="29_1onj0"]
-[ext_resource type="Script" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
 [ext_resource type="Texture2D" uid="uid://dqmbjygvncfyp" path="res://src/Assets/VFX/left_transition1.png" id="24_mphjs"]
 [ext_resource type="Texture2D" uid="uid://dxfwtcuhbhs6x" path="res://src/Assets/VFX/walk_transition4.png" id="24_upprx"]
 [ext_resource type="Texture2D" uid="uid://d0r8rorpb0mxg" path="res://src/Assets/VFX/left_transition2.png" id="25_s3evq"]
@@ -39,9 +37,10 @@
 [ext_resource type="Texture2D" uid="uid://dagaa3ceiwexs" path="res://src/Assets/VFX/left_transition3.png" id="26_sjrmq"]
 [ext_resource type="Texture2D" uid="uid://6c8coxjra5sr" path="res://src/Assets/VFX/left_transition4.png" id="27_ejevq"]
 [ext_resource type="Texture2D" uid="uid://dbl83mvowmnsl" path="res://src/Assets/VFX/left_transition5.png" id="28_0urkj"]
+[ext_resource type="Script" uid="uid://c5yjkkgk5ln1j" path="res://src/Map/map_view.gd" id="29_1onj0"]
 [ext_resource type="Texture2D" uid="uid://cae1ili8bsu6f" path="res://src/Assets/VFX/right_transition1.png" id="29_41jq7"]
 [ext_resource type="Texture2D" uid="uid://5ao14q5gu5x8" path="res://src/Assets/VFX/right_transition2.png" id="30_nodc0"]
-[ext_resource type="Script" uid="uid://cv1moualqynav" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
+[ext_resource type="Script" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
 [ext_resource type="Texture2D" uid="uid://c5ggjqfybb1g7" path="res://src/Assets/VFX/right_transition3.png" id="31_tw4nq"]
 [ext_resource type="AudioStream" uid="uid://duhw0ov67lhwl" path="res://src/Assets/SFX/player_scream.wav" id="32_2wliv"]
 [ext_resource type="Texture2D" uid="uid://bxa2xgy0ipal8" path="res://src/Assets/VFX/right_transition4.png" id="32_cdnba"]
@@ -268,16 +267,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wliv"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-texture = ExtResource("12_q8503")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwwmq"]
 animations = [{
 "frames": [{
@@ -358,6 +347,16 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wliv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+texture = ExtResource("12_q8503")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d75vc"]
 texture = ExtResource("12_q8503")
 texture_margin_left = 5.0
@@ -394,7 +393,7 @@ stretch = true
 disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(2, 2)
+size = Vector2i(160, 96)
 render_target_update_mode = 4
 
 [node name="Gameworld" type="Node2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]

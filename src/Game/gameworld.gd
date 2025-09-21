@@ -94,7 +94,7 @@ func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
 			new_entity.position.y -= 16
 		"Fairy":
 			new_entity = Entity.new(grid_pos, entity_types.fairy, map_data)
-			new_entity.position.y -= 16
+			new_entity.position.y -= 6
 		"Abomination":
 			new_entity = Entity.new(grid_pos, entity_types.abomination, map_data)
 		"Mimic": 
