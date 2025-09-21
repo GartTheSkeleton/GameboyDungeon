@@ -70,10 +70,10 @@ var random_remarks = [
 ]
 
 func _ready() -> void:
-	create_player()
 	SignalBus.start_combat.connect(combat_manager.begin_combat)
 	SignalBus.create_entity.connect(createEntity)
 	SignalBus.player_died.connect(handle_player_death)
+	create_player()
 	SignalBus.gameworld_ready.emit()
 
 func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
