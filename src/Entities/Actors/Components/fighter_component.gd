@@ -68,7 +68,9 @@ func heal(amount: int) -> int:
 		new_hp_value = max_hp
 	var amount_recovered: int = new_hp_value - hp
 	hp = new_hp_value
+	get_tree().get_first_node_in_group("AudioBus").heal.play()
 	return amount_recovered
+	
 
 func take_damage(amount: int) -> void:
 	if amount > 0:
@@ -78,6 +80,7 @@ func take_damage(amount: int) -> void:
 		hp -= amount
 		if parent.is_alive() && parent.texture != idle_texture :
 			parent.texture = idle_texture 
+		get_tree().get_first_node_in_group("AudioBus").monster_hurt.play()
 
 func expend_ammo() -> void:
 	ammo -= 1
@@ -87,6 +90,7 @@ func reload() -> void:
 		MessageLog.send_message("You don't need to reload!")
 	elif stored_ammo > 0:
 		gun.play("Reload")
+		get_tree().get_first_node_in_group("AudioBus").reload.play()
 		var message: String
 		var missing_ammo = 6 - ammo
 		if stored_ammo >= missing_ammo:

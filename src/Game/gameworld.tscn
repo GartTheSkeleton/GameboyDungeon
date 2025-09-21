@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bb7wofvtwlsvg"]
+[gd_scene load_steps=58 format=3 uid="uid://bb7wofvtwlsvg"]
 
 [ext_resource type="Script" uid="uid://dy1t4tltd410w" path="res://src/Game/gameworld.gd" id="1_j714t"]
 [ext_resource type="PackedScene" uid="uid://bp20g3g4hsbbu" path="res://src/Map/Tile/tile.tscn" id="2_5ixr1"]
@@ -30,6 +30,17 @@
 [ext_resource type="Texture2D" uid="uid://dlskr7ffnhyur" path="res://src/Assets/VFX/knife_attack2.png" id="21_jvhvo"]
 [ext_resource type="Texture2D" uid="uid://datxfbmw5pqi1" path="res://src/Assets/VFX/knife_attack3.png" id="22_pucdq"]
 [ext_resource type="Texture2D" uid="uid://cay8f2ajghcgq" path="res://src/Assets/VFX/hitmarker.png" id="23_jvhvo"]
+[ext_resource type="Script" uid="uid://cv1moualqynav" path="res://src/Game/audio_bus.gd" id="31_a0yww"]
+[ext_resource type="AudioStream" uid="uid://duhw0ov67lhwl" path="res://src/Assets/SFX/player_scream.wav" id="32_2wliv"]
+[ext_resource type="AudioStream" uid="uid://cytj8j3822dwg" path="res://src/Assets/SFX/door.wav" id="33_1onj0"]
+[ext_resource type="AudioStream" uid="uid://dvdotwc3fyngu" path="res://src/Assets/SFX/reload.wav" id="34_1qyf6"]
+[ext_resource type="AudioStream" uid="uid://dsyctkf4tmclo" path="res://src/Assets/SFX/playerhurt.wav" id="35_phklu"]
+[ext_resource type="AudioStream" uid="uid://fhloq3bkkpee" path="res://src/Assets/SFX/heal.wav" id="36_ao58q"]
+[ext_resource type="AudioStream" uid="uid://dtlk5r120a237" path="res://src/Assets/SFX/roar.wav" id="37_upprx"]
+[ext_resource type="AudioStream" uid="uid://c5xy8vttmd862" path="res://src/Assets/SFX/shoot.wav" id="38_wwakg"]
+[ext_resource type="AudioStream" uid="uid://b4jseya2snsvl" path="res://src/Assets/SFX/click.wav" id="39_2wliv"]
+[ext_resource type="AudioStream" uid="uid://divm5foymc28h" path="res://src/Assets/SFX/monster_hurt.wav" id="39_22b2w"]
+[ext_resource type="AudioStream" uid="uid://dujg5k6vnsvfs" path="res://src/Assets/SFX/warble.wav" id="40_goq3o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkeyt"]
 texture = ExtResource("12_q8503")
@@ -1211,7 +1222,7 @@ enemyType = 1
 leverTarget = Vector2i(-1, -6)
 
 [node name="-8-16" parent="VBoxContainer/SubViewportContainer/SubViewport/Gameworld/Map" instance=ExtResource("2_5ixr1")]
-gridPosition = Vector2i(-8, -18)
+gridPosition = Vector2i(-8, -16)
 northPanelType = 2
 southPanelType = 2
 westPanelType = 2
@@ -1479,5 +1490,38 @@ layout_mode = 2
 size_flags_horizontal = 3
 label_settings = ExtResource("15_j816e")
 horizontal_alignment = 2
+
+[node name="AudioBus" type="Node2D" parent="." groups=["AudioBus"]]
+script = ExtResource("31_a0yww")
+
+[node name="PlayerScream" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("32_2wliv")
+
+[node name="Door" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("33_1onj0")
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("34_1qyf6")
+
+[node name="PlayerHurt" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("35_phklu")
+
+[node name="Heal" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("36_ao58q")
+
+[node name="MonsterScream" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("37_upprx")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("38_wwakg")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("39_2wliv")
+
+[node name="MonsterHurt" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("39_22b2w")
+
+[node name="SlimeScream" type="AudioStreamPlayer2D" parent="AudioBus"]
+stream = ExtResource("40_goq3o")
 
 [connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Gameworld" to="VBoxContainer/InfoBar/StatsPanel/Stats" method="update_stat_labels"]
