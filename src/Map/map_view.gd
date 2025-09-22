@@ -65,3 +65,4 @@ func draw_map() -> void:
 			if border_panel_types.has(tile.eastPanelType):
 				style_box.border_width_right = 1
 			add_child(room_panel)
+			displayed_tiles.append(tile.gridPosition)
