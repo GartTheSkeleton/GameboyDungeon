@@ -3,6 +3,8 @@ extends Action
 
 var offset: Vector2i
 
+var victoryscreen = preload("res://src/Game/victory_screen.tscn")
+
 func _init(dx: int, dy: int) -> void:
 	offset = Vector2i(dx, dy)
 
@@ -25,6 +27,9 @@ func perform(game: Game, entity: Entity) -> void:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 			if current_room.northPanelType == current_room.panelTypes.EXIT:
 				found_exit = true
+				var victory = victoryscreen.instantiate()
+				entity.get_tree().get_first_node_in_group("Gameworld").add_sibling(victory)
+				entity.get_tree().get_first_node_in_group("Gameworld").queue_free()
 				MessageLog.send_message("You escaped! Victory!")
 		"EAST":
 			if blocking_panel_types.has(current_room.eastPanelType):
@@ -33,6 +38,9 @@ func perform(game: Game, entity: Entity) -> void:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 			if current_room.eastPanelType == current_room.panelTypes.EXIT:
 				found_exit = true
+				var victory = victoryscreen.instantiate()
+				entity.get_tree().get_first_node_in_group("Gameworld").add_sibling(victory)
+				entity.get_tree().get_first_node_in_group("Gameworld").queue_free()
 				MessageLog.send_message("You escaped! Victory!")
 		"SOUTH":
 			if blocking_panel_types.has(current_room.southPanelType):
@@ -41,6 +49,9 @@ func perform(game: Game, entity: Entity) -> void:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 			if current_room.southPanelType == current_room.panelTypes.EXIT:
 				found_exit = true
+				var victory = victoryscreen.instantiate()
+				entity.get_tree().get_first_node_in_group("Gameworld").add_sibling(victory)
+				entity.get_tree().get_first_node_in_group("Gameworld").queue_free()
 				MessageLog.send_message("You escaped! Victory!")
 		"WEST":
 			if blocking_panel_types.has(current_room.westPanelType):
@@ -49,6 +60,9 @@ func perform(game: Game, entity: Entity) -> void:
 				entity.get_tree().get_first_node_in_group("AudioBus").door.play()
 			if current_room.westPanelType == current_room.panelTypes.EXIT:
 				found_exit = true
+				var victory = victoryscreen.instantiate()
+				entity.get_tree().get_first_node_in_group("Gameworld").add_sibling(victory)
+				entity.get_tree().get_first_node_in_group("Gameworld").queue_free()
 				MessageLog.send_message("You escaped! Victory!")
 	if not found_exit:
 		if not destination_tile || is_facing_wall || blocking_entity:
