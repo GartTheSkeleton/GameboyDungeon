@@ -25,14 +25,19 @@ var startgame = false
 var clicksound = false
 var songplayed = false
 var tutorialVisible = false
+var begin = false
 
 func _ready() -> void:
+	print("Hello")
 	titleScreen.visible = false
 	randomize()
 	enemyType = [1,2,3].pick_random()
 
 func _physics_process(delta: float) -> void:
 	song.volume_db = .5
+	if tutorialVisible == true:
+		if Input.is_action_just_pressed("A"):
+			begin = true
 	if state == 0:
 		if logo1.global_position.y < 72:
 			logo1.global_position.y += 30*delta
@@ -119,7 +124,7 @@ func _physics_process(delta: float) -> void:
 				#queue_free()
 
 func introCutscene(delta):
-	var ready = false
+	
 	introTimer += delta
 	if introTimer >= .03:
 		introTimer = 0
@@ -138,10 +143,7 @@ func introCutscene(delta):
 			waitTimer2 -= 1
 			if waitTimer2 <= 0:
 				tutorialVisible = true
-		if tutorialVisible == true:
-			if Input.is_action_just_pressed("A"):
-				ready = true
-		if ready == true:
+		if begin == true:
 			var newgame = game.instantiate()
 			add_sibling(newgame)
 			queue_free()
