@@ -100,9 +100,9 @@ func reload() -> void:
 			ammo += missing_ammo
 			message = "You load up %s more shots" % str(missing_ammo)
 		else:
+			message = "You load up %s more shots" % str(stored_ammo)
 			ammo += stored_ammo
 			stored_ammo = 0
-			message = "You load up %s more shots" % str(stored_ammo)
 		MessageLog.send_message(message)
 	else:
 		MessageLog.send_message("Uh oh! You're of ammo!")
