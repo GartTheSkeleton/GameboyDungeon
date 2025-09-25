@@ -5,7 +5,7 @@ extends BaseInputHandler
 
 func get_action() -> Action:
 	var action: Action = null
-	if Input.is_action_just_pressed("B"):
-		action = EscapeAction.new()
-		action.perform(game, game.player)
+	#if Input.is_action_just_pressed("B"):
+		#action = EscapeAction.new()
+		#action.perform(game, game.player)
 	return action
