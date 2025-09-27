@@ -80,7 +80,7 @@ func _ready() -> void:
 	#SignalBus.room_discovered.emit()
 
 
-	$"../../../../AudioBus/Music".volume_db = -10
+	$"../../../../AudioBus/Music".volume_db = -8
 	$"../../../../AudioBus/Music".play()
 
 func createEntity(name: String, grid_pos: Vector2i, chest_contents = null):
